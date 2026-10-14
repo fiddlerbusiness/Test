@@ -1,0 +1,84 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["summary", "findings", "stack", "blood_markers", "sources"],
+  "properties": {
+    "summary": {
+      "type": "string",
+      "description": "Max 250 words: top conclusions per pillar, deficiency vs eugonadal distinction for testosterone, main caveats."
+    },
+    "findings": {
+      "type": "array",
+      "description": "One row per supplement x pillar x baseline status. Include Tier 3 items. For testosterone, use separate rows for deficient/low vs replete/eugonadal.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["pillar", "rank", "supplement", "evidence_tier", "baseline_status", "population", "outcome", "effect_size", "k_studies", "n_participants", "duration", "dose_timing", "safety_flag", "counter_evidence", "verdict", "source_ids"],
+        "properties": {
+          "pillar": { "type": "string", "enum": ["strength", "endurance", "testosterone"] },
+          "rank": { "type": ["integer", "null"], "description": "Rank within pillar by practical benefit; null for Tier 3." },
+          "supplement": { "type": "string" },
+          "evidence_tier": { "type": "string", "enum": ["Tier 1: Established / Replicated", "Tier 2: Preliminary / Context-Dependent", "Tier 3: Ineffective / Debunked / Marketing Hype"] },
+          "baseline_status": { "type": "string", "enum": ["any", "deficient or low baseline", "replete or eugonadal"] },
+          "population": { "type": "string", "description": "Age, training status, sample characteristics; flag extrapolations from women, older, clinical or animal data." },
+          "outcome": { "type": "string" },
+          "effect_size": { "type": "string", "description": "Metric, point estimate, 95% CI in natural units; testosterone in ng/dL and nmol/L; 'not reported' if absent." },
+          "k_studies": { "type": ["integer", "null"] },
+          "n_participants": { "type": ["integer", "null"] },
+          "duration": { "type": "string" },
+          "dose_timing": { "type": "string", "description": "Effective dose (mg, g or per kg), timing, form." },
+          "safety_flag": { "type": "string", "enum": ["low concern", "moderate concern", "high concern"] },
+          "counter_evidence": { "type": "string", "description": "Strongest null or negative evidence and main objections." },
+          "verdict": { "type": "string", "description": "Max 40 words." },
+          "source_ids": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "stack": {
+      "type": "array",
+      "description": "Practical blueprint for a healthy trained man aged 20-40.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["supplement", "dose", "timing", "condition", "rationale", "source_ids"],
+        "properties": {
+          "supplement": { "type": "string" },
+          "dose": { "type": "string" },
+          "timing": { "type": "string" },
+          "condition": { "type": "string", "enum": ["daily", "training day", "competition only", "only if lab-confirmed deficient", "do not take"] },
+          "rationale": { "type": "string" },
+          "source_ids": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "blood_markers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["marker", "reason", "sampling_and_retest"],
+        "properties": {
+          "marker": { "type": "string" },
+          "reason": { "type": "string" },
+          "sampling_and_retest": { "type": "string" }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "citation", "design", "doi_or_pmid", "url", "verified"],
+        "properties": {
+          "id": { "type": "string" },
+          "citation": { "type": "string", "description": "First author et al., title, journal, year." },
+          "design": { "type": "string", "description": "e.g. meta-analysis, RCT, position stand, animal study; include k or n." },
+          "doi_or_pmid": { "type": ["string", "null"] },
+          "url": { "type": ["string", "null"] },
+          "verified": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

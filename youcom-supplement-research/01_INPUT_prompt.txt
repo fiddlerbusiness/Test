@@ -1,0 +1,377 @@
+RUN_SCOPE: ALL_PILLARS
+(Allowed values: ALL_PILLARS | STRENGTH_ONLY | ENDURANCE_ONLY | TESTOSTERONE_ONLY. If a single pillar is named, analyze only the levers relevant to that pillar, but keep the full JSON structure and fill non-applicable fields with null or empty arrays.)
+
+### 1. ROLE & GOAL
+You are a research panel of three experts working as one:
+(a) a quantitative sport scientist and meta-analyst (effect sizes, heterogeneity, bias, smallest worthwhile change),
+(b) an exercise biochemist and physiologist (muscle energetics, buffering, nitric oxide, mitochondrial adaptation, muscle protein synthesis),
+(c) a clinical endocrinologist specialized in male reproductive endocrinology (HPG axis, testosterone assays, SHBG, cortisol).
+
+Knowledge date: October 2026. Cover the literature through 2026. Actively search for 2023-2026 meta-analyses, umbrella reviews, RCTs, position stands, and regulatory safety assessments. For every lever, state explicitly whether the newest evidence CONFIRMS, MODIFIES, or OVERTURNS older conclusions.
+
+GOAL: Produce a rigorous, quantitative, primary-source-based appraisal of legal over-the-counter dietary supplements for healthy, physically active men aged 20-40, across three pillars:
+- PILLAR 1 STRENGTH: maximal strength (1RM), muscle hypertrophy, explosive power, repetition capacity/volume load, recovery between sessions.
+- PILLAR 2 ENDURANCE: VO2max, lactate/ventilatory threshold, critical power, time-trial performance, time-to-exhaustion, aerobic and anaerobic capacity, repeated-sprint ability.
+- PILLAR 3 TESTOSTERONE: endogenous total testosterone, free testosterone, LH/FSH, SHBG modulation, estradiol, and cortisol/stress-axis responses to heavy training.
+
+Then rank the levers per pillar, debunk marketing hype, map interactions, and build a practical, lab-monitored supplement blueprint.
+
+### 2. TARGET POPULATION & MANDATORY STRATIFICATION
+Population: healthy men, 20-40 years, physically active, no diagnosed disease, no medication relevant to the HPG axis.
+
+Stratify every conclusion where data allow by:
+a) TRAINING STATUS: untrained/novice, recreationally trained, well-trained/elite. Use the original study definitions; where possible map them to the participant classification framework of McKay et al. (Int J Sports Physiol Perform, 2022). Effects often shrink with training status (e.g., nitrate in highly trained endurance athletes) - quantify this when data exist.
+b) BASELINE NUTRIENT STATUS: deficient vs insufficient vs replete. Always state the biomarker and cut-off used (e.g., serum 25(OH)D, serum ferritin plus transferrin saturation, plasma/serum zinc, serum or erythrocyte magnesium, Omega-3 Index).
+c) BASELINE HORMONAL STATUS: hypogonadal / low-normal vs eugonadal. State assay method and cut-off.
+d) DIETARY & ENERGY CONTEXT: habitual protein intake, energy availability (low energy availability / REDs suppresses the HPG axis), vegetarian/vegan diets (e.g., lower muscle creatine stores), habitual caffeine intake.
+
+Explicitly flag any extrapolation from: women, men older than 50, clinical populations (infertility, obesity, type 2 diabetes, hypogonadism, chronic disease), or animals/in-vitro models. Never present such data as if obtained in healthy men aged 20-40.
+
+### 3. SCOPE & DEFINITIONS
+INCLUDED as interventions: legal, over-the-counter dietary supplements, sports foods, micronutrients, and botanical extracts/adaptogens.
+
+EXCLUDED as interventions: anabolic-androgenic steroids, prohormones, DHEA, SARMs, peptides and GH secretagogues, aromatase inhibitors, SERMs, prescription testosterone therapy, hCG, clenbuterol, DNP, and any other prescription or WADA-prohibited agent. Mention these only (i) as adulterants/contaminants found in supplements, or (ii) as a magnitude benchmark for interpreting testosterone changes.
+
+CONTEXT REQUIREMENT: sleep duration, energy availability, body-fat level, alcohol intake and training load are not supplements but are major determinants of endogenous testosterone and performance. Provide a short evidence-based context statement so that supplement effects are always framed relative to these levers.
+
+DISTINGUISH STRICTLY between:
+- DIRECT HUMAN OUTCOMES: performance or hormone outcomes measured in humans in RCTs or meta-analyses of RCTs.
+- MECHANISTIC HUMAN DATA: muscle biopsies, MPS rates, biomarkers without a performance outcome.
+- ANIMAL / IN-VITRO DATA: label every such statement "ANIMAL/IN-VITRO ONLY". These data can never justify Tier 1 or Tier 2.
+- OBSERVATIONAL HUMAN DATA: associations only; they can never justify Tier 1.
+
+### 4. OUTCOME DEFINITIONS & MEASUREMENT RULES
+PILLAR 1 (STRENGTH): 1RM or isometric/isokinetic maximal strength (kg and %); hypertrophy measured by ultrasound, MRI/CT cross-sectional area, or fiber CSA, kept separate from DXA/BIA lean mass (lean mass includes intracellular water, which matters especially for creatine); power (countermovement jump, Wingate peak/mean power); repetitions to failure and volume load; recovery (force recovery, CK, DOMS). Separate ACUTE (single dose) from CHRONIC (training study) effects.
+
+PILLAR 2 (ENDURANCE): VO2max (ml/kg/min and L/min), lactate threshold, critical power, exercise economy, time-trial performance, time-to-exhaustion. Time-to-exhaustion produces much larger percentage changes than time-trial tests (Hopkins, Hawley & Burke, Med Sci Sports Exerc, 1999); report the two test types separately and never merge their percentages. Prefer time-trial data for practical relevance.
+
+PILLAR 3 (TESTOSTERONE):
+- Report total testosterone in BOTH ng/dL and nmol/L (1 nmol/L = 28.84 ng/dL).
+- Free testosterone: state whether measured by equilibrium dialysis or calculated (e.g., Vermeulen equation; Vermeulen et al., J Clin Endocrinol Metab, 1999). Treat salivary testosterone and direct analog free-T immunoassays as lower-quality evidence.
+- Record assay method (LC-MS/MS vs immunoassay), sampling time (morning, fasting), and number of samples (Rosner et al., Endocrine Society position statement, J Clin Endocrinol Metab, 2007).
+- Also extract LH, FSH, SHBG, estradiol, cortisol (serum vs salivary), and the testosterone:cortisol ratio when reported.
+- PHYSIOLOGICAL RELEVANCE CHECK (mandatory): For every testosterone change, judge (i) whether it exceeds normal diurnal and day-to-day variability, (ii) where it sits relative to the harmonized reference range for non-obese men aged 19-39 (Travison et al., J Clin Endocrinol Metab, 2017; verify the exact range in the source), and (iii) whether a change of that magnitude within the physiological range plausibly affects strength or hypertrophy. Use the dose-response data of Bhasin et al. (Am J Physiol Endocrinol Metab, 2001) and the training studies of West & Phillips (Eur J Appl Physiol, 2012) and Morton et al. (J Appl Physiol, 2016) as anchors. State plainly when a "statistically significant" increase is practically irrelevant.
+
+### 5. LEVERS TO ANALYZE (minimum list - add other relevant levers you find)
+CATEGORY 1 - STRENGTH & HYPERTROPHY ERGOGENICS
+- Creatine monohydrate: loading vs no loading, responders vs non-responders, vegetarians, effect on hypertrophy vs lean mass (water), kidney safety (serum creatinine vs cystatin C), hair-loss/DHT claim (single study: van der Merwe et al., Clin J Sport Med, 2009), other forms (HCl, buffered, ethyl ester) vs monohydrate.
+- Caffeine: strength, power, repetition capacity; dose per kg; habitual intake/tolerance.
+- Beta-alanine: relevance for resistance training (set duration) vs 30 s - 10 min efforts; paresthesia and blinding.
+- L-citrulline vs citrulline malate: dose, labeled ratio (1:1 vs 2:1), repetition outcomes.
+- Betaine (trimethylglycine): strength, power, body composition.
+- Protein: total daily intake (g/kg/day) and breakpoint, per-meal dose, timing, distribution; whey vs plant proteins.
+- Essential amino acids vs BCAAs vs isolated leucine.
+- HMB (calcium salt and free acid) - include null results in trained subjects.
+- Sodium bicarbonate for repeated high-intensity / resistance exercise.
+- Recovery agents: tart cherry and other polyphenols, omega-3 (EPA+DHA), collagen peptides (connective tissue only), vitamin D (strength in deficiency).
+
+CATEGORY 2 - ENDURANCE & CARDIO ERGOGENICS
+- Inorganic nitrate / beetroot juice: dose in mmol and mg, acute vs chronic loading, trained vs untrained, domain (intense short vs prolonged), oral microbiome and antibacterial mouthwash interaction (Govoni et al., Nitric Oxide, 2008).
+- Sodium bicarbonate: dose per kg, timing, GI side effects, newer formulations (e.g., enteric-coated, hydrogel), acute vs serial dosing.
+- Caffeine: dose per kg, timing, low-dose efficacy, CYP1A2/ADORA2A genotype debate, withdrawal/habituation.
+- Beta-alanine: efforts of roughly 30 s to 10 min.
+- Carbohydrate: daily periodization, intake during exercise (g/h), multiple transportable carbohydrates, mouth rinse.
+- Fluids, sodium and electrolytes: individual sweat sodium variability, hyponatremia risk, heat.
+- Iron: ONLY in iron deficiency with or without anemia; ferritin and transferrin saturation thresholds; hepcidin; alternate-day dosing (Stoffel et al., Lancet Haematol, 2017 - note this was done in women; flag the extrapolation); risk of iron overload in replete men.
+- Ketone esters/salts, L-carnitine, rhodiola, ashwagandha (VO2max) - assess critically.
+
+CATEGORY 3 - MICRONUTRIENTS & FOUNDATION (performance AND testosterone)
+- Vitamin D3, with and without vitamin K2. State whether ANY RCT evidence exists for K2 add-on effects on testosterone or performance in this population; if none, say so.
+- Zinc: forms, dose, upper limits, copper depletion risk with chronic high doses, ZMA products.
+- Magnesium: forms, dose, effects in athletes vs sedentary people, deficiency vs repletion.
+- Boron: dose, very small trials, upper limits.
+- Omega-3 (EPA+DHA): muscle protein synthesis, soreness, testicular function (observational only), atrial fibrillation risk at higher doses (Gencer et al., Circulation, 2021).
+- Multivitamins/minerals as "insurance": is there any performance or hormonal benefit in replete men?
+
+CATEGORY 4 - BOTANICALS & ADAPTOGENS (testosterone / cortisol modulation)
+- Ashwagandha (Withania somnifera): root extract (e.g., KSM-66) vs root+leaf extract (e.g., Sensoril); withanolide standardization; testosterone, cortisol, strength, VO2max; hepatotoxicity case series (Bjornsson et al., Liver Int, 2020); thyroid effects; regulatory actions in EU member states (Danish risk assessment by DTU and subsequent ban; BfR, RIVM and ANSES statements).
+- Tongkat Ali (Eurycoma longifolia): standardized extracts (e.g., LJ100 / Physta); healthy vs hypogonadal men; cortisol data; contamination/quality control.
+- Fenugreek (Trigonella foenum-graecum): branded extracts (e.g., Testofen, Furosap); total vs free testosterone; strength outcomes.
+- Shilajit: purified extracts (e.g., PrimaVie); age of study participants; heavy-metal contamination risk.
+- Fadogia agrestis: MANDATORY TOXICITY CHECK. Determine whether ANY human RCT exists. Report rodent testicular, hepatic, renal and hematological toxicity data (e.g., Yakubu and colleagues, 2005-2008) and explain why rodent aphrodisiac data cannot support use in humans.
+- Maca (Lepidium meyenii): testosterone vs libido outcomes.
+- Tribulus terrestris: testosterone and strength outcomes in young men and athletes.
+- D-aspartic acid: initial positive report vs later null/negative RCTs in resistance-trained men.
+- Ecdysterone / "turkesterone": human RCT evidence, product-content analyses, WADA Monitoring Program status.
+- Mucuna pruriens, stinging nettle root (SHBG claim), DIM / indole-3-carbinol (estrogen claim), forskolin, ginseng, phosphatidylserine (cortisol), rhodiola - triage briefly.
+- Multi-ingredient "testosterone booster" products: ingredient-level evidence and label claims (Clemesha et al., World J Mens Health, 2020; Balasubramanian et al., J Sex Med, 2019).
+
+CATEGORY 5 - SYNERGIES, INTERACTIONS, INTERFERENCE & CONTRAINDICATIONS
+- High-dose antioxidants (e.g., vitamin C ~1 g/day + vitamin E ~400 IU/day) blunting endurance and resistance training adaptations (Ristow et al., PNAS, 2009; Gomez-Cabrera et al., Am J Clin Nutr, 2008; Paulsen et al., J Physiol, 2014 - two separate trials, endurance and strength). Does chronic polyphenol use (e.g., tart cherry) blunt adaptation?
+- Caffeine vs sleep vs testosterone: caffeine effects on subsequent sleep (Gardiner et al., Sleep Med Rev, 2023; Drake et al., J Clin Sleep Med, 2013); sleep restriction and testosterone (Leproult & Van Cauter, JAMA, 2011); acute caffeine effects on testosterone and cortisol responses to resistance exercise (Beaven et al., Int J Sport Nutr Exerc Metab, 2008). Derive a practical caffeine cut-off time.
+- Caffeine + creatine (Vandenberghe et al., J Appl Physiol, 1996 vs later studies).
+- Additive effects: beta-alanine + sodium bicarbonate; caffeine + nitrate; caffeine + bicarbonate.
+- Mineral-mineral competition: zinc-copper, zinc-iron, calcium-iron, high-dose magnesium-zinc.
+- NSAIDs taken around training (not supplements, but common): high doses vs hypertrophy (Lilja et al., Acta Physiol, 2018).
+- Botanical-drug interactions: ashwagandha (thyroid hormones, sedatives, immunosuppressants), omega-3 (anticoagulants), others found.
+- Supplement contamination and anti-doping risk: anabolic steroid contamination of non-hormonal supplements (Geyer et al., Int J Sports Med, 2004 and newer analyses); third-party certification (Informed Sport, NSF Certified for Sport, Koelner Liste).
+
+### 6. EVIDENCE TO LOCATE, VERIFY & RECONCILE
+The references below are SEARCH ANCHORS, not evidence. Verify every one against PubMed/DOI before citing it. If a listed item cannot be found or its details differ, correct the details or omit it, and state this in meta.methods_note. Do NOT copy numbers from this prompt - extract them from the sources.
+
+POSITION STANDS, CONSENSUS STATEMENTS & FRAMEWORKS
+- Maughan RJ et al. IOC consensus statement: dietary supplements and the high-performance athlete. Br J Sports Med 2018 (also Int J Sport Nutr Exerc Metab 2018).
+- Kerksick CM et al. ISSN exercise & sports nutrition review update. J Int Soc Sports Nutr 2018.
+- AIS Sports Supplement Framework, ABCD classification - use the current version on ais.gov.au.
+- ISSN position stands: creatine (Kreider et al., 2017); caffeine (Guest et al., 2021); beta-alanine (Trexler et al., 2015); sodium bicarbonate (Grgic et al., 2021); protein and exercise (Jager et al., 2017); essential amino acids (Ferrando et al., 2023). Also Antonio J et al., common questions and misconceptions about creatine, J Int Soc Sports Nutr 2021.
+- Thomas DT, Erdman KA, Burke LM. ACSM / Academy of Nutrition and Dietetics / Dietitians of Canada joint position statement: Nutrition and athletic performance. Med Sci Sports Exerc 2016.
+- Sawka MN et al. ACSM position stand: exercise and fluid replacement. Med Sci Sports Exerc 2007.
+- Mountjoy M et al. 2023 IOC consensus statement on Relative Energy Deficiency in Sport (REDs). Br J Sports Med 2023.
+- Bhasin S et al. Testosterone therapy in men with hypogonadism: Endocrine Society clinical practice guideline. J Clin Endocrinol Metab 2018 (diagnostic thresholds and testing rules only).
+- Demay MB et al. Vitamin D for the prevention of disease: Endocrine Society clinical practice guideline. J Clin Endocrinol Metab 2024 (note its position on routine 25(OH)D testing).
+- Regulatory/safety: EFSA tolerable upper intake levels; NIH Office of Dietary Supplements fact sheets; DTU (Denmark) ashwagandha risk assessment; BfR, RIVM, ANSES statements on ashwagandha; WADA Prohibited List and Monitoring Program.
+- Search for any NEWER (2024-2026) ISSN position stands, IOC/ACSM statements or AIS framework updates and use them preferentially.
+
+STRENGTH & HYPERTROPHY
+- Lanhers C et al. Creatine and lower-limb strength (Sports Med 2015) and upper-limb strength (Sports Med 2017) meta-analyses.
+- Wang Z et al. Creatine + resistance training and strength in adults <50 years: systematic review and meta-analysis. Nutrients 2024.
+- Candow DG and colleagues. Creatine and upper- and lower-body strength and power: systematic review and meta-analysis. Nutrients 2025.
+- Burke R et al. Creatine + resistance training and regional muscle hypertrophy: systematic review with meta-analysis. Nutrients 2023 (verify).
+- Grgic J et al. Wake up and smell the coffee: caffeine and exercise performance - umbrella review of meta-analyses. Br J Sports Med 2020; Grgic J et al. Caffeine and muscle strength and power: meta-analysis. J Int Soc Sports Nutr 2018.
+- Saunders B et al. Beta-alanine and exercise capacity/performance: systematic review and meta-analysis. Br J Sports Med 2017; Hobson RM et al. Amino Acids 2012.
+- Trexler ET et al. Acute citrulline supplementation and high-intensity strength/power: systematic review and meta-analysis. Sports Med 2019 (verify); Varvik FT et al. Citrulline malate and repetition performance: meta-analysis. Int J Sport Nutr Exerc Metab 2021 (verify).
+- Morton RW et al. Protein supplementation and resistance-training-induced gains in muscle mass and strength: systematic review, meta-analysis and meta-regression. Br J Sports Med 2018; Nunes EA et al. Protein intake and muscle mass/function: systematic review and meta-analysis. J Cachexia Sarcopenia Muscle 2022.
+- Jakubowski JS et al. HMB does not improve resistance-exercise-induced changes in body composition or strength in young subjects: systematic review and meta-analysis. Nutrients 2020.
+- Locate the most recent meta-analyses on betaine, citrulline, HMB, collagen, tart cherry and omega-3 for recovery/strength.
+
+ENDURANCE
+- Senefeld JW et al. Ergogenic effect of nitrate supplementation: systematic review and meta-analysis. Med Sci Sports Exerc 2020; McMahon NF et al. Dietary nitrate and endurance performance: systematic review and meta-analysis. Sports Med 2017.
+- Umbrella review: Effects of beetroot juice on physical performance in professional athletes and healthy individuals. Nutrients 2025.
+- Porcelli S et al. Aerobic fitness affects the exercise performance responses to nitrate supplementation. Med Sci Sports Exerc 2015.
+- Jones AM et al. Dietary nitrate and physical performance. Annu Rev Nutr 2018.
+- Carr AJ et al. Effects of acute alkalosis and acidosis on performance: meta-analysis. Sports Med 2011.
+- Southward K et al. Acute caffeine ingestion and endurance performance: systematic review and meta-analysis. Sports Med 2018.
+- Burden RJ et al. Iron treatment in iron-deficient non-anaemic endurance athletes: systematic review and meta-analysis. Br J Sports Med 2015.
+- Locate the most recent meta-analyses on carbohydrate intake during exercise, ketone supplements, and L-carnitine.
+
+MICRONUTRIENTS & TESTOSTERONE
+- Pilz S et al. Vitamin D supplementation and testosterone in men. Horm Metab Res 2011.
+- Lerchbaum E et al. Vitamin D and androgens in men with low testosterone: RCT. Eur J Nutr 2019 (and other Graz RCTs by this group).
+- Meta-analyses of vitamin D and testosterone: Andrologia 2019 (PMID 31332821); Alomar et al., Diseases 2024; Paez-Allendes et al., Nutrients 2026. Reconcile their conflicting conclusions.
+- Prasad AS et al. Zinc status and serum testosterone in healthy adults. Nutrition 1996.
+- Koehler K et al. Serum testosterone after high-dose zinc supplement (ZMA) in trained men. Eur J Clin Nutr 2009; Wilborn CD et al. ZMA and training adaptations. J Int Soc Sports Nutr 2004.
+- Cinar V et al. Magnesium and testosterone in athletes and sedentary subjects. Biol Trace Elem Res 2011.
+- Naghii MR et al. Daily and weekly boron supplementation and plasma steroid hormones. J Trace Elem Med Biol 2011; Green NR & Ferrando AA. Plasma boron and boron supplementation in male bodybuilders. Environ Health Perspect 1994.
+- Jensen TK et al. Fish oil supplement use and testicular function in young men. JAMA Netw Open 2020 (cross-sectional).
+- Gencer B et al. Marine omega-3 fatty acids and atrial fibrillation risk: systematic review and meta-analysis of RCTs. Circulation 2021.
+
+BOTANICALS & TESTOSTERONE BOOSTERS
+- Smith SJ, Lopresti AL, Teo SYM, Fairchild TJ. Effects of herbs on testosterone concentrations in men: systematic review. Adv Nutr 2021.
+- Wankhede S et al. Withania somnifera, muscle strength and recovery: RCT. J Int Soc Sports Nutr 2015; Lopresti AL et al. Ashwagandha in aging, overweight males: crossover RCT. Am J Mens Health 2019; Bonilla DA et al. Ashwagandha and physical performance: systematic review and Bayesian meta-analysis. J Funct Morphol Kinesiol 2021; Chandrasekhar K et al. Ashwagandha and stress/cortisol. Indian J Psychol Med 2012.
+- Bjornsson HK et al. Ashwagandha-induced liver injury: case series from Iceland and the US DILIN. Liver Int 2020.
+- Leisegang K et al. Eurycoma longifolia improves serum total testosterone in men: systematic review and meta-analysis. Medicina 2022; Talbott SM et al. Tongkat Ali, stress hormones and mood. J Int Soc Sports Nutr 2013; Henkel RR et al. Tongkat Ali in physically active seniors. Phytother Res 2014.
+- Mansoori A et al. Fenugreek extract and testosterone in men: meta-analysis. Phytother Res 2020; the anabolic effect of fenugreek: systematic review with meta-analysis. Int J Sports Med 2023 (PMID 37253363); Poole C et al. Botanical (fenugreek) supplement in resistance-trained males. J Int Soc Sports Nutr 2010; search for any 2024-2026 fenugreek systematic reviews.
+- Pandit S et al. Purified shilajit and testosterone in healthy volunteers. Andrologia 2016 (check participant age range).
+- Yakubu MT, Akanji MA, Oladiji AT. Fadogia agrestis stem extract and male rat testicular function. 2008 (PMID 18023305), plus related rodent toxicity papers by this group.
+- Gonzales GF et al. Maca and serum reproductive hormones in healthy men. J Endocrinol 2003.
+- Neychev VK & Mitev VI. Tribulus terrestris does not influence androgen production in young men. J Ethnopharmacol 2005; Rogerson S et al. Tribulus in elite rugby league players. J Strength Cond Res 2007; Qureshi A et al. Systematic review of Tribulus terrestris. J Diet Suppl 2014.
+- Topo E et al. D-aspartic acid. Reprod Biol Endocrinol 2009 vs Willoughby DS & Leutholtz B. Nutr Res 2013 and Melville GW et al. J Int Soc Sports Nutr 2015.
+- Isenmann E et al. Ecdysterone supplementation in humans. Arch Toxicol 2019.
+- Starks MA et al. Phosphatidylserine and endocrine response to exercise. J Int Soc Sports Nutr 2008.
+
+### 7. EVIDENCE RULES (non-negotiable)
+7.1 HIERARCHY: (1) systematic reviews/meta-analyses of RCTs (prefer recent, pre-registered, GRADE-rated) and umbrella reviews (check for overlap of primary studies) > (2) individual double-blind placebo-controlled RCTs (crossover designs acceptable for acute effects) > (3) non-randomized or observational human studies > (4) mechanistic human studies > (5) animal/in-vitro studies.
+
+7.2 META-ANALYSIS APPRAISAL: For each meta-analysis report k (studies), n (participants), effect metric, point estimate, 95% CI, heterogeneity (I2), prediction interval if reported, risk-of-bias assessment, publication-bias tests, and GRADE certainty if reported. Flag meta-analyses that pool incompatible populations (hypogonadal with eugonadal, men with women, young with old, clinical with healthy). Do not double-count overlapping meta-analyses. When meta-analyses conflict, explain WHY (inclusion criteria, populations, outcome definitions, analytic choices) and state which estimate is more credible.
+
+7.3 SOURCE RULES: Cite ONLY peer-reviewed primary literature, systematic reviews, official position/consensus statements, and documents from regulatory or public-health agencies (EFSA, NIH ODS, FDA, BfR, RIVM, ANSES, DTU, AIS, WADA). NEVER cite supplement manufacturers or retailers, fitness magazines or blogs, influencer podcasts or websites, forums, social media, press releases, trade/industry news, or AI-generated content. Industry-funded trials may be cited but MUST be flagged; this is critical for branded botanical extracts.
+
+7.4 QUANTIFICATION (mandatory): For every efficacy claim report the effect metric (SMD/Hedges' g, MD/WMD in natural units, or % change), point estimate, 95% CI, k, n, intervention duration, and dose. Natural units: strength in kg and %, VO2max in ml/kg/min and %, time-trial performance in % time or power, testosterone in ng/dL and nmol/L. If a source reports only p-values, write "effect size not reported"; compute an effect size only if the data allow and label it "calculated by reviewer". Prefer absolute changes over relative changes.
+
+7.5 PRACTICAL RELEVANCE: Compare effects with measurement error, day-to-day variability, and the smallest worthwhile change. Statistical significance is not practical relevance.
+
+7.6 EVIDENCE TIERS (use these exact labels, assigned PER PILLAR):
+- "Tier 1: Established / Replicated" - at least one high-quality meta-analysis of RCTs or several consistent RCTs in a relevant population; consistent direction; practically meaningful effect; plausible mechanism; acceptable safety.
+- "Tier 2: Preliminary / Context-Dependent" - positive but limited, heterogeneous, low-certainty or industry-dominated evidence; OR benefit restricted to a subgroup (deficient, hypogonadal, untrained, specific exercise domain); OR small effect of uncertain practical relevance.
+- "Tier 3: Ineffective / Debunked / Marketing Hype" - consistent null human RCTs; OR only animal/in-vitro/mechanistic/observational support; OR unfavorable risk-benefit ratio.
+A supplement can be Tier 1 for one pillar and Tier 3 for another. Assign a SEPARATE safety flag (low / moderate / high concern) independent of efficacy.
+
+7.7 TESTOSTERONE SPLIT (mandatory): For every agent with testosterone claims give TWO separate verdicts: (A) correction of deficiency or hypogonadal/low-normal state; (B) effect in replete, eugonadal, healthy men aged 20-40. Never transfer (A) to (B). If no RCT data exist for (B), write exactly: "No RCT data in eugonadal men aged 20-40."
+
+7.8 COUNTER-EVIDENCE (mandatory): For every Tier 1 and Tier 2 item, state the strongest null or negative evidence and the main objections (funding, small n, short duration, surrogate outcomes, unblinding through side effects such as beta-alanine paresthesia or caffeine stimulation, selective reporting). No artificial balance: if the evidence is clear, say so.
+
+7.9 ZERO FABRICATION RULE: Never invent studies, authors, journals, years, DOIs, PMIDs, numbers, or quotations. Every number must be traceable to a cited source. If a value cannot be found, use null or "not reported". If a bibliographic detail cannot be verified, set "verified": false for that source. Never guess.
+
+7.10 RECENCY: Prefer the most recent high-quality synthesis, but keep landmark trials when they define the evidence. Mark preprints as preprints. State the publication year for every source.
+
+7.11 SAFETY: For every lever report adverse effects, tolerable upper intake levels (EFSA and US values where they differ), drug interactions, contraindications, regulatory warnings or bans, contamination/adulteration risk, and anti-doping considerations.
+
+### 8. RESEARCH PROCEDURE
+Step 1: For each lever, find the newest meta-analysis/umbrella review (2023-2026 first), then landmark and recent RCTs, then position stands, then safety/regulatory documents.
+Step 2: Extract quantitative data with population descriptors (age, sex, training status, baseline status).
+Step 3: Reconcile conflicting syntheses and position stands; record the resolution.
+Step 4: Assign tiers per pillar, safety flags, and rank levers within each pillar by expected practical benefit for the target population (effect size x certainty, adjusted for safety, practicality and cost). Rank only Tier 1 and Tier 2 items; Tier 3 items get rank null.
+Step 5: Build the stack blueprint (Section 9).
+Step 6: SELF-AUDIT before output: every number has a source_id; units are correct (ng/dL vs nmol/L, mg vs g, mmol vs mg); no animal data supports Tier 1/2; deficiency data were not transferred to replete men; the JSON is valid.
+
+### 9. PRACTICAL STACK BLUEPRINT (end product)
+Build a concrete, evidence-based plan for a healthy, trained man aged 20-40 who trains both strength and endurance:
+- CORE DAILY: only Tier 1 levers with low safety concern. Give dose in mg or g AND per kg body mass where the evidence uses it, timing, form (e.g., creatine monohydrate; vitamin D3 with a fat-containing meal), loading/maintenance, and whether cycling is necessary (say explicitly when it is not).
+- TRAINING-DAY PROTOCOLS: separate protocols for a strength session, an endurance session, and a competition/key session (pre-, intra-, post-exercise); include GI-tolerance testing in training before competition use.
+- CONDITIONAL (ONLY IF LAB-CONFIRMED DEFICIENT): trigger biomarker and threshold, dose, duration, retest interval, and stop criterion.
+- TESTOSTERONE PLAN: (i) lifestyle priorities ranked by evidence (sleep, energy availability, body fat, alcohol, training load); (ii) supplements only for documented deficiencies; (iii) botanicals: state whether any is justified in eugonadal men and under which safety conditions; (iv) when to see a physician (symptoms plus repeated morning total testosterone below the guideline threshold).
+- DO NOT TAKE: Tier 3 levers and anything with a high safety concern, each with a one-line reason.
+- BLOOD MARKERS: baseline and follow-up panel with rationale, sampling conditions, and retest interval. Consider at least: 25(OH)D; ferritin, transferrin saturation, hemoglobin and CRP (ferritin is an acute-phase reactant); plasma zinc and copper; magnesium (limitations of serum Mg); Omega-3 Index; morning fasting total testosterone (two samples, LC-MS/MS preferred), SHBG, albumin, calculated or dialysis free testosterone, LH, FSH, estradiol (sensitive assay), prolactin if testosterone is low; TSH/fT4 if using ashwagandha; ALT, AST, GGT and bilirubin if using botanicals; serum creatinine with cystatin C-based eGFR when taking creatine; lipid panel. Note sampling pitfalls (heavy training within 24-48 h, sleep loss, acute illness, biotin interference with immunoassays).
+- MONITORING & N-OF-1: how an individual can evaluate response (baseline period, standardized tests, expected effect size vs measurement noise), and limits of unblinded self-experiments.
+- QUALITY CONTROL: third-party certified products for anyone subject to doping control.
+
+### 10. OUTPUT INSTRUCTION (strict)
+Return ONLY one valid JSON object that matches EXACTLY the structure below.
+- No markdown, no code fences, no text before or after the JSON, no comments, no trailing commas. Double quotes only.
+- Do NOT put inline citation markers such as [1] inside strings; reference evidence ONLY via "source_ids" pointing to entries in "sources".
+- Use null for unknown numeric values and "not reported" for unknown text values. Use numbers (not strings) for integer fields.
+- Keep each string concise (max ~60 words) unless the field says otherwise. Max 4 entries in "key_outcomes" per supplement; max 5 IDs per "source_ids" array.
+- Enumerated values must be copied exactly as listed (e.g., "Tier 1: Established / Replicated").
+- OUTPUT BUDGET RULE: if you approach your output limit, prioritize in this order: (1) all Tier 1 supplement entries, (2) "testosterone_matrix", (3) "stack_blueprint", (4) Tier 3 entries in "hype_debunk", (5) Tier 2 supplement entries. Always close all brackets so the JSON stays valid, and list unfinished items in "omitted_due_to_length".
+
+JSON STRUCTURE (types and allowed values are given as placeholders):
+{
+  "meta": {
+    "report_title": "string",
+    "knowledge_date": "October 2026",
+    "run_scope": "ALL_PILLARS | STRENGTH_ONLY | ENDURANCE_ONLY | TESTOSTERONE_ONLY",
+    "population": "string",
+    "methods_note": "string (databases searched, date range, inclusion rules, anchor references that could not be verified)",
+    "lifestyle_context": "string (max ~120 words: sleep, energy availability, body fat, alcohol, training load vs supplements)",
+    "major_caveats": ["string"]
+  },
+  "pillar_rankings": [
+    {
+      "pillar": "strength | endurance | testosterone",
+      "rank": 1,
+      "supplement_id": "S01",
+      "supplement": "string",
+      "evidence_tier": "Tier 1: Established / Replicated | Tier 2: Preliminary / Context-Dependent",
+      "applies_to": "string (e.g., all trained men | only if deficient | untrained only)",
+      "headline_effect": "string (metric, estimate, 95% CI, k, n)",
+      "source_ids": ["R01"]
+    }
+  ],
+  "supplements": [
+    {
+      "id": "S01",
+      "name": "string",
+      "category": "strength_ergogenic | endurance_ergogenic | micronutrient | botanical_adaptogen | other",
+      "tier_strength": "Tier 1: Established / Replicated | Tier 2: Preliminary / Context-Dependent | Tier 3: Ineffective / Debunked / Marketing Hype | not studied | not applicable",
+      "tier_endurance": "same allowed values as tier_strength",
+      "tier_testosterone": "same allowed values as tier_strength",
+      "tier_rationale": "string",
+      "safety_flag": "low concern | moderate concern | high concern",
+      "key_outcomes": [
+        {
+          "pillar": "strength | endurance | testosterone",
+          "outcome": "string (e.g., lower-body 1RM; 5-km TT; total T)",
+          "evidence_type": "meta-analysis | umbrella review | RCT | observational | mechanistic human | animal/in-vitro",
+          "effect_metric": "SMD | Hedges g | MD | WMD | % change | other",
+          "effect_value": "string (point estimate with natural units; for testosterone give ng/dL AND nmol/L)",
+          "ci_95": "string or not reported",
+          "k_studies": null,
+          "n_participants": null,
+          "duration": "string",
+          "dose_studied": "string",
+          "population": "string (training status, baseline nutrient/hormone status, age)",
+          "heterogeneity_i2": "string or not reported",
+          "certainty": "high | moderate | low | very low | not graded",
+          "practically_relevant": "yes | no | uncertain",
+          "source_ids": ["R01"]
+        }
+      ],
+      "deficient_vs_replete": "string (effect when deficient vs effect when replete)",
+      "trained_vs_untrained": "string",
+      "mechanism": "string (label each statement HUMAN or ANIMAL/IN-VITRO ONLY)",
+      "effective_dose": "string (mg or g and/or per kg)",
+      "timing_and_form": "string",
+      "loading_or_cycling": "string",
+      "adverse_effects_and_upper_limits": "string",
+      "interactions_and_contraindications": "string",
+      "regulatory_quality_doping": "string",
+      "industry_funding_flag": "string",
+      "strongest_counter_evidence": "string",
+      "newest_evidence_effect": "confirms | modifies | overturns | no new evidence",
+      "verdict": "string (max ~40 words)",
+      "source_ids": ["R01"]
+    }
+  ],
+  "testosterone_matrix": [
+    {
+      "agent": "string",
+      "verdict_A_deficient_or_low": "string (effect size + population)",
+      "verdict_B_eugonadal_20_40": "string (effect size, or: No RCT data in eugonadal men aged 20-40.)",
+      "magnitude_ng_dl": "string",
+      "magnitude_nmol_l": "string",
+      "physiological_relevance": "string (variability, reference range, effect on muscle plausible?)",
+      "free_t_shbg_lh_fsh_cortisol": "string",
+      "assay_quality": "string (LC-MS/MS vs immunoassay, sampling time)",
+      "source_ids": ["R01"]
+    }
+  ],
+  "interactions": [
+    {
+      "combination_or_issue": "string",
+      "type": "synergy | additive | antagonism | training interference | safety | sleep/hormonal",
+      "finding": "string (with effect size if available)",
+      "evidence_level": "meta-analysis | RCT | observational | mechanistic | case reports | animal/in-vitro",
+      "practical_rule": "string",
+      "source_ids": ["R01"]
+    }
+  ],
+  "hype_debunk": [
+    {
+      "name": "string",
+      "marketing_claim": "string",
+      "human_evidence": "string (k, n, effect, design)",
+      "why_it_fails": "string",
+      "safety_flag": "low concern | moderate concern | high concern",
+      "source_ids": ["R01"]
+    }
+  ],
+  "position_stand_reconciliation": [
+    {
+      "topic": "string",
+      "positions_compared": "string",
+      "agreement_or_conflict": "agreement | partial conflict | conflict",
+      "resolution": "string",
+      "source_ids": ["R01"]
+    }
+  ],
+  "stack_blueprint": {
+    "core_daily": [
+      {"supplement": "string", "dose": "string", "timing": "string", "form": "string", "cycling": "string", "pillar": "string", "evidence_tier": "string", "source_ids": ["R01"]}
+    ],
+    "training_day_protocols": [
+      {"session_type": "strength session | endurance session | competition/key session", "supplement": "string", "dose": "string", "timing": "string", "notes": "string", "source_ids": ["R01"]}
+    ],
+    "conditional_if_deficient": [
+      {"supplement": "string", "trigger_biomarker_and_threshold": "string", "dose": "string", "duration": "string", "retest": "string", "stop_criterion": "string", "source_ids": ["R01"]}
+    ],
+    "testosterone_plan": {
+      "lifestyle_priorities": ["string"],
+      "supplements_only_if_deficient": ["string"],
+      "botanicals_assessment": "string",
+      "see_a_physician_if": "string"
+    },
+    "do_not_take": [
+      {"item": "string", "reason": "string"}
+    ],
+    "blood_markers": [
+      {"marker": "string", "why": "string", "reference_or_target": "string", "sampling_conditions": "string", "retest_interval": "string"}
+    ],
+    "monitoring_n_of_1": "string (max ~100 words)",
+    "quality_control": "string"
+  },
+  "evidence_gaps": ["string"],
+  "sources": [
+    {
+      "id": "R01",
+      "citation": "string (first author et al., title, journal, year)",
+      "year": 2024,
+      "design": "meta-analysis | umbrella review | systematic review | RCT | crossover RCT | cohort | cross-sectional | case series | position stand | guideline | regulatory document | animal study | in-vitro study | narrative review",
+      "k_or_n": "string",
+      "funding_coi": "string or not reported",
+      "doi_or_pmid": "string or not reported",
+      "url": "string",
+      "verified": true
+    }
+  ],
+  "omitted_due_to_length": ["string"]
+}
