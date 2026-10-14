@@ -1,0 +1,12 @@
+RUN: L05 - Exercise order
+LEVER: order of exercises within a session. Comparison: multi-joint first vs single-joint first; priority principle (the muscle trained first benefits); pre-exhaustion.
+Questions:
+a) Do outcomes differ for the muscle that is prime mover in the single-joint exercise vs synergist in the multi-joint exercise?
+b) Regional effects.
+c) Untrained vs trained.
+d) Flag the frequent design limitation that hypertrophy is measured only in the single-joint prime mover (or at one site only).
+Leads to verify (not pre-approved conclusions):
+- Nunes JP, Grgic J, Cunha PM et al. (2021, European Journal of Sport Science 21(2):149-157, doi:10.1080/17461391.2020.1733672).
+- Brandao L et al. (2020, Journal of Strength and Conditioning Research).
+- Simao R et al. (2012, Sports Medicine) - exercise-order review.
+Also search 2022-2026 for new longitudinal exercise-order trials with direct hypertrophy measures.

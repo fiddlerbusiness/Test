@@ -1,0 +1,16 @@
+RUN: L09 - Advanced efficiency methods (set structures)
+LEVER: set structure. Methods: drop sets, rest-pause, myo-reps, supersets (agonist-antagonist vs same-muscle/compound sets), cluster sets - each vs traditional straight sets.
+Score each method as its own impact_scoring entry (scope="sub_method"); use the lever_overall entry for the overall verdict.
+Rules:
+- Distinguish volume-equated from time-equated comparisons and quantify time savings (minutes or %, from reported values).
+- If no longitudinal hypertrophy trial exists for myo-reps specifically, state that; do not substitute rest-pause data without labelling it as indirect evidence.
+- Separate hypertrophy outcomes from acute outcomes (volume load, metabolic stress, perceived exertion).
+Leads to verify (not pre-approved conclusions):
+- Sodal LK et al. (2023, Sports Medicine - Open 9:66, doi:10.1186/s40798-023-00620-5) - drop sets meta-analysis.
+- Coleman M et al. (2022, International Journal of Strength and Conditioning) - drop sets meta-analysis.
+- Enes A et al. (2021, Applied Physiology, Nutrition, and Metabolism) - rest-pause and drop sets vs traditional sets in trained men.
+- Prestes J et al. (2019, Journal of Strength and Conditioning Research) - rest-pause.
+- Zhang X, Weakley J, Li H, Li Z, Garcia-Ramos A (2025, Sports Medicine) - supersets meta-analysis.
+- Tsartsapakis et al. (2026), "Effects of advanced resistance training systems on muscle hypertrophy and strength in recreationally trained adults: a systematic review and meta-analysis" (verify authors, journal, year).
+- Within-participant, RIR-matched cluster vs traditional sets in trained individuals (2025, European Journal of Applied Physiology 125(6):1725-1734, doi:10.1007/s00421-025-05712-6; verify authors).
+- Krzysztofik M et al. (2019, International Journal of Environmental Research and Public Health) - review of advanced techniques.

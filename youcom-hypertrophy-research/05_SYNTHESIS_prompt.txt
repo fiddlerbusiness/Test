@@ -1,0 +1,44 @@
+ROLE & GOAL
+You are a rigorous quantitative sport-science analyst. Attached (or pasted below) is merged.json: 11 evidence dossiers on intra-session resistance-training levers for muscle hypertrophy (L01-L10 = the ten listed levers, L11 = screening of additional candidate levers), produced by separate research runs and merged with a deduplicated source list. All source references use global IDs (G001, G002, ...). Population focus: healthy men aged 20-40, untrained (<6 months) vs resistance-trained (>=1 year). The result is a chapter of an evidence-based training handbook: traceability and correctness outrank completeness.
+
+RULES
+1. Use ONLY the evidence in merged.json. Do not add studies, numbers or citations from memory. If you believe something important is missing or wrong, list it under "Gaps to verify" without numbers.
+2. Every factual claim carries global source IDs in square brackets, e.g. [G004, G017]. Never write "studies show" without IDs.
+3. Evidence-level definitions: established_replicated = >=1 adequately conducted meta-analysis with consistent direction, or >=3 independent RCTs from >=2 independent groups with consistent direction, with direct hypertrophy measures; preliminary = 1-2 RCTs, imprecise or conflicting meta-analytic estimates, preprint-only evidence, or findings restricted to specific muscles, exercises or populations; theoretical = only mechanistic, acute, modelling or expert-reasoning support. Keep each dossier's levels unless they misapply these definitions; document every change.
+4. Do not hide uncertainty. Equivalence across the practical range is a valid and useful result.
+
+STEP 1 - CALIBRATION
+The dossiers were written in separate runs and may apply magnitude thresholds inconsistently.
+a) For each lever, check that magnitude_class matches the dossier's own effect estimates and that the same threshold logic was used across levers. Harmonise where needed; document each change (lever, old class, new class, reason).
+b) Flag dossiers with research_status other than "complete", non-empty omitted_due_to_length or relevant verification_log.not_checked entries.
+c) Flag contradictions between dossiers (e.g., the same study reported with different numbers; L01 and L07 disagreeing on failure with light loads; L03 and L09 disagreeing on rest-related volume loss).
+
+STEP 2 - RANKING OF L01-L10
+Expected practical hypertrophy impact = magnitude points x certainty weight, using the lever_overall entry of impact_scoring (after calibration).
+- Magnitude points: 0_equivalent_or_trivial = 0; 1_small = 1; 2_moderate = 2; 3_large = 3; unclear = 0.5 (flag it).
+- Certainty weights: high = 1.0; moderate = 0.75; low = 0.5; very_low = 0.25.
+- These points and weights are a project convention, not empirical values. State them in the methodology and run a sensitivity check: does the top 5 change if unclear = 0, or if the weights are 1.0 / 0.67 / 0.33 / 0.1?
+- Ties: higher certainty first, then larger magnitude.
+- Levers that are equivalent across the practical range rank lower; still state the boundary conditions where they do matter.
+- If an L11 candidate scores higher than a listed lever, keep the ten listed levers in the ranking but say so in the bottom line and in the additional-candidates section.
+
+STEP 3 - SESSION BLUEPRINT
+Build one concrete, realistic session (60-90 min) for a resistance-trained man (>=2 years of experience) on a 4-day upper/lower split. Choose the upper or the lower day and justify the choice. For every exercise specify: order, working sets, load/rep target, proximity to failure (RIR), rest, tempo, ROM instruction, set structure, ranked levers applied, and an evidence flag (established_replicated / preliminary / theoretical). Keep per-muscle set counts consistent with the L04 findings and count direct and fractional sets separately. Estimate session duration from sets x (set duration + rest) + warm-up and label it "calculated". Give concrete adjustments for an untrained man.
+
+STEP 4 - QUALITY CHECKS BEFORE OUTPUT
+- Exactly 10 levers ranked; ranks 1-10 each used once; table sorted by rank.
+- Every global ID you cite exists in merged.json; every number is traceable to a cited ID.
+- Every lever has untrained and trained findings, or an explicit "no direct data".
+- Sources with retraction_status="retracted" are not used as evidence.
+
+OUTPUT (Markdown, English, exactly these sections)
+1. Bottom line (max 200 words)
+2. Ranking table: Rank | Lever | Reference comparison | Magnitude | Certainty | Score | Evidence level | Key sources
+3. Ranking methodology (points and weights, sensitivity check, calibration changes)
+4. Ranking rationale per lever (max 120 words each: what to do, untrained vs trained, boundary conditions, strongest counter-evidence)
+5. Additional candidates (L11) compared with the listed levers
+6. Session blueprint (table) with day choice, per-muscle set counts and calculated duration
+7. Adjustments for an untrained man
+8. Interactions between levers (e.g., load x proximity to failure, rest x volume load, tempo x load, per-session volume x frequency)
+9. Contradictions found and gaps to verify
+10. Source list: only the IDs cited above, with citation, design, DOI, peer_reviewed and retraction_status

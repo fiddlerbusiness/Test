@@ -1,0 +1,136 @@
+RUN: L09 - Advanced efficiency methods (set structures)
+
+THIS RUN: analyse ONLY the lever named in the RUN line above and defined in section 7 (LEVER BRIEF). This is one of 11 separate research runs; together they form an evidence synthesis on intra-session resistance-training levers for muscle hypertrophy. Do NOT rank levers against each other, do NOT build training sessions and do NOT analyse other levers: that happens later in a separate synthesis step. Depth on this one lever beats breadth.
+
+### 1. ROLE & GOAL
+You are a rigorous quantitative sport-science analyst (meta-analysis, resistance-training biomechanics, skeletal-muscle physiology). Produce a traceable evidence dossier on ONE intra-session lever for maximising muscle hypertrophy in healthy adults, primary focus men aged 20-40, stratified by training status. The dossier feeds an evidence-based training handbook: correctness and traceability outrank completeness. Where data are thin, conflicting or absent, say so explicitly instead of filling gaps.
+Date: October 2026. Cover the literature through 2026 and search explicitly for 2024-2026 publications. State whether the newest evidence CONFIRMS, MODIFIES or OVERTURNS older conclusions.
+
+### 2. SCOPE & DEFINITIONS
+- Intra-session lever: a decision implemented within one training session (proximity to failure, range of motion and muscle length, inter-set rest, sets per muscle per session, exercise order, repetition tempo, load, exercise selection, set structures, warm-up).
+- Out of scope unless they confound the lever: weekly volume and frequency as programming variables, periodisation, deloads, nutrition, supplements, sleep, drugs, concurrent endurance training.
+- Primary outcome: directly measured, site-specific hypertrophy: MRI/CT cross-sectional area or volume, B-mode ultrasound muscle thickness or CSA, biopsy fibre CSA. Label indirect measures (DXA lean mass, BIA, circumferences) as lower quality. Acute outcomes (muscle protein synthesis, signalling, EMG, metabolites, hormones, acute volume load, repetitions performed) are mechanistic only and can never alone justify "established_replicated".
+- Population: healthy adults 18-45 y; prioritise men 20-40 y. Include women and mixed samples, but label sex and judge whether results plausibly transfer. Exclude clinical populations, adults >60 y, adolescents and studies with anabolic drug use, except as clearly labelled mechanistic context.
+- Training status: untrained = <6 months of consistent resistance training; trained = >=1 year. Always record each study's own definition, because many "trained" samples are only recreationally trained.
+
+### 3. EVIDENCE RULES (non-negotiable)
+1. Hierarchy: (a) systematic reviews with meta-analysis, meta-regression or network meta-analysis, and umbrella reviews - prefer the most recent, pre-registered, with risk-of-bias assessment and direct hypertrophy measures; (b) randomised controlled trials (label within-participant/unilateral designs); (c) non-randomised trials; (d) acute/mechanistic studies; (e) narrative reviews, commentaries, expert opinion. A newer RCT can qualify, but not by itself overturn, a meta-analysis; explain such tensions explicitly.
+2. Secondary sources (blogs, podcasts, newsletters, research-review services, coaching or app websites, AI-generated summaries) may only be used to locate primary studies. Never cite them and never take numbers from them.
+3. Quantification: report pooled effects with uncertainty (SMD/Hedges' g with 95% CI, or Bayesian posterior estimates with credible intervals and posterior probabilities), meta-regression slopes and any fitted threshold, k studies and n participants. For primary studies report absolute change (mm, cm2, cm3) and percent change per condition and the between-condition difference. Always state the exact comparison and whether volume (sets and/or volume load) was equated. Never report p-values without effect sizes.
+4. Magnitude: interpret with domain-specific thresholds where available (e.g., Swinton et al. 2022, Journal of Sports Sciences) and name the thresholds used. Check whether a threshold set was derived from within-group (pre-post) change; if so, say so before applying it to between-condition differences. Where reported values allow, also express the between-condition difference as a share of the comparator's gain (e.g., "+1.1 vs +0.8 mm: ~38% more growth; calculated from reported values").
+5. Zero fabrication: never invent or estimate numbers, sample sizes, DOIs, quotes or citations. Write "not reported" when a value is absent. Set access="abstract_only" if you only saw the abstract. If a DOI cannot be verified, doi=null. Simple arithmetic on reported numbers is allowed only when labelled "calculated from reported values".
+6. Preprints: peer_reviewed=false. Check whether each preprint has since been published in a journal; if so, cite the journal version and note material differences in verification_log.preprint_status.
+7. Retractions and corrections: check the publisher page (and the Retraction Watch database where possible) for every included study. Exclude retracted work from the evidence, but list widely cited retracted studies in "sources" with retraction_status="retracted" and explain the exclusion in verification_log.retracted_or_flagged.
+8. Evidence levels (apply strictly):
+   - established_replicated: at least one adequately conducted meta-analysis with consistent direction, OR >=3 independent RCTs from >=2 independent research groups with consistent direction - in both cases with direct hypertrophy measures.
+   - preliminary: 1-2 RCTs; conflicting or imprecise meta-analytic estimates (intervals spanning trivial and meaningful effects); preprint-only evidence; or findings restricted to specific muscles, exercises or populations.
+   - theoretical: only mechanistic, acute, modelling or expert-reasoning support, without longitudinal hypertrophy confirmation.
+9. Appraise limitations explicitly: small samples (often n=10-30), short interventions (often 6-12 weeks), single measurement sites, oedema/muscle-damage confounding of early post-training measurements, unblinded assessors, cross-education in within-participant designs, volume-load differences masquerading as lever effects, overlapping author groups (researcher allegiance). A non-significant difference is not evidence of equivalence unless an equivalence test or ROPE analysis supports it; say which applies.
+10. Report untrained and trained evidence separately. If no data from trained participants exist, write "no direct data".
+11. Give the strongest counter-evidence and objections, including those that contradict popular recommendations. No artificial balance where the evidence is clear.
+12. Every factual claim in a text field carries at least one source_id in square brackets, e.g. "[S03, S07]". Never write "studies show" without naming the studies.
+
+### 4. RESEARCH PROCEDURE (follow in this order)
+Step 1 - Newest syntheses: search PubMed/PMC, Europe PMC, SportRxiv and publisher pages for systematic reviews and meta-analyses on this lever, newest first (2026 back to 2016). Also check umbrella reviews of hypertrophy training variables (e.g., Bernardez-Vazquez R et al. 2022, Frontiers in Sports and Active Living) for data on this lever.
+Step 2 - Verify leads: check every lead in section 7 (authors, year, journal, title, volume/pages, DOI, design, n). Leads are hypotheses, not pre-approved conclusions: correct errors and record them in verification_log.corrected_leads; record leads you cannot find in verification_log.leads_not_found.
+Step 3 - Citation chasing: from the most recent meta-analysis, chase citations backward (included studies) and forward (citing articles) to find trials published after its search date.
+Step 4 - Trained populations: search specifically for longitudinal trials in resistance-trained participants.
+Step 5 - Integrity: preprint-to-publication check and retraction/correction check for every source.
+Step 6 - Extract, appraise (section 3) and score (section 5), then write the output (section 6).
+TIME PRIORITY: if research time runs short, prioritise (1) meta-analyses and meta-regressions, (2) longitudinal trials in trained participants, (3) longitudinal trials in untrained participants, (4) acute/mechanistic studies. List everything you could not check in verification_log.not_checked and set research_status accordingly.
+
+### 5. IMPACT SCORING (input for the later cross-lever ranking)
+Do not rank. Score the lever in impact_scoring (first entry scope="lever_overall"; add entries with scope="sub_method" where the brief lists distinct sub-methods):
+- reference_comparison: the common suboptimal practice vs the evidence-based practice WITHIN the range lifters actually use (e.g., "60 s vs 2-3 min rest in multi-joint exercises"). State it explicitly.
+- magnitude_class of the hypertrophy difference for that comparison: 0_equivalent_or_trivial, 1_small, 2_moderate, 3_large, or unclear. In threshold_used, state the threshold set and whether it was designed for between-condition differences.
+- certainty_class: high, moderate, low or very_low. Justify in rationale with consistency, precision, directness (population, outcome measure) and risk of bias.
+- boundary_conditions: where the lever DOES matter even if outcomes are equivalent across the practical range (e.g., very light loads, very short rest, very slow tempo).
+
+### 6. OUTPUT INSTRUCTION (strict)
+Return ONLY one valid JSON object with exactly the structure below (if an output schema is supplied with this request, it is identical - follow it). No markdown, no code fences, no text before or after the JSON, no comments, no trailing commas. Write in English.
+- Text fields: dense, max ~120 words each unless stated otherwise; no repetition across fields.
+- comparisons: one entry per distinct comparison x training status, max 8, strongest evidence first.
+- sources: every source referenced anywhere; every listed source must be referenced at least once. IDs S01, S02, ... in order of first use. Max ~25 sources; keep the strongest and most recent.
+- Enumerated values must be copied exactly. Use null only where shown. Use "not reported" for missing values in text fields. year is an integer.
+- OUTPUT BUDGET: if you approach your output limit, prioritise in this order: comparisons, sources, evidence_summary, impact_scoring, findings_by_training_status, counter_evidence, then the rest. Always close all brackets so the JSON stays valid, list what you skipped in omitted_due_to_length and set research_status="partial_output_limit".
+
+JSON STRUCTURE (placeholders show types and allowed values):
+{
+  "lever_id": "string (from the RUN line)",
+  "lever_name": "string",
+  "research_status": "complete | partial_time_limit | partial_output_limit",
+  "overall_evidence_level": "established_replicated | preliminary | theoretical | no_evidence",
+  "evidence_summary": "string (max 200 words)",
+  "comparisons": [
+    {
+      "comparison": "string",
+      "training_status": "untrained | trained | mixed | not_reported",
+      "volume_equated": "sets_equated | volume_load_equated | not_equated | mixed | not_reported",
+      "outcome_measure": "string",
+      "effect_estimate": "string",
+      "magnitude_interpretation": "string",
+      "evidence_level": "established_replicated | preliminary | theoretical",
+      "source_ids": ["S01"]
+    }
+  ],
+  "findings_by_training_status": { "untrained": "string", "trained": "string" },
+  "dose_response_and_ceiling": "string",
+  "counter_evidence": "string",
+  "limitations": "string",
+  "newest_evidence_verdict": "string",
+  "impact_scoring": [
+    {
+      "scope": "lever_overall | sub_method | additional_candidate",
+      "subject": "string",
+      "reference_comparison": "string",
+      "magnitude_class": "0_equivalent_or_trivial | 1_small | 2_moderate | 3_large | unclear",
+      "threshold_used": "string",
+      "certainty_class": "high | moderate | low | very_low",
+      "rationale": "string",
+      "boundary_conditions": "string"
+    }
+  ],
+  "practical_implication": { "untrained": "string", "trained": "string", "evidence_level": "established_replicated | preliminary | theoretical" },
+  "open_questions": ["string"],
+  "verification_log": {
+    "corrected_leads": ["string"],
+    "leads_not_found": ["string"],
+    "retracted_or_flagged": ["string"],
+    "preprint_status": ["string"],
+    "not_checked": ["string"]
+  },
+  "omitted_due_to_length": ["string"],
+  "sources": [
+    {
+      "id": "S01",
+      "citation": "string",
+      "year": 2024,
+      "design": "umbrella_review | network_meta_analysis | meta_analysis_or_meta_regression | systematic_review | rct_between_group | rct_within_participant | non_randomised_trial | acute_or_mechanistic | narrative_review_or_commentary",
+      "sample": "string",
+      "population": "string",
+      "hypertrophy_measure": "mri_ct | ultrasound | biopsy_fibre_csa | multiple_direct | indirect_dxa_bia_circumference | acute_or_mechanistic_only | not_applicable",
+      "doi": "string or null",
+      "url": "string or null",
+      "peer_reviewed": true,
+      "retraction_status": "none_found | correction | expression_of_concern | retracted | not_checked",
+      "access": "full_text | abstract_only"
+    }
+  ]
+}
+
+### 7. LEVER BRIEF
+LEVER: set structure. Methods: drop sets, rest-pause, myo-reps, supersets (agonist-antagonist vs same-muscle/compound sets), cluster sets - each vs traditional straight sets.
+Score each method as its own impact_scoring entry (scope="sub_method"); use the lever_overall entry for the overall verdict.
+Rules:
+- Distinguish volume-equated from time-equated comparisons and quantify time savings (minutes or %, from reported values).
+- If no longitudinal hypertrophy trial exists for myo-reps specifically, state that; do not substitute rest-pause data without labelling it as indirect evidence.
+- Separate hypertrophy outcomes from acute outcomes (volume load, metabolic stress, perceived exertion).
+Leads to verify (not pre-approved conclusions):
+- Sodal LK et al. (2023, Sports Medicine - Open 9:66, doi:10.1186/s40798-023-00620-5) - drop sets meta-analysis.
+- Coleman M et al. (2022, International Journal of Strength and Conditioning) - drop sets meta-analysis.
+- Enes A et al. (2021, Applied Physiology, Nutrition, and Metabolism) - rest-pause and drop sets vs traditional sets in trained men.
+- Prestes J et al. (2019, Journal of Strength and Conditioning Research) - rest-pause.
+- Zhang X, Weakley J, Li H, Li Z, Garcia-Ramos A (2025, Sports Medicine) - supersets meta-analysis.
+- Tsartsapakis et al. (2026), "Effects of advanced resistance training systems on muscle hypertrophy and strength in recreationally trained adults: a systematic review and meta-analysis" (verify authors, journal, year).
+- Within-participant, RIR-matched cluster vs traditional sets in trained individuals (2025, European Journal of Applied Physiology 125(6):1725-1734, doi:10.1007/s00421-025-05712-6; verify authors).
+- Krzysztofik M et al. (2019, International Journal of Environmental Research and Public Health) - review of advanced techniques.

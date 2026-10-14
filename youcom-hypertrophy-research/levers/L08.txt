@@ -1,0 +1,15 @@
+RUN: L08 - Exercise selection and stability
+LEVER: choice of exercises. Comparison: machines/cables vs free weights; stability and local muscle loading; resistance profiles (cable/lever vs free weight); single-joint vs multi-joint; exercise variation for regional hypertrophy.
+Sub-methods for impact_scoring: machines vs free weights; single- vs multi-joint; exercise variation.
+Questions:
+a) Machines vs free weights for whole-muscle and regional hypertrophy.
+b) Do single-joint exercises add hypertrophy beyond multi-joint exercises, and for which muscles?
+c) Non-uniform (regional) hypertrophy across exercises and the value of exercise variation.
+d) Resistance-profile/strength-curve matching: longitudinal evidence, or only theoretical?
+e) Untrained vs trained.
+Leads to verify (not pre-approved conclusions):
+- Haugen ME et al. (2023, BMC Sports Science, Medicine and Rehabilitation) - free weights vs machines meta-analysis.
+- Schwanbeck SR et al. (2020, Journal of Strength and Conditioning Research).
+- Kassiano W et al. (2022, Journal of Strength and Conditioning Research) - exercise variation.
+- "Hypertrophic effects of single- versus multi-joint exercise of the limb muscles: a systematic review and meta-analysis" (2023, Strength and Conditioning Journal; verify authors).
+- Costa BDV et al. (2021, International Journal of Sports Medicine) - non-homogeneous hypertrophy across exercises.

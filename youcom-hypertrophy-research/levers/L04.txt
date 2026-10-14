@@ -1,0 +1,22 @@
+RUN: L04 - Per-session volume ceiling ("junk volume")
+LEVER: sets per muscle per session. Question: is there a point of diminishing returns or an upper threshold beyond which extra sets add nothing or impair growth?
+Do NOT assume a ceiling exists - test it. Per-session volume is inseparable from weekly volume and frequency: analyse that interaction explicitly (for this lever only, weekly volume and frequency are in scope).
+Questions:
+a) Shape of the per-session dose-response; any fitted threshold with its uncertainty; how many studies/effect sizes exist at high per-session volumes (e.g., >10 sets per muscle per session).
+b) Direct vs fractional (indirect) set counting and how the counting rule changes the result.
+c) Interaction with weekly volume and frequency (same weekly volume split across more sessions).
+d) Untrained vs trained.
+e) Confounding of early post-training hypertrophy measures by muscle damage/oedema at high volumes.
+Required checks:
+(1) Compare the per-session meta-regressions of Remmert et al. (SportRxiv preprint 2025) with the weekly dose-response meta-regressions of Pelland et al. (Sports Medicine; SportRxiv preprint 2024) and with Krieger's unpublished 2017 per-session meta-regression (cite the latter only as reported by others, never as a primary source).
+(2) Report the retraction status of studies previously used to argue for volume ceilings and exclude retracted work from the evidence.
+Leads to verify (not pre-approved conclusions):
+- Remmert J, Pelland J, Robinson Z, Hinson S, Zourdos M, "Meta-regressions of the effect of per-session volume on hypertrophy and strength" (SportRxiv preprint 2025; check exact title and journal publication).
+- Pelland JC, Remmert JF, Robinson ZP, Hinson SR, Zourdos MC, "The resistance training dose response: meta-regressions exploring the effects of weekly volume and frequency on muscle hypertrophy and strength gains" (Sports Medicine 2025/2026; SportRxiv preprint 2024).
+- Schoenfeld BJ, Ogborn D, Krieger JW (2017, Journal of Sports Sciences) - weekly volume dose-response.
+- Schoenfeld BJ et al. (2019, Medicine & Science in Sports & Exercise) - volume in trained men.
+- Baz-Valle E et al. (2022, Journal of Human Kinetics) - systematic review of training volumes.
+- Brigatto FA et al. (2019, Journal of Strength and Conditioning Research) - equal weekly volume split across sessions.
+- Damas F et al. (2016, Journal of Physiology) and Damas F et al. (2016, European Journal of Applied Physiology) - muscle damage and oedema confounding early hypertrophy measures.
+- Damas F et al. (2019, Journal of Applied Physiology) - individual responses to changing training variables in trained men.
+- Retraction check: Barbalho M et al., "Evidence of a ceiling effect for training volume in muscle hypertrophy and strength in trained men - less is more?" (International Journal of Sports Physiology and Performance; reportedly retracted April 2020) and related Barbalho et al. papers flagged for improbable data (incl. the trained-women volume study in Medicine & Science in Sports & Exercise 2019) - determine the current status of each.

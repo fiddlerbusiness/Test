@@ -1,0 +1,23 @@
+RUN: L02 - Range of motion and muscle length (stretch-mediated hypertrophy)
+LEVER: range of motion and the muscle length at which tension is applied. Comparison: training at long muscle lengths; lengthened partials vs full ROM vs shortened partials.
+Keep two claims strictly separate and score each as its own sub_method entry: (A) "lengthened partials beat full ROM"; (B) "include the stretched (long-length) position", i.e. full ROM or long-length partials vs short-length partials.
+Questions:
+a) Whole-muscle vs regional (proximal/distal) hypertrophy.
+b) Exercise-specific evidence: seated vs prone leg curl; overhead vs neutral-arm elbow extension; knee-flexion depth in leg press/squat; calf raises.
+c) Untrained vs trained.
+d) Reconcile positive single studies with null or contrary results and with newer meta-analyses on mean muscle length and regional hypertrophy.
+e) Longitudinal growth (fascicle length) vs cross-sectional growth: what is measured, and does it change the conclusion for the primary outcome?
+Leads to verify (not pre-approved conclusions):
+- Wolf M, Androulakis-Korakakis P, Fisher J, Schoenfeld B, Steele J (2023, International Journal of Strength and Conditioning) - partial vs full ROM Bayesian meta-analysis.
+- Pallares JG et al. (2021, Scandinavian Journal of Medicine & Science in Sports) - ROM meta-analysis.
+- Schoenfeld BJ & Grgic J (2020, SAGE Open Medicine) - ROM systematic review.
+- Pedrosa GF et al. (2022, European Journal of Sport Science) - partial ROM at long muscle lengths.
+- Kassiano W et al. (2023, Journal of Strength and Conditioning Research) - gastrocnemius lengthened partials.
+- Maeo S et al. (2021, Medicine & Science in Sports & Exercise) - seated vs prone leg curl.
+- Maeo S et al. (2023, European Journal of Sport Science) - overhead vs neutral elbow extension.
+- Wolf M et al. (2025, PeerJ 13:e18904, doi:10.7717/peerj.18904) - lengthened partials vs full ROM, trained, within-participant.
+- Larsen S, Wolf M, Schoenfeld BJ et al. (2025, Journal of Sports Sciences, doi:10.1080/02640414.2025.2481534) - knee-flexion ROM in leg press, trained.
+- "Regional hypertrophy with resistance training - does muscle length matter? A systematic review and meta-analysis" (2025, Thieme, doi:10.1055/a-2615-4935; SportRxiv preprint) - verify authors and journal.
+- "Does longer-muscle length resistance training cause greater longitudinal growth in humans? A systematic review" (2025, Sports Medicine and Health Science, doi:10.1016/j.smhs.2025.03.001).
+- Ottinger CR et al. (2023, Strength and Conditioning Journal).
+- Kassiano W et al., "Partial range of motion and muscle hypertrophy: not all ROMs lead to Rome" (commentary; verify journal and year).

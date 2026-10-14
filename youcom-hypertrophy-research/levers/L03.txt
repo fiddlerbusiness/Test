@@ -1,0 +1,15 @@
+RUN: L03 - Inter-set rest intervals
+LEVER: rest between sets. Comparison: <60 s vs 60-90 s vs >=120-180 s.
+Questions:
+a) Multi-joint vs single-joint exercises.
+b) Mediation through loss of volume load: does longer rest matter only because more repetitions/volume load are completed? Identify trials that equated volume load or sets.
+c) Any benefit beyond ~90-120 s?
+d) Untrained vs trained.
+e) Time cost: session-duration implications, reported or calculated from reported values.
+Leads to verify (not pre-approved conclusions):
+- Singer A, Wolf M et al. (2024, Frontiers in Sports and Active Living, doi:10.3389/fspor.2024.1429789) - Bayesian meta-analysis of inter-set rest.
+- Grgic J et al. (2017, European Journal of Sport Science) - systematic review.
+- Schoenfeld BJ et al. (2016, Journal of Strength and Conditioning Research) - 1 vs 3 min rest in trained men.
+- Longo AR et al. (2022, Journal of Strength and Conditioning Research).
+- McKendry J et al. (2016, Experimental Physiology) - mechanistic.
+Also screen for longitudinal trials of self-selected or autoregulated rest.

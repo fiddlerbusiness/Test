@@ -1,0 +1,15 @@
+RUN: L10 - Warm-up, potentiation and fatigue mitigation
+LEVER: preparation within the session. Comparison: general vs specific warm-up; number, load and repetitions of warm-up sets; static stretching before training; post-activation performance enhancement (PAPE).
+Key question: does ANY longitudinal hypertrophy evidence exist for any warm-up variable? If the evidence is limited to acute performance (repetitions, volume load, velocity), classify it as theoretical for hypertrophy and say so explicitly; do not infer hypertrophy effects from acute performance.
+Questions:
+a) Effect of warm-up type and specific warm-up sets on repetitions/volume load in subsequent working sets (acute).
+b) Does pre-training static stretching reduce repetitions/volume load, and from which stretch durations on?
+c) PAP vs PAPE and their relevance for hypertrophy-oriented sessions.
+d) Untrained vs trained.
+Leads to verify (not pre-approved conclusions):
+- Ribeiro B et al. (2021, Motricidade, doi:10.6063/motricidade.21143) - systematic review of warm-up and strength performance.
+- Ribeiro B et al. (2020, International Journal of Environmental Research and Public Health 17(18):6882).
+- Enes A et al. (2025), "Warming up to improved performance? Effects of different specific warm-up protocols on neuromuscular performance in trained individuals" (verify journal).
+- Abad CCC et al. (2011, Journal of Strength and Conditioning Research).
+- Behm DG et al. (2016, Applied Physiology, Nutrition, and Metabolism) - acute effects of stretching.
+- Blazevich AJ & Babault N (2019, Frontiers in Physiology) - PAP vs PAPE.

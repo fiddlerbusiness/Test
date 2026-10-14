@@ -1,0 +1,14 @@
+RUN: L06 - Repetition tempo and eccentric control
+LEVER: repetition tempo. Comparison: total repetition duration (~0.5-8 s vs >10 s); eccentric duration (~1 s vs 2-4 s) vs intentional maximal concentric velocity; eccentric vs concentric emphasis.
+Separate tempo per se from its confounds: tempo changes the usable load, the repetitions completed and the proximity to failure. For each trial, state which of these were controlled.
+Sub-methods for impact_scoring: total repetition duration; eccentric duration; eccentric vs concentric emphasis.
+Questions:
+a) Is there a range of repetition durations within which hypertrophy is equivalent, and where does it break down?
+b) Does a slower eccentric add hypertrophy when load and proximity to failure are matched?
+c) Untrained vs trained.
+Leads to verify (not pre-approved conclusions):
+- Schoenfeld BJ, Ogborn DI, Krieger JW (2015, Sports Medicine, doi:10.1007/s40279-015-0304-0) - repetition duration meta-analysis (pre-2016 but essential).
+- "How slow should you go? A systematic review with meta-analysis of the effect of resistance training repetition tempo on muscle hypertrophy" (2025, Journal of Strength and Conditioning Research 39(12):1331-1339; verify authors).
+- A 2025 meta-analysis on eccentric phase duration and hypertrophy (Amdi et al.; SportRxiv preprint 2024 - verify authors, title and journal).
+- Wilk M et al. (2021, Sports Medicine) - tempo review.
+- Schoenfeld BJ et al. (2017, Journal of Strength and Conditioning Research) - concentric vs eccentric muscle actions meta-analysis.

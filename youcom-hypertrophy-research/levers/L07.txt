@@ -1,0 +1,15 @@
+RUN: L07 - Load selection and loading spectrum
+LEVER: load per set. Comparison: heavy (<=6-8 RM, >~80% 1RM) vs moderate (8-12 RM) vs light (15-30+ RM, ~30-60% 1RM) when sets are taken to or close to failure.
+Questions:
+a) Equivalence across loads when sets are taken to or near failure: how strong is it, in untrained vs trained?
+b) The lower load threshold below which hypertrophy is compromised (e.g., 20% vs 30% 1RM).
+c) Interaction with proximity to failure (light loads not taken close to failure).
+d) Fibre-type-specific responses (type I vs type II fibre CSA).
+e) Practical costs: discomfort/perceived effort, session time, joint stress - label the evidence type.
+Leads to verify (not pre-approved conclusions):
+- Schoenfeld BJ, Grgic J, Ogborn D, Krieger JW (2017, Journal of Strength and Conditioning Research) - low vs high load meta-analysis.
+- Lopez P et al. (2021, Medicine & Science in Sports & Exercise) - load network meta-analysis.
+- Currier BS et al. (2023, British Journal of Sports Medicine) - Bayesian network meta-analysis of training prescriptions.
+- Lasevicius T et al. (2018, European Journal of Sport Science) - 20-80% 1RM, volume-equated.
+- Morton RW et al. (2016, Journal of Applied Physiology).
+- Lasevicius T et al. (2022, Journal of Strength and Conditioning Research) - failure matters with low but not high loads.

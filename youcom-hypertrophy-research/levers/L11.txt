@@ -1,0 +1,8 @@
+RUN: L11 - Additional candidate levers (screening)
+LEVER: screening of intra-session levers outside the main list, to judge whether any has stronger hypertrophy evidence than typical listed levers. Score EACH candidate as its own impact_scoring entry (scope="additional_candidate"); use the first entry (scope="lever_overall") for a one-line overall screening verdict. Use comparisons for the key evidence per candidate. Keep depth proportionate: max 6 sources per candidate.
+Candidates:
+1. Internal (mind-muscle) vs external attentional focus - lead: Schoenfeld BJ et al. (2018, European Journal of Sport Science).
+2. Inter-set stretching or loaded stretching - leads: Evangelista AL et al. (2019); Wadhi T et al. (2022) (verify journals). Keep inter-set stretching separate from long-duration loaded stretching protocols.
+3. Low-load blood-flow restriction training vs high-load training or low-load training without restriction (healthy adults 18-45 only; state proximity to failure in each arm).
+4. Unilateral vs bilateral training.
+For each candidate: direct hypertrophy evidence (k, n, effect with uncertainty), untrained vs trained, strongest counter-evidence, evidence level.

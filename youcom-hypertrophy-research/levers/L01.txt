@@ -1,0 +1,19 @@
+RUN: L01 - Mechanical tension and proximity to failure
+LEVER: proximity to failure of each set. Comparison: sets ended at momentary muscular failure (0 RIR) vs 1-3 RIR vs >=4 RIR; intra-set velocity-loss thresholds (e.g., 10-20% vs 40-50%) as proxies for proximity to failure.
+Questions:
+a) Shape of the dose-response between proximity to failure and hypertrophy (linear vs non-linear; where gains flatten), contrasted with strength.
+b) Does training to failure add hypertrophy when volume is equated vs not equated?
+c) Interaction with load: do light loads (<~60% 1RM) require sets closer to failure than heavy loads?
+d) Fatigue cost and recovery time after failure vs non-failure sets (label these as non-hypertrophy outcomes).
+e) Accuracy of RIR estimation, especially far from failure and in novices, and what this means for prescribing RIR targets.
+Specific checks: report the fitted dose-response model and how many effect sizes lie close to failure vs far from failure; note where RIR was estimated rather than measured; keep volume-equated and non-equated analyses separate.
+Sub-methods for impact_scoring: velocity-loss thresholds as an autoregulation proxy.
+Leads to verify (not pre-approved conclusions):
+- Robinson ZP, Pelland JC, Remmert JF, Refalo MC, Jukic I, Steele J, Zourdos MC (2024, Sports Medicine) - proximity-to-failure meta-regressions.
+- Refalo MC et al. (2023, Sports Medicine) - proximity-to-failure meta-analysis.
+- Grgic J et al. (2022, Journal of Sport and Health Science) - failure vs non-failure meta-analysis.
+- Refalo MC, Helms ER, Robinson ZP, Hamilton DL, Fyfe JJ (2024, Journal of Sports Sciences, doi:10.1080/02640414.2024.2321021) - within-participant trial in trained individuals, failure vs 1-2 RIR.
+- Pareja-Blanco F et al. (2017, Scandinavian Journal of Medicine & Science in Sports) - velocity loss 20% vs 40%.
+- Jukic I et al. (2023, Sports Medicine) - velocity-loss thresholds meta-analysis.
+- Halperin I et al. (2022, Sports Medicine) - accuracy of predicting repetitions to failure.
+- Lasevicius T et al. (2022, Journal of Strength and Conditioning Research) - failure matters with low but not high loads (only for question c).

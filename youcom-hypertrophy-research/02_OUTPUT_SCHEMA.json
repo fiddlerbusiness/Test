@@ -1,0 +1,109 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["lever_id", "lever_name", "research_status", "overall_evidence_level", "evidence_summary", "comparisons", "findings_by_training_status", "dose_response_and_ceiling", "counter_evidence", "limitations", "newest_evidence_verdict", "impact_scoring", "practical_implication", "open_questions", "verification_log", "omitted_due_to_length", "sources"],
+  "properties": {
+    "lever_id": { "type": "string", "description": "Copy from the RUN line, e.g. L03." },
+    "lever_name": { "type": "string" },
+    "research_status": { "type": "string", "enum": ["complete", "partial_time_limit", "partial_output_limit"] },
+    "overall_evidence_level": { "type": "string", "enum": ["established_replicated", "preliminary", "theoretical", "no_evidence"] },
+    "evidence_summary": { "type": "string", "description": "Max 200 words. Bottom line incl. evidence level, untrained vs trained, source_ids in [ ]." },
+    "comparisons": {
+      "type": "array",
+      "description": "One entry per distinct comparison x training status, max 8, strongest evidence first.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["comparison", "training_status", "volume_equated", "outcome_measure", "effect_estimate", "magnitude_interpretation", "evidence_level", "source_ids"],
+        "properties": {
+          "comparison": { "type": "string", "description": "Exact conditions compared." },
+          "training_status": { "type": "string", "enum": ["untrained", "trained", "mixed", "not_reported"] },
+          "volume_equated": { "type": "string", "enum": ["sets_equated", "volume_load_equated", "not_equated", "mixed", "not_reported"] },
+          "outcome_measure": { "type": "string", "description": "Method and site; label indirect measures." },
+          "effect_estimate": { "type": "string", "description": "Metric, point estimate, 95% CI or CrI, posterior probability, k, n; or absolute and % change per condition. 'not reported' if absent." },
+          "magnitude_interpretation": { "type": "string", "description": "Threshold set used and interpretation." },
+          "evidence_level": { "type": "string", "enum": ["established_replicated", "preliminary", "theoretical"] },
+          "source_ids": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "findings_by_training_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["untrained", "trained"],
+      "properties": {
+        "untrained": { "type": "string", "description": "Or 'no direct data'." },
+        "trained": { "type": "string", "description": "Or 'no direct data'. State the studies' own definitions of trained." }
+      }
+    },
+    "dose_response_and_ceiling": { "type": "string", "description": "Shape of the dose-response; is a ceiling or point of diminishing returns supported by data (how many data points in that range) or only assumed?" },
+    "counter_evidence": { "type": "string", "description": "Strongest contrary evidence and objections." },
+    "limitations": { "type": "string" },
+    "newest_evidence_verdict": { "type": "string", "description": "CONFIRMS, MODIFIES or OVERTURNS older conclusions, naming the 2024-2026 publications." },
+    "impact_scoring": {
+      "type": "array",
+      "description": "First entry: scope lever_overall. Optional further entries for sub-methods or additional candidates.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["scope", "subject", "reference_comparison", "magnitude_class", "threshold_used", "certainty_class", "rationale", "boundary_conditions"],
+        "properties": {
+          "scope": { "type": "string", "enum": ["lever_overall", "sub_method", "additional_candidate"] },
+          "subject": { "type": "string" },
+          "reference_comparison": { "type": "string", "description": "Common suboptimal practice vs evidence-based practice within the practical range." },
+          "magnitude_class": { "type": "string", "enum": ["0_equivalent_or_trivial", "1_small", "2_moderate", "3_large", "unclear"] },
+          "threshold_used": { "type": "string" },
+          "certainty_class": { "type": "string", "enum": ["high", "moderate", "low", "very_low"] },
+          "rationale": { "type": "string" },
+          "boundary_conditions": { "type": "string", "description": "Where the lever does matter even if equivalent across the practical range." }
+        }
+      }
+    },
+    "practical_implication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["untrained", "trained", "evidence_level"],
+      "properties": {
+        "untrained": { "type": "string" },
+        "trained": { "type": "string" },
+        "evidence_level": { "type": "string", "enum": ["established_replicated", "preliminary", "theoretical"] }
+      }
+    },
+    "open_questions": { "type": "array", "items": { "type": "string" } },
+    "verification_log": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["corrected_leads", "leads_not_found", "retracted_or_flagged", "preprint_status", "not_checked"],
+      "properties": {
+        "corrected_leads": { "type": "array", "items": { "type": "string" } },
+        "leads_not_found": { "type": "array", "items": { "type": "string" } },
+        "retracted_or_flagged": { "type": "array", "items": { "type": "string" } },
+        "preprint_status": { "type": "array", "items": { "type": "string" } },
+        "not_checked": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "omitted_due_to_length": { "type": "array", "items": { "type": "string" } },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "citation", "year", "design", "sample", "population", "hypertrophy_measure", "doi", "url", "peer_reviewed", "retraction_status", "access"],
+        "properties": {
+          "id": { "type": "string", "description": "S01, S02, ... in order of first use." },
+          "citation": { "type": "string", "description": "First author et al., title, journal, year, volume(issue):pages." },
+          "year": { "type": "integer" },
+          "design": { "type": "string", "enum": ["umbrella_review", "network_meta_analysis", "meta_analysis_or_meta_regression", "systematic_review", "rct_between_group", "rct_within_participant", "non_randomised_trial", "acute_or_mechanistic", "narrative_review_or_commentary"] },
+          "sample": { "type": "string", "description": "k and n, or n per group; duration in weeks." },
+          "population": { "type": "string", "description": "Sex, age, training status incl. the study's own definition." },
+          "hypertrophy_measure": { "type": "string", "enum": ["mri_ct", "ultrasound", "biopsy_fibre_csa", "multiple_direct", "indirect_dxa_bia_circumference", "acute_or_mechanistic_only", "not_applicable"] },
+          "doi": { "type": ["string", "null"] },
+          "url": { "type": ["string", "null"] },
+          "peer_reviewed": { "type": "boolean" },
+          "retraction_status": { "type": "string", "enum": ["none_found", "correction", "expression_of_concern", "retracted", "not_checked"] },
+          "access": { "type": "string", "enum": ["full_text", "abstract_only"] }
+        }
+      }
+    }
+  }
+}
