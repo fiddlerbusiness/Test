@@ -144,7 +144,7 @@ At least 10 concise items on methodological weaknesses of the evidence base (e.g
 - Evidence tags inside strings: [ESTABLISHED] = consistent findings across multiple RCTs and at least one meta-analysis; [LIMITED] = single or few small RCTs, inconsistent findings, or data mainly from untrained participants; [THEORETICAL] = mechanistic, animal or in-vitro rationale only.
 - Report effect sizes with confidence intervals and absolute numbers; never statistical significance alone.
 - Units: SI; doses per kg body mass (mg/kg or g/kg) plus an absolute example for a 75 kg athlete; times in minutes relative to exercise start (T-60 min).
-- If evidence is absent, weak or contradictory, say so explicitly instead of extrapolating. No marketing language, no hedging-free claims.
+- If evidence is absent, weak or contradictory, say so explicitly instead of extrapolating. No marketing language; state the uncertainty of every claim.
 - Be dense and specific: each long-text field typically 60-200 words.
 
 ### 14. LANGUAGE

@@ -2,7 +2,7 @@
 
 | Feld im Playground | Inhalt |
 |---|---|
-| **Input** | `01_INPUT_prompt.txt` komplett einfügen (24.676 Zeichen, nur ASCII, Limit 40.000) |
+| **Input** | `01_INPUT_prompt.txt` komplett einfügen (24.690 Zeichen, nur ASCII, Limit 40.000) |
 | **Research effort** | `Frontier` |
 | **Background** | **AN** (Pflicht bei Frontier, sonst HTTP 422) |
 | **Output schema** | `02_OUTPUT_SCHEMA.json` komplett einfügen |
