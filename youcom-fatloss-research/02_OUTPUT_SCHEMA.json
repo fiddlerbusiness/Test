@@ -1,0 +1,351 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "executive_summary",
+    "top_10_strategies",
+    "physiological_targets_summary",
+    "synergy_matrix",
+    "evidence_conflicts",
+    "key_limitations",
+    "references"
+  ],
+  "properties": {
+    "executive_summary": {
+      "type": "string",
+      "description": "150-250 words: the ranked strategies in one line each, the central numeric targets, the biggest uncertainties, and the scope decision on pharmacotherapy."
+    },
+    "top_10_strategies": {
+      "type": "array",
+      "description": "Exactly 10 distinct strategies, ordered by rank 1-10, each rank used once.",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rank",
+          "strategy_name",
+          "category",
+          "evidence_grade",
+          "ranking_rationale",
+          "effect_size_summary",
+          "long_term_weight_loss_mechanism",
+          "muscle_preservation_mechanism",
+          "actionable_protocol",
+          "common_pitfalls",
+          "counter_evidence",
+          "citation_ids"
+        ],
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "enum": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            "description": "1 = most effective. Each rank exactly once."
+          },
+          "strategy_name": {
+            "type": "string",
+            "description": "Specific, actionable name of one distinct lever."
+          },
+          "category": {
+            "type": "string",
+            "enum": ["nutrition", "training", "behavioral_adherence", "recovery_lifestyle", "metabolic_management"]
+          },
+          "evidence_grade": {
+            "type": "string",
+            "enum": ["high", "moderate", "low"],
+            "description": "GRADE-like certainty as defined in the input; use the weaker of the WLM and muscle-preservation claims that justify the rank."
+          },
+          "ranking_rationale": {
+            "type": "string",
+            "description": "Scores 0-5 for C1 long-term fat loss/WLM, C2 lean-mass preservation, C3 certainty, C4 feasibility/safety, the weighted total, and one sentence on why this rank."
+          },
+          "effect_size_summary": {
+            "type": "string",
+            "description": "2-4 key studies or meta-analyses: design, k and/or N, population, duration, dropout, effect in natural units with 95% CI; then CONFIRMS/MODIFIES/OVERTURNS for the newest evidence."
+          },
+          "long_term_weight_loss_mechanism": {
+            "type": "string",
+            "description": "Why it works for long-term fat loss and maintenance (adherence, satiety, NEAT compensation, adaptive thermogenesis, habit formation); demonstrated vs hypothesized."
+          },
+          "muscle_preservation_mechanism": {
+            "type": "string",
+            "description": "How it protects skeletal muscle (MPS/MPB balance, mechanical tension, anabolic signaling, energy availability); state explicitly if no muscle-preserving effect is shown."
+          },
+          "actionable_protocol": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "target_population",
+              "primary_target_metric",
+              "primary_target_low",
+              "primary_target_high",
+              "primary_target_unit",
+              "minimum_effective_dose",
+              "dose_and_frequency",
+              "progression_and_adjustment_rules",
+              "monitoring_and_success_criteria",
+              "duration_and_maintenance_transition"
+            ],
+            "properties": {
+              "target_population": {
+                "type": "string",
+                "description": "Who the numbers apply to (e.g., adults with obesity, lean resistance-trained, older adults) and how they differ by population."
+              },
+              "primary_target_metric": {
+                "type": "string",
+                "description": "The single most important quantitative target, e.g. 'protein intake' or 'resistance-training volume'."
+              },
+              "primary_target_low": {
+                "type": ["number", "null"],
+                "description": "Lower bound of the primary target; equal to high for a single threshold; null only if no defensible number exists."
+              },
+              "primary_target_high": {
+                "type": ["number", "null"],
+                "description": "Upper bound of the primary target; null only if no defensible number exists."
+              },
+              "primary_target_unit": {
+                "type": "string",
+                "description": "Unit of the primary target, e.g. 'g/kg FFM/day', '% body weight/week', 'hard sets/muscle/week', 'h/night'."
+              },
+              "minimum_effective_dose": {
+                "type": "string",
+                "description": "Lowest dose with demonstrated benefit, with numbers and units."
+              },
+              "dose_and_frequency": {
+                "type": "string",
+                "description": "Full numeric protocol: amounts, per-meal or per-session doses, sessions or days per week, intensity, timing."
+              },
+              "progression_and_adjustment_rules": {
+                "type": "string",
+                "description": "Numeric decision rules, e.g. how to adjust intake if weekly loss falls outside the target range for 2-3 weeks."
+              },
+              "monitoring_and_success_criteria": {
+                "type": "string",
+                "description": "What to measure, how often, and the target values or thresholds that define success or trigger action."
+              },
+              "duration_and_maintenance_transition": {
+                "type": "string",
+                "description": "How long to apply it during the deficit and how it changes in the maintenance phase (12-24 months after loss)."
+              }
+            }
+          },
+          "common_pitfalls": {
+            "type": "array",
+            "description": "3-6 concrete implementation errors.",
+            "items": { "type": "string" }
+          },
+          "counter_evidence": {
+            "type": "string",
+            "description": "Strongest null or contrary findings and main objections, with citations."
+          },
+          "citation_ids": {
+            "type": "array",
+            "description": "IDs that exist in references.",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "physiological_targets_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Numeric ranges for the active fat-loss phase, consistent with the strategy protocols.",
+      "required": [
+        "recommended_deficit_percent_tdee",
+        "weekly_weight_loss_percent_bw",
+        "protein_target_g_per_kg_bw",
+        "protein_target_g_per_kg_ffm",
+        "minimum_fat_g_per_kg_bw",
+        "resistance_training_minimum_dose",
+        "maintenance_phase_targets",
+        "general_notes",
+        "citation_ids"
+      ],
+      "properties": {
+        "recommended_deficit_percent_tdee": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["low", "high", "notes"],
+          "properties": {
+            "low": { "type": "number" },
+            "high": { "type": "number" },
+            "notes": { "type": "string", "description": "Population, kcal/day equivalent, evidence vs expert consensus." }
+          }
+        },
+        "weekly_weight_loss_percent_bw": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["low", "high", "notes"],
+          "properties": {
+            "low": { "type": "number" },
+            "high": { "type": "number" },
+            "notes": { "type": "string", "description": "Range for optimal lean-mass retention; how it differs for lean trained vs obesity." }
+          }
+        },
+        "protein_target_g_per_kg_bw": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["low", "high", "notes"],
+          "properties": {
+            "low": { "type": "number" },
+            "high": { "type": "number" },
+            "notes": { "type": "string", "description": "Population and whether reference or adjusted body weight should be used in obesity." }
+          }
+        },
+        "protein_target_g_per_kg_ffm": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["low", "high", "notes"],
+          "properties": {
+            "low": { "type": "number" },
+            "high": { "type": "number" },
+            "notes": { "type": "string", "description": "Origin of the range (e.g., lean trained athletes) and strength of evidence." }
+          }
+        },
+        "minimum_fat_g_per_kg_bw": {
+          "type": "number",
+          "description": "Minimum daily dietary fat in g/kg body weight; caveats go into general_notes."
+        },
+        "resistance_training_minimum_dose": {
+          "type": "string",
+          "description": "Hard sets per muscle group per week, sessions per week, load or RM range, proximity to failure (RIR)."
+        },
+        "maintenance_phase_targets": {
+          "type": "string",
+          "description": "Numeric targets for the first 12-24 months after loss: physical activity (min/week or steps/day), self-weighing frequency, regain threshold for action, energy-intake recalibration."
+        },
+        "general_notes": {
+          "type": "string",
+          "description": "Population differences, evidence strength of the fat minimum and other thresholds, safety caveats."
+        },
+        "citation_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "synergy_matrix": {
+      "type": "array",
+      "description": "6-12 interactions showing how behavioral adherence and muscle-protecting physiology interlock.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "linked_strategy_ranks",
+          "behavioral_component",
+          "physiological_component",
+          "interaction_type",
+          "interaction_mechanism",
+          "practical_implication",
+          "citation_ids"
+        ],
+        "properties": {
+          "linked_strategy_ranks": {
+            "type": "array",
+            "description": "Ranks (1-10) of the strategies involved.",
+            "items": { "type": "integer" }
+          },
+          "behavioral_component": { "type": "string" },
+          "physiological_component": { "type": "string" },
+          "interaction_type": {
+            "type": "string",
+            "enum": ["synergistic", "additive", "antagonistic", "uncertain"]
+          },
+          "interaction_mechanism": {
+            "type": "string",
+            "description": "Mechanism; state whether tested factorially or inferred from separate studies."
+          },
+          "practical_implication": { "type": "string" },
+          "citation_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "evidence_conflicts": {
+      "type": "array",
+      "description": "All mandatory conflict topics from the input plus any others found.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["topic", "conflicting_findings", "current_best_interpretation", "certainty_of_interpretation", "citation_ids"],
+        "properties": {
+          "topic": { "type": "string" },
+          "conflicting_findings": {
+            "type": "string",
+            "description": "The competing positions with their key data (design, N, effect in natural units)."
+          },
+          "current_best_interpretation": { "type": "string" },
+          "certainty_of_interpretation": {
+            "type": "string",
+            "enum": ["high", "moderate", "low"]
+          },
+          "citation_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "key_limitations": {
+      "type": "array",
+      "description": "8-15 methodological limitations of the evidence base, one dense sentence each with a concrete example.",
+      "items": { "type": "string" }
+    },
+    "references": {
+      "type": "array",
+      "description": "Every source cited anywhere, each cited at least once.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "citation", "study_type", "population_and_sample", "url", "verified"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "FirstAuthorYear, suffix a/b for duplicates, e.g. Helms2014a."
+          },
+          "citation": {
+            "type": "string",
+            "description": "First 3 authors et al., title, journal, year, volume(issue):pages."
+          },
+          "study_type": {
+            "type": "string",
+            "enum": [
+              "umbrella_review",
+              "systematic_review_meta_analysis",
+              "systematic_review",
+              "cochrane_review",
+              "position_stand_or_guideline",
+              "consensus_statement",
+              "rct",
+              "randomized_crossover_trial",
+              "secondary_analysis_of_rct",
+              "non_randomized_controlled_trial",
+              "prospective_cohort",
+              "registry_study",
+              "cross_sectional",
+              "mechanistic_or_metabolic_ward_study",
+              "modeling_study",
+              "narrative_review",
+              "other"
+            ]
+          },
+          "population_and_sample": {
+            "type": "string",
+            "description": "Population, N (and k for meta-analyses), duration."
+          },
+          "url": {
+            "type": "string",
+            "description": "https://doi.org/<DOI> preferred; otherwise PubMed or PMC URL."
+          },
+          "verified": {
+            "type": "boolean",
+            "description": "true only if the page was retrieved and title, authors, year and reported numbers were confirmed."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,277 @@
+### 0. TASK IN ONE SENTENCE
+Identify, critically appraise, and rank the 10 most effective evidence-based strategies (nutrition, training, behavioral/psychological adherence, recovery/lifestyle including sleep, and metabolic management) that enable adults to (a) lose body fat, (b) keep the lost weight off for at least 1-2 years, and (c) preserve as much skeletal muscle / fat-free mass (FFM) as possible during and after the energy deficit. Return the result strictly in the JSON format defined by the attached output schema.
+
+### 1. ROLE
+Act as an evidence-synthesis panel of three experts working as one:
+(a) a clinical obesity researcher and epidemiologist (weight-loss maintenance, behavioral treatment, energy-balance modeling, adaptive thermogenesis, body-weight regulation),
+(b) an exercise physiologist and sports nutrition scientist (muscle protein turnover, resistance-training dose-response, concurrent training, body-composition methodology),
+(c) a meta-research methodologist (GRADE, risk of bias, heterogeneity, small-study effects, absolute vs relative effects).
+Your job is not to summarize popular advice. Locate primary sources, extract quantitative data, weigh them by quality, expose disagreements, and translate the totality of evidence into concrete, numeric protocols.
+
+Knowledge date: October 2026. Cover the literature through 2026. Actively search for 2023-2026 umbrella reviews, systematic reviews, meta-analyses, position stands, guidelines, and large RCTs. For every strategy, state explicitly whether the newest evidence CONFIRMS, MODIFIES, or OVERTURNS older conclusions.
+
+### 2. RESEARCH QUESTION (PICO) AND DEFINITIONS
+POPULATION
+- Primary: adults (18-65 years) with overweight or obesity (BMI >= 25 kg/m2) attempting intentional weight loss.
+- Secondary: normal-weight or lean, resistance-trained adults (including physique athletes) attempting fat loss.
+- Tertiary: older adults (>= 65 years) and people with sarcopenic obesity, because muscle loss carries the greatest functional cost there.
+- Report population-specific differences explicitly. Never transfer a threshold derived in lean trained athletes (e.g., protein per kg FFM, weekly rate of loss) to people with obesity, or vice versa, without labeling it as an extrapolation.
+- Exclude as primary evidence: children and adolescents, pregnancy and lactation, eating-disorder populations, and studies whose only intervention is surgery or drugs.
+
+INTERVENTION DOMAINS (these map to the schema enum "category")
+- nutrition: energy intake, protein, macronutrient distribution, diet quality, energy density, meal structure, fasting regimens.
+- training: resistance training, aerobic/endurance training, concurrent training, daily physical activity.
+- behavioral_adherence: self-monitoring, behavioral programs, cognitive and motivational strategies, relapse prevention, maintenance planning.
+- recovery_lifestyle: sleep, circadian factors, stress, alcohol.
+- metabolic_management: energy-balance periodization (diet breaks, refeeds, maintenance phases), recalibration of energy needs as weight falls, management of adaptive thermogenesis and NEAT compensation.
+
+SCOPE DECISION ON PHARMACOTHERAPY AND SURGERY
+GLP-1 receptor agonists, dual/triple incretin agonists, other anti-obesity medications, and bariatric surgery are NOT eligible for the top-10 ranking, because the question concerns behavioral, nutritional, training, and lifestyle strategies. Use them only as context: (i) the lean-mass fraction of weight lost under incretin therapy and whether resistance training and protein mitigate it, (ii) weight regain after discontinuation as evidence of a biological drive to regain, and (iii) lifestyle strategies tested as adjuncts. Place this content in evidence_conflicts or key_limitations, not in top_10_strategies, and mention the scope decision in executive_summary.
+
+COMPARATORS
+Usual care or minimal intervention, alternative diet or training protocols, continuous vs intermittent energy restriction, different doses of the same strategy.
+
+OUTCOMES (priority order)
+1. Long-term fat-mass and body-weight change: weight-loss maintenance (WLM) >= 12 months, ideally >= 24 months after the end of the active weight-loss phase; weight regain in kg and as % of lost weight regained.
+2. FFM / lean mass / skeletal muscle retention: absolute change in kg, and the proportion of weight lost as FFM (delta FFM / delta body mass). Methods in order of preference: MRI/CT muscle volume, 4-compartment models, D3-creatine dilution, DXA, then BIA. Always report the method used.
+3. Muscle strength and physical function (1RM, handgrip, gait speed, chair stands), because mass and function can diverge.
+4. Mechanistic and secondary outcomes: resting metabolic rate and adaptive thermogenesis (measured minus predicted RMR), physical-activity and NEAT compensation, appetite (hormones and subjective ratings), adherence, dropout.
+
+KEY DEFINITIONS
+- Successful WLM: intentional loss of >= 10% of initial body weight maintained for >= 1 year (Wing & Hill, Annu Rev Nutr, 2001). Report when studies use other definitions (e.g., >= 5%, or different follow-up lengths).
+- Adaptive thermogenesis: the reduction in energy expenditure beyond what is predicted from losses of fat mass and FFM. Distinguish resting, thermic-effect-of-food, exercise, and non-exercise components, and state whether participants were in energy balance or still in deficit at measurement.
+- Energy deficit: report as % of measured or estimated TDEE and in kcal/day; where relevant, energy availability in kcal/kg FFM/day.
+- Rate of loss: % of body weight per week.
+- Protein targets: always state the denominator - total body weight (BW), FFM, ideal/adjusted body weight, or reference body weight. In obesity, g/kg total BW can grossly overestimate needs; state how a target should be scaled.
+
+### 3. EVIDENCE HIERARCHY AND SOURCE RULES (non-negotiable)
+HIERARCHY (higher beats lower when they conflict, unless the higher source is clearly outdated or methodologically weaker)
+1. Umbrella reviews, systematic reviews with meta-analysis (prefer meta-analyses of RCTs that use risk-of-bias assessment and GRADE), Cochrane reviews.
+2. Position stands and clinical guidelines of scientific bodies (e.g., ISSN, ACSM, ESPEN, EASO, Obesity Canada, AHA/ACC/TOS, NICE, IOC). Treat them as expert synthesis and verify their key claims against the primary studies they cite.
+3. Large and/or long RCTs (>= 12 months for WLM claims; tightly controlled or supervised trials with valid body-composition methods for lean-mass claims).
+4. Registries and long-term cohorts (National Weight Control Registry, Look AHEAD follow-ups, CARDIA, "The Biggest Loser" follow-up, DiOGenes). These identify correlates of success, not proven causes - say so whenever you use them.
+5. Mechanistic human studies (stable-isotope muscle protein synthesis, biopsies, metabolic-ward energetics). They explain mechanisms but cannot prove long-term efficacy.
+6. Narrative reviews and expert opinion - only to frame debates.
+
+SOURCE RULES
+- Cite only sources you actually retrieved (abstract or full text). Never invent citations, DOIs, PMIDs, sample sizes, confidence intervals, or effect sizes. If you cannot verify a number, write "not verified" instead of estimating.
+- Prefer PubMed, PMC, Europe PMC, the Cochrane Library, and publisher pages of peer-reviewed journals. Do not cite fitness magazines, blogs, commercial websites, podcasts, Wikipedia, forums, or AI-generated summaries. You may use them only to discover primary sources, which you must then retrieve and cite instead.
+- When a meta-analysis and a later large RCT disagree, report both and explain why (population, dose, duration, measurement method, adherence).
+- Report effect sizes in natural units with 95% CI wherever possible: kg fat mass, kg FFM or lean mass, % of weight lost as FFM, kg regained, kcal/day, minutes/week. Add standardized effect sizes (SMD, Hedges g) only in addition to natural units. For meta-analyses state k (number of studies), N (participants), duration, and heterogeneity (I2). For RCTs state design, N randomized, N analyzed, duration, dropout, and whether the analysis was intention-to-treat. Prefer absolute over relative effects. Never report only p-values or the word "significant".
+- Flag: industry funding, small samples (< 30 per arm), short duration (< 8 weeks for body-composition claims, < 12 months for WLM claims), attrition > 20%, no intention-to-treat analysis, self-reported intake or activity, and lack of energy-intake matching between arms in "diet type" comparisons.
+
+### 4. SEED LITERATURE (locate, verify, update - do not accept uncritically)
+The sources and research groups below are starting points, not a ceiling. Bibliographic details are given from memory and may contain errors: verify every detail before citing, and drop any item you cannot retrieve. Search for newer and higher-quality evidence that updates or contradicts them. Key researchers to track: Helms, Schoenfeld, Aragon, Morton, Phillips, Jager, Hall, Wing, Phelan, Thomas, Hill, Leibel, Rosenbaum, Heymsfield, Martins, Byrne, Sainsbury, Peos, Tinsley, Campbell, Koehler, Villareal.
+
+Position stands and guidelines
+- Aragon et al. 2017, ISSN position stand: diets and body composition (J Int Soc Sports Nutr).
+- Jager et al. 2017, ISSN position stand: protein and exercise (J Int Soc Sports Nutr).
+- Donnelly et al. 2009, ACSM position stand: physical activity interventions for weight loss and prevention of weight regain (Med Sci Sports Exerc). Search for any newer ACSM statement.
+- Jensen et al. 2014, AHA/ACC/TOS guideline for the management of overweight and obesity in adults (Circulation).
+- Wharton et al. 2020, Obesity Canada adult clinical practice guideline (CMAJ).
+- Donini et al. 2022, ESPEN/EASO consensus on sarcopenic obesity.
+- Search for current EASO, ESPEN, NICE, and German S3 (AWMF) obesity guidance, and for any 2023-2026 consensus or position statement on preserving muscle during weight loss (including statements prompted by incretin therapy).
+
+Protein and muscle retention in an energy deficit
+- Helms, Zinn, Rowlands & Brown 2014, systematic review of dietary protein during caloric restriction in resistance-trained lean athletes (Int J Sport Nutr Exerc Metab). This is the origin of the frequently cited 2.3-3.1 g/kg FFM recommendation. Check its population (lean, trained), the number and quality of included studies, and whether later evidence supports the upper end.
+- Helms, Aragon & Fitschen 2014, evidence-based recommendations for natural bodybuilding contest preparation (J Int Soc Sports Nutr); Roberts, Helms, Trexler & Fitschen 2020, nutritional recommendations for physique athletes (J Hum Kinet).
+- Morton et al. 2018, meta-analysis and meta-regression of protein supplementation with resistance training (Br J Sports Med). Note that most included data come from energy balance, not deficit.
+- Nunes et al. 2022 (J Cachexia Sarcopenia Muscle) and Tagawa et al. 2021 (Nutr Rev): protein dose-response meta-analyses.
+- Wycherley et al. 2012 (Am J Clin Nutr): meta-analysis of energy-restricted high-protein vs standard-protein diets.
+- Kim et al. 2016 (Nutr Rev): protein intake and body composition during weight loss in older adults.
+- Longland et al. 2016 (Am J Clin Nutr); Pasiakos et al. 2013 (FASEB J); Mettler et al. 2010 (Med Sci Sports Exerc); Areta et al. 2014 (Am J Physiol Endocrinol Metab).
+- Hector & Phillips 2018 (Int J Sport Nutr Exerc Metab); Cava, Yeat & Mittendorfer 2017 (Adv Nutr).
+- Per-meal dose and distribution: Schoenfeld & Aragon 2018 (J Int Soc Sports Nutr); Trommelen et al. 2023 (Cell Rep Med).
+- Protein, satiety and WLM: Leidy et al. 2015 (Am J Clin Nutr); Weigle et al. 2005 (Am J Clin Nutr); Larsen et al. 2010, DiOGenes (N Engl J Med).
+
+Resistance training, aerobic training and concurrent training
+- Weinheimer, Sands & Campbell 2010 (Nutr Rev): energy restriction with and without exercise and FFM.
+- Sardeli et al. 2018 (Nutrients): resistance training and muscle loss during caloric restriction in older adults with obesity.
+- Villareal et al. 2017 (N Engl J Med): aerobic vs resistance vs combined exercise in dieting older adults with obesity.
+- Murphy & Koehler 2022 (Scand J Med Sci Sports): energy deficit and resistance-training gains in lean mass vs strength; examine the proposed ~500 kcal/day threshold and its robustness critically.
+- Schoenfeld, Ogborn & Krieger 2017 (J Sports Sci): weekly volume dose-response; Schoenfeld, Ogborn & Krieger 2016 (Sports Med): training frequency. Search for 2023-2026 dose-response meta-regressions on volume, frequency, proximity to failure, and load.
+- Wilson et al. 2012 (J Strength Cond Res) and Schumann et al. 2022 (Sports Med): concurrent-training interference; also look for analyses at the muscle-fiber level and by aerobic modality.
+- Willis et al. 2012 (J Appl Physiol): aerobic vs resistance vs combined training for fat mass and body mass (STRRIDE AT/RT).
+
+Rate of weight loss, deficit size, and intermittent strategies
+- Garthe et al. 2011 (Int J Sport Nutr Exerc Metab): about 0.7% vs 1.4% body weight per week in athletes.
+- Purcell et al. 2014 (Lancet Diabetes Endocrinol) and Vink et al. 2016 (Obesity): rapid vs gradual weight loss, long-term regain, and body composition.
+- Ashtary-Larky et al. 2017 (Int J Endocrinol Metab): rapid vs slow weight loss and body composition.
+- Byrne et al. 2018, MATADOR (Int J Obes): 2-week diet / 2-week energy-balance blocks in men with obesity. Check exactly which outcomes differed (weight, fat mass, FFM, adjusted resting energy expenditure, follow-up weight) and which did not.
+- Peos et al. 2021, ICECAP (Med Sci Sports Exerc): 1-week energy-balance diet breaks in resistance-trained adults.
+- Campbell et al. 2020 (J Funct Morphol Kinesiol): 2-day carbohydrate refeeds per week in resistance-trained adults, plus the published critique and the authors' reply in the same journal.
+- Wing & Jeffery 2003 (Obes Res): prescribed breaks in behavioral weight-loss treatment.
+- Intermittent fasting, time-restricted eating, alternate-day fasting: Trepanowski et al. 2017 (JAMA Intern Med); Lowe et al. 2020, TREAT (JAMA Intern Med); Liu et al. 2022 (N Engl J Med); Moro et al. 2016 (J Transl Med); Tinsley et al. 2019 (Am J Clin Nutr); Headland et al. 2016 (Nutrients); Cioffi et al. 2018 (J Transl Med); Ashtary-Larky et al. 2021 (Physiol Behav); plus all 2023-2026 meta-analyses comparing intermittent regimens with continuous energy restriction on lean-mass outcomes.
+
+Weight-loss maintenance, behavior, and registries
+- Wing & Hill 2001 (Annu Rev Nutr); Wing & Phelan 2005 (Am J Clin Nutr); Thomas et al. 2014 (Am J Prev Med): 10-year NWCR data; Catenacci et al. 2008 (Obesity): physical activity in the NWCR; Ostendorf et al. 2019 (Obesity): energy expenditure in successful maintainers.
+- Wing et al. 2006, STOP Regain (N Engl J Med): self-regulation and daily self-weighing.
+- Jakicic et al. 2008 (Arch Intern Med): physical-activity dose and 24-month WLM.
+- Dombrowski et al. 2014 (BMJ): meta-analysis of non-surgical WLM interventions; Hartmann-Boyce et al. 2021 (BMJ): weight change after programme end; Madigan et al. 2022 (BMJ): weight management in primary care.
+- Burke, Wang & Sevick 2011 (J Am Diet Assoc): self-monitoring; Zheng et al. 2015 (Obesity): self-weighing.
+- Varkevisser et al. 2019 (Obes Rev): determinants of WLM; Teixeira et al. 2015 (BMC Med): self-regulation mediators.
+- Look AHEAD Research Group 2014 (Obesity): 8-year outcomes of intensive lifestyle intervention.
+- Flexible vs rigid restraint and dichotomous thinking: e.g., Westenhoefer et al. 1999 (Int J Eat Disord); Conlin et al. 2021 (J Int Soc Sports Nutr).
+- Registry vs RCT check: breakfast consumption in the NWCR (Wyatt et al. 2002, Obes Res) vs the breakfast RCT of Dhurandhar et al. 2014 (Am J Clin Nutr).
+
+Energy balance, adaptive thermogenesis, and body-weight regulation
+- Leibel, Rosenbaum & Hirsch 1995 (N Engl J Med); Rosenbaum & Leibel 2010 (Int J Obes); Sumithran et al. 2011 (N Engl J Med): persistent hormonal adaptations.
+- Fothergill et al. 2016 (Obesity): "The Biggest Loser" 6-year follow-up (Hall senior author); Kerns et al. 2017 (Obesity): physical activity and less regain in that cohort.
+- Martins et al. 2020 (Am J Clin Nutr; two papers): metabolic adaptation as a barrier to WLM and its dependence on energy-balance status; include the critical commentaries.
+- Hall et al. 2011 (Lancet): quantification of energy imbalance and body weight; Hall & Kahan 2018 (Med Clin North Am): maintenance of lost weight; Hall & Guo 2017 (Gastroenterology): obesity energetics and diet composition.
+- Hall et al. 2019 (Cell Metab): ultra-processed diet and ad libitum energy intake.
+- Pontzer et al. 2016 (Curr Biol): constrained total energy expenditure; Levine et al. 1999 (Science): NEAT; Silva et al. 2018 (Br J Nutr): compensation in non-exercise activity.
+- Heymsfield et al. 2014 (Obes Rev): critique of the "one-quarter FFM" rule; Forbes 2000 (Ann N Y Acad Sci): initial body fat and the FFM share of weight change.
+- Macronutrient-ratio trials: Sacks et al. 2009, POUNDS Lost (N Engl J Med); Gardner et al. 2018, DIETFITS (JAMA).
+- Energy density: Ello-Martin et al. 2007 (Am J Clin Nutr) and related work by Rolls.
+
+Sleep and recovery
+- Nedeltcheva et al. 2010 (Ann Intern Med): sleep restriction during caloric restriction and the composition of weight lost (note design and sample size).
+- Wang et al. 2018 (Sleep): sleep restriction and weight-loss outcomes during caloric restriction.
+- Tasali et al. 2022 (JAMA Intern Med): sleep extension and energy intake.
+
+Body-composition and dietary-assessment methodology
+- Bone et al. 2017 (Med Sci Sports Exerc): glycogen and creatine manipulation alter DXA lean-mass estimates.
+- Nana et al. 2015 (Int J Sport Nutr Exerc Metab): DXA methodology in athletes; Toomey et al. 2017 (Eur J Appl Physiol): hydration and DXA lean mass.
+- Lichtman et al. 1992 (N Engl J Med) and Schoeller 1995 (Metabolism): underreporting in self-reported intake and activity.
+
+Pharmacotherapy - context only (see scope decision)
+- STEP 1 (Wilding et al. 2021, N Engl J Med) including its DXA substudy; STEP 4 (Rubino et al. 2021, JAMA); SURMOUNT trials of tirzepatide; Lundgren et al. 2021 (N Engl J Med): exercise, liraglutide, or both for WLM after a low-calorie diet.
+
+### 5. CANDIDATE STRATEGY POOL (screen all, then rank)
+Screen at least the candidates below. Merge overlapping items into one distinct, actionable strategy, and add better-supported candidates you discover. Each final strategy must be a distinct lever with no double counting (for example, "high protein intake" and "protein distribution" belong to one strategy).
+
+NUTRITION
+- High protein intake during and after the deficit: dose per kg BW vs per kg FFM vs reference weight; per-meal dose and distribution; protein quality and leucine; plant vs animal sources.
+- Moderate vs aggressive energy deficit and target weekly rate of loss; very-low-energy diets or total diet replacement followed by structured maintenance.
+- Diet quality and energy density: minimally processed, high-fiber, high-volume foods; reduction of ultra-processed foods and liquid calories.
+- Macronutrient distribution: low-carbohydrate vs low-fat equivalence at matched energy and protein; minimum dietary fat; carbohydrate to support training quality.
+- Structured meal plans, portion control, and meal replacements.
+- Intermittent fasting, time-restricted eating, alternate-day fasting vs continuous restriction.
+
+TRAINING
+- Progressive resistance training during the deficit: minimum effective dose and optimal dose (hard sets per muscle group per week, sessions per week, load, proximity to failure, exercise selection, progression).
+- High-volume physical activity for WLM (minutes/week, steps/day, intensity), including the hypothesis that about 200-300 or more minutes/week are needed for maintenance.
+- Concurrent training: aerobic modality (cycling vs running), intensity (HIIT vs moderate continuous), volume, sequencing and separation from resistance sessions.
+- NEAT and daily steps as a buffer against activity compensation.
+
+BEHAVIORAL / ADHERENCE
+- Self-monitoring of intake, body weight, and activity: frequency, modality (apps, wearables), and trend-based interpretation.
+- Comprehensive behavioral programs: goal setting, stimulus control, problem solving, relapse prevention, and continued contact after the weight-loss phase.
+- Flexible vs rigid restraint, dichotomous thinking, self-efficacy, autonomous motivation, identity-based change.
+- Planned transition to maintenance: maintenance energy intake, tolerated weight range, and predefined regain-response rules.
+
+RECOVERY / LIFESTYLE
+- Sleep duration and quality; circadian timing; shift work.
+- Stress and emotional eating; alcohol intake.
+
+METABOLIC MANAGEMENT
+- Diet breaks and refeeds (intermittent energy restriction with energy-balance periods).
+- Managing adaptive thermogenesis and NEAT compensation: recalculating requirements as weight falls; monitoring trend weight instead of single readings.
+- Maintenance phases between deficit blocks; "reverse dieting" (test the claims critically - say so if no controlled evidence exists).
+
+ALSO EVALUATE (likely lower evidence; include only if they earn a top-10 rank)
+Creatine monohydrate during energy restriction, HMB, essential amino acid or leucine supplementation, caffeine, meal timing and chrononutrition, cold exposure, "metabolism-boosting" foods. If they do not make the top 10 but the evidence is informative, mention them briefly in evidence_conflicts or key_limitations.
+
+### 6. RANKING METHOD (transparent and reproducible)
+Score each candidate from 0 to 5 on four criteria and compute a weighted total:
+- C1 (weight 35%): magnitude of the effect on long-term fat loss and WLM (>= 12 months), in absolute terms.
+- C2 (weight 30%): magnitude of the effect on lean-mass / muscle preservation and function, in absolute terms.
+- C3 (weight 25%): certainty of evidence (risk of bias, consistency, directness, precision, publication bias).
+- C4 (weight 10%): feasibility, adherence, safety, and generalizability across populations.
+A strategy that acts mainly on one dimension can still rank highly if its effect and certainty are strong. Break ties by the higher C3 score. Report all four scores, the weighted total, and a one-sentence justification in ranking_rationale.
+
+EVIDENCE GRADE DEFINITIONS (field evidence_grade)
+- high: multiple RCTs or meta-analyses of RCTs in the relevant population with consistent results, low risk of bias, and adequate duration (>= 12 months for WLM claims; >= 8 weeks with valid body-composition methods for lean-mass claims). Further research is unlikely to change the conclusion.
+- moderate: RCT evidence with important limitations (small samples, short duration, indirect populations such as lean athletes extrapolated to obesity, inconsistency), or consistent observational evidence with large effects.
+- low: mainly observational or registry data, single small trials, mechanistic or surrogate outcomes, or highly inconsistent findings.
+If certainty differs between the WLM claim and the muscle-preservation claim, grade by the weaker of the claims that justify the rank, and explain the split in effect_size_summary.
+
+### 7. REQUIRED DEPTH PER STRATEGY (fields of top_10_strategies)
+For each of the 10 ranked strategies provide:
+1. rank (1 = most effective), strategy_name (specific and actionable), category (exactly one enum value), evidence_grade, and ranking_rationale.
+2. effect_size_summary: the 2-4 most important meta-analyses or trials with design, k and/or N, population, duration, dropout where relevant, and the effect in natural units with 95% CI (e.g., "FFM loss 0.8 kg smaller than control, 95% CI ..."). End with CONFIRMS / MODIFIES / OVERTURNS for the newest (2023-2026) evidence.
+3. long_term_weight_loss_mechanism: WHY it works (or fails) for long-term fat loss and maintenance. Address, as applicable: adherence and dietary restraint, satiety and appetite regulation, energy density, NEAT and activity compensation, adaptive thermogenesis, the asymmetric biological defense of body weight, habit formation, and relapse prevention. Separate demonstrated mechanisms from hypothesized ones.
+4. muscle_preservation_mechanism: HOW it protects skeletal muscle: balance of muscle protein synthesis and breakdown, anabolic sensitivity under energy deficit, mechanical tension and motor-unit recruitment, mTORC1/AMPK signaling, hormonal milieu (insulin, IGF-1, testosterone, cortisol), energy availability, sleep-related anabolic/catabolic shifts. If the strategy has no demonstrated or plausible muscle-preserving effect, say so explicitly.
+5. actionable_protocol: concrete, quantified protocol. Use primary_target_low / primary_target_high / primary_target_unit for the single most important quantitative target (set low = high for a single threshold). Put all other numbers into minimum_effective_dose, dose_and_frequency, progression_and_adjustment_rules, monitoring_and_success_criteria, and duration_and_maintenance_transition. Required precision, where applicable:
+   - protein in g/kg BW AND g/kg FFM (or reference body weight in obesity), per-meal dose in g or g/kg, number of protein feedings per day;
+   - deficit in % TDEE and kcal/day; target weekly loss in % BW; rules for adjusting intake when the trend falls outside the target;
+   - resistance training in hard sets per muscle group per week, sessions per week, load (% 1RM or repetition range), proximity to failure (reps in reserve), and progression rule;
+   - physical activity in minutes/week and/or steps/day, separately for the loss phase and the maintenance phase;
+   - self-monitoring frequency (e.g., daily weighing with a 7-day moving average), and the regain threshold in kg or % that triggers corrective action;
+   - sleep duration in hours per night and practical sleep-protection rules;
+   - diet-break or refeed length, frequency, and energy/carbohydrate target.
+   If the evidence does not support a precise number, give the best-supported range and label it "expert consensus" or "extrapolated from <population>".
+6. common_pitfalls: 3-6 concrete implementation errors (e.g., calculating protein per kg total BW in severe obesity; cutting resistance-training volume and intensity too far; reacting to single-day weigh-ins; misreading glycogen and water shifts as fat or muscle change).
+7. counter_evidence: the strongest null or contrary findings and the main objections, even if they contradict the ranking.
+8. citation_ids: IDs that exist in references.
+
+### 8. PHYSIOLOGICAL TARGETS SUMMARY (field physiological_targets_summary)
+Give numeric ranges for the active fat-loss phase that best balance fat loss against lean-mass retention, based on the totality of evidence:
+- recommended_deficit_percent_tdee (low/high), weekly_weight_loss_percent_bw (low/high), protein_target_g_per_kg_bw (low/high), protein_target_g_per_kg_ffm (low/high), minimum_fat_g_per_kg_bw, resistance_training_minimum_dose, and maintenance_phase_targets (physical activity, self-monitoring, regain threshold, and energy-intake recalibration for the first 12-24 months after loss).
+- In each notes field, state the population the range applies to (lean trained vs overweight/obesity vs older adults), how it changes across populations, and whether it is evidence-based or expert consensus. Use general_notes for the evidence strength of the fat minimum and for safety caveats.
+- The values must be consistent with the per-strategy protocols. Where a threshold comes from lean athletes (e.g., Helms 2014), state how it translates to people with obesity (per kg FFM or reference body weight rather than total BW).
+
+### 9. SYNERGY MATRIX (field synergy_matrix)
+Provide 6-12 interactions showing how behavioral adherence and muscle-protecting physiology interlock, for example:
+- high protein x resistance training x moderate deficit (anabolic sensitivity, FFM retention, satiety);
+- self-monitoring x adaptive thermogenesis (early detection of energy-balance drift during and after loss);
+- sleep x appetite regulation x FFM share of weight lost;
+- high physical activity x NEAT compensation x appetite control;
+- diet breaks x adherence x metabolic adaptation;
+- energy density and food quality x satiety x protein intake.
+For each, give linked_strategy_ranks, behavioral_component, physiological_component, interaction_type (synergistic, additive, antagonistic, uncertain), interaction_mechanism, practical_implication, and citation_ids. Clearly label interactions inferred from separate studies rather than tested in factorial designs.
+
+### 10. EVIDENCE CONFLICTS (field evidence_conflicts) - mandatory topics, plus any others you find
+1. Intermittent fasting / time-restricted eating / alternate-day fasting vs continuous energy restriction for lean-mass retention, with and without resistance training and with matched protein and energy intake.
+2. Rapid vs slow weight loss: FFM share of weight lost and long-term regain (e.g., Purcell 2014 and Vink 2016 in obesity vs Garthe 2011 in athletes), including VLED and total-diet-replacement programs.
+3. Diet breaks and refeeds vs continuous deficit: MATADOR (men with obesity) vs ICECAP and Campbell 2020 (resistance-trained adults). Which outcomes actually differed - fat-loss efficiency, FFM, adaptive thermogenesis, adherence, or none?
+4. Concurrent-training interference: does aerobic training (modality, volume, intensity) blunt hypertrophy or FFM retention during an energy deficit, and how does that trade off against its WLM benefits?
+5. Protein ceiling: is there additional lean-mass benefit above about 1.6 g/kg BW (Morton 2018) during an energy deficit, and how strong is the evidence behind 2.3-3.1 g/kg FFM?
+6. Metabolic adaptation as a barrier to WLM: Leibel/Rosenbaum and Fothergill 2016 vs Martins et al. 2020.
+7. Is there an energy-deficit threshold (e.g., about 500 kcal/day; Murphy & Koehler 2022) above which lean mass cannot be maintained, and how robust is that estimate?
+8. Macronutrient composition (low-carbohydrate vs low-fat) for weight loss and WLM, and the carbohydrate-insulin model vs energy-balance model debate.
+9. Registry correlates vs RCT evidence (e.g., breakfast consumption, very high physical-activity volumes in the NWCR).
+10. Lean-mass loss under incretin-based pharmacotherapy and whether resistance training and protein mitigate it (context only).
+For each: topic, conflicting_findings (the competing positions with their key data), current_best_interpretation, certainty_of_interpretation, citation_ids.
+
+### 11. KEY LIMITATIONS (field key_limitations)
+List 8-15 methodological limitations of the evidence base, one dense sentence each with a concrete example. Include at minimum:
+- DXA and BIA lean-mass artefacts from glycogen and water shifts during energy restriction and refeeding (and from creatine).
+- FFM and lean soft tissue are not equal to skeletal muscle; few trials use MRI/CT or D3-creatine dilution.
+- Underreporting in self-reported energy intake and overreporting of physical activity.
+- High dropout and the handling of missing data in long-term trials; completer-only analyses.
+- Short follow-ups and scarcity of RCTs with >= 2-year maintenance outcomes.
+- Selection and survivor bias in registries such as the NWCR.
+- Population mismatch: young trained men vs women, older adults, and people with obesity.
+- Small samples, no blinding, and low statistical power in sports-nutrition trials.
+- Publication bias and small-study effects.
+- Heterogeneous protocol definitions (diet breaks, refeeds, fasting windows, "high protein").
+- Confounding by energy intake and protein in "diet type" comparisons.
+
+### 12. REFERENCES AND CITATION INTEGRITY (field references)
+- One entry per source cited anywhere. id format: FirstAuthorYear, with suffixes a/b for duplicates (e.g., Helms2014a, Helms2014b).
+- Every citation_id used anywhere must exist in references, and every reference must be cited at least once.
+- citation: first three authors et al., title, journal, year, volume(issue):pages.
+- study_type: choose the closest enum value.
+- population_and_sample: population, N (and k for meta-analyses), duration.
+- url: prefer https://doi.org/<DOI>; otherwise the PubMed URL (https://pubmed.ncbi.nlm.nih.gov/<PMID>/) or the PMC URL.
+- verified: true only if you retrieved the page and confirmed title, authors, year, and the numbers you report; otherwise false.
+- Target 50-120 references. Quality beats quantity.
+
+### 13. RESEARCH PROCEDURE
+Step 1 - Scoping: for each candidate strategy, search PubMed/PMC, the Cochrane Library, Europe PMC, and journal websites. Use combinations such as: ("weight loss maintenance" OR "weight regain" OR "weight-loss maintenance") AND (<strategy terms>); ("energy restriction" OR "caloric restriction" OR "energy deficit" OR "hypocaloric") AND ("lean mass" OR "fat-free mass" OR "skeletal muscle" OR "muscle mass") AND (<strategy terms>). Search systematic reviews and meta-analyses first, then RCTs, then registries and cohorts.
+Step 2 - Newest evidence: search explicitly for 2023-2026 publications for every candidate.
+Step 3 - Extraction: extract effect sizes in natural units with 95% CI, k, N, duration, population, body-composition method, dropout, and funding.
+Step 4 - Appraisal: grade certainty; note risk of bias.
+Step 5 - Disconfirmation: for each candidate, deliberately search for null and contrary results ("no difference", "did not differ", "no effect", critiques, letters to the editor, author replies).
+Step 6 - Ranking: apply Section 6.
+Step 7 - Consistency check: numbers in physiological_targets_summary must match the protocols; every citation_id must resolve to a reference; ranks 1-10 must each appear exactly once.
+Step 8 - Output.
+
+### 14. OUTPUT RULES
+- Return exactly one JSON object that conforms to the attached output schema. No markdown and no prose outside the JSON.
+- top_10_strategies: exactly 10 items, ordered by rank, ranks 1-10 each used once.
+- Number fields contain numbers only (decimal point, no units, no ranges inside one number). Units belong in unit or notes fields. Use null only where the schema allows it and no defensible number exists.
+- Language: English, scientific, dense. Length guide: each mechanism field 80-160 words; effect_size_summary 60-150 words; counter_evidence 40-100 words; each notes field up to 60 words; executive_summary 150-250 words.
+- Frame protocols for healthy adults and adults with overweight or obesity without contraindications. Note where medical supervision is warranted (e.g., very-low-energy diets, older adults, diabetes medication, history of disordered eating). This is a research synthesis, not individual medical advice.
