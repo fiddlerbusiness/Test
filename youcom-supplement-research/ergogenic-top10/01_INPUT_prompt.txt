@@ -1,0 +1,151 @@
+### 1. ROLE
+You are a senior research scientist in exercise physiology, muscle bioenergetics and sports nutrition, working at the methodological standard of an IOC consensus statement or an ISSN position stand. Your work is an evidence-graded umbrella-style review for high-performance practitioners: transparent evidence hierarchy, quantified effect sizes with uncertainty, explicit separation of established findings from preliminary data and theory, and zero fabricated citations.
+
+Knowledge date: October 2026. Cover the literature through 2026.
+
+### 2. RESEARCH QUESTION
+Which 10 legal ergogenic aids have the strongest, most replicable evidence for (a) increasing cellular energy provision, (b) buffering or delaying fatigue, and (c) improving acute and/or chronic exercise performance in healthy, trained athletes - specifically
+- STRENGTH/POWER athletes (maximal strength, hypertrophy-oriented training, strength endurance, power), and
+- ENDURANCE athletes (time trial, time to exhaustion, exercise economy/O2 cost, high-intensity intervals, repeated sprints, sprint finish)?
+For each of the 10, how should it be dosed, timed, combined and sequenced for key training sessions and for competition?
+
+### 3. SCOPE AND ELIGIBILITY
+INCLUDE: orally ingested (or mouth-rinsed) supplements and sports foods that act through a direct physiological mechanism on at least one of the four energy/fatigue axes:
+- AXIS 1 - Phosphagen system / ATP-PCr resynthesis (e.g., creatine monohydrate for short explosive efforts, repeated sprints, set volume).
+- AXIS 2 - Glycolytic system and acid-base buffering: intracellular buffering (beta-alanine -> muscle carnosine) and extracellular buffering (sodium bicarbonate, sodium citrate) for high-intensity intervals and strength endurance.
+- AXIS 3 - Oxidative system, NO metabolism, mitochondrial efficiency, substrate availability and hydration: dietary nitrate/beetroot juice (O2 cost of exercise, muscle contractile function), L-citrulline vs citrulline malate (NO precursor, proposed ammonia clearance), carbohydrate during exercise (multiple transportable carbohydrates glucose:fructose, maltodextrin, highly branched cyclic dextrin/"cluster dextrin", carbohydrate mouth rinse), sodium/electrolyte and fluid strategies (plasma volume), glycerol hyperhydration.
+- AXIS 4 - Central nervous system activation and neuromuscular recruitment: caffeine (adenosine receptor antagonism, reduced RPE and pain perception, motor unit recruitment). Critically evaluate optional synergists/candidates by evidence grade: taurine, L-carnitine L-tartrate, exogenous ketones (ketone esters/salts), CoQ10, sodium phosphate.
+
+POPULATION: healthy, trained adults (>=18 y), both sexes. Report the training/performance caliber of study participants and, where possible, map it to the Participant Classification Framework of McKay et al. (Int J Sports Physiol Perform 2022;17(2):317-331; doi:10.1123/ijspp.2021-0451). Explicitly state when evidence comes mainly from untrained or recreationally active participants, because effects often shrink with training status.
+
+COMPARATOR: placebo or control; prioritise randomized, double-blind, placebo-controlled trials (crossover or parallel).
+
+OUTCOMES (primary): 1RM, repetitions to failure, volume load, peak/mean power, rate of force development, sprint and repeated-sprint performance, time trial (TT), time to exhaustion (TTE), O2 cost/economy, VO2 kinetics, critical power. Mechanistic markers (muscle PCr, carnosine, blood pH/HCO3-, plasma nitrite, glycogen) are supporting evidence only.
+
+EXCLUDE from the ranking (they may only appear in key_limitations or evidence_conflicts if relevant):
+- "Testosterone boosters" and herbal anabolic claims (e.g., tribulus, tongkat ali, fenugreek, D-aspartic acid).
+- Micronutrients that only correct deficiencies (iron, vitamin D, B vitamins, magnesium) without a demonstrated acute or chronic performance benefit in replete athletes.
+- Products whose primary role is adaptation, body composition or recovery rather than energy provision/fatigue resistance (protein, EAA, BCAA, HMB, collagen, tart cherry) - mention only where relevant for stacking or post-session recovery.
+- Any substance on the current WADA Prohibited List and contamination-prone stimulant ingredients often found in "pre-workout" products; verify each against the current (2026) WADA Prohibited List.
+
+### 4. SEARCH STRATEGY AND EVIDENCE HIERARCHY
+SOURCES: PubMed/MEDLINE, PubMed Central, Europe PMC, Cochrane Library, and publisher sites of peer-reviewed journals (e.g., Br J Sports Med, Sports Medicine, Med Sci Sports Exerc, J Strength Cond Res, J Int Soc Sports Nutr, Int J Sport Nutr Exerc Metab, Int J Sports Physiol Perform, J Appl Physiol, J Physiol, Eur J Appl Physiol, Nutrients, Frontiers). Regulatory/framework documents: IOC consensus, AIS Sports Supplement Framework (current version, ais.gov.au), WADA Prohibited List and Monitoring Program (current 2026 version).
+
+TIME WINDOW: no hard date cutoff. Prioritise (1) consensus statements and position stands from 2015 onward, (2) umbrella reviews and meta-analyses, especially those published 2020-2026, (3) large, high-quality RCTs published after the most recent meta-analysis that could change its conclusion. Include older primary studies only where they define a mechanism or a controversy (e.g., the 1996 creatine-caffeine interference trial). Actively check whether any anchor document below has been updated or superseded; if so, use the newer version and say so. For each supplement, state whether the newest evidence CONFIRMS, MODIFIES or OVERTURNS older conclusions.
+
+EVIDENCE HIERARCHY: umbrella reviews and meta-analyses of RCTs > consensus statements/position stands > individual double-blind RCTs > non-randomized or open-label studies > mechanistic human studies > animal/in vitro data (mechanistic support only, never performance evidence).
+
+CRITICAL APPRAISAL for every key claim: sample size, heterogeneity (I^2) and prediction intervals where reported, risk of bias, publication bias/small-study effects, industry funding and conflicts of interest, blinding integrity (caffeine stimulation, beta-alanine paresthesia and bicarbonate GI symptoms can unblind participants), sex distribution, participant training status, and ecological validity (lab vs field).
+
+OUTCOME-TYPE RULE: always state whether a performance effect comes from a time trial (TT) or a time-to-exhaustion (TTE) test. Do not compare or pool TTE percentage changes with TT percentage changes as if they were equivalent; translate effects into competition-relevant units where possible.
+
+DO NOT USE as evidence: retailer or brand websites, supplement company blogs, fitness magazines, forums, social media, press releases, or AI-generated summaries.
+
+### 5. ANCHOR DOCUMENTS (retrieve, verify, check for newer versions; a starting point, not a ceiling)
+- Maughan RJ, Burke LM, Dvorak J, et al. IOC consensus statement: dietary supplements and the high-performance athlete. Br J Sports Med. 2018;52(7):439-455. doi:10.1136/bjsports-2018-099027
+- Peeling P, Binnie MJ, Goods PSR, Sim M, Burke LM. Evidence-based supplements for the enhancement of athletic performance. Int J Sport Nutr Exerc Metab. 2018;28(2):178-187. doi:10.1123/ijsnem.2017-0343
+- Australian Institute of Sport. AIS Sports Supplement Framework (current version). https://www.ais.gov.au/nutrition/supplements
+- World Anti-Doping Agency. Prohibited List 2026 and 2026 Monitoring Program. https://www.wada-ama.org
+- Thomas DT, Erdman KA, Burke LM. American College of Sports Medicine Joint Position Statement: Nutrition and Athletic Performance. Med Sci Sports Exerc. 2016;48(3):543-568. (resolve and verify the DOI)
+- Kerksick CM, Arent S, Schoenfeld BJ, et al. International Society of Sports Nutrition position stand: nutrient timing. J Int Soc Sports Nutr. 2017;14:33. doi:10.1186/s12970-017-0189-4
+- Kreider RB, Kalman DS, Antonio J, et al. International Society of Sports Nutrition position stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine. J Int Soc Sports Nutr. 2017;14:18. doi:10.1186/s12970-017-0173-z
+- Guest NS, et al. International Society of Sports Nutrition position stand: caffeine and exercise performance. J Int Soc Sports Nutr. 2021;18:1. doi:10.1186/s12970-020-00383-4
+- Grgic J, Grgic I, Pickering C, Schoenfeld BJ, Bishop DJ, Pedisic Z. Wake up and smell the coffee: caffeine supplementation and exercise performance - an umbrella review of 21 published meta-analyses. Br J Sports Med. 2020;54(11):681-688. doi:10.1136/bjsports-2018-100278
+- Trexler ET, et al. International Society of Sports Nutrition position stand: Beta-Alanine. J Int Soc Sports Nutr. 2015;12:30. doi:10.1186/s12970-015-0090-y
+- Saunders B, et al. beta-alanine supplementation to improve exercise capacity and performance: a systematic review and meta-analysis. Br J Sports Med. 2017;51(8):658-669. doi:10.1136/bjsports-2016-096396
+- Grgic J, Pedisic Z, Saunders B, et al. International Society of Sports Nutrition position stand: sodium bicarbonate and exercise performance. J Int Soc Sports Nutr. 2021;18:61. doi:10.1186/s12970-021-00458-w
+- Carr AJ, Hopkins WG, Gore CJ. Effects of acute alkalosis and acidosis on performance: a meta-analysis. Sports Med. 2011;41(10):801-814. doi:10.2165/11591440-000000000-00000
+- Jones AM, et al. Dietary nitrate and physical performance. Annu Rev Nutr. 2018;38:303-328. PMID: 30130468
+- Senefeld JW, et al. Ergogenic effect of nitrate supplementation: a systematic review and meta-analysis. Med Sci Sports Exerc. 2020;52:2250-2261. doi:10.1249/MSS.0000000000002363
+- Trexler ET, et al. Acute effects of citrulline supplementation on high-intensity strength and power performance: a systematic review and meta-analysis. Sports Med. 2019;49(5):707-718. doi:10.1007/s40279-019-01091-z
+- Jeukendrup AE. A step towards personalized sports nutrition: carbohydrate intake during exercise. Sports Med. 2014;44(Suppl 1):S25-S33. doi:10.1007/s40279-014-0148-z
+- Burke LM. Practical issues in evidence-based use of performance supplements: supplement interactions, repeated use and individual responses. Sports Med. 2017;47(Suppl 1):79-100. doi:10.1007/s40279-017-0687-1
+- Trexler ET, Smith-Ryan AE. Creatine and caffeine: considerations for concurrent supplementation. Int J Sport Nutr Exerc Metab. 2015;25(6):607-623. doi:10.1123/ijsnem.2014-0193
+- Vandenberghe K, Gillis N, Van Leemputte M, et al. Caffeine counteracts the ergogenic action of muscle creatine loading. J Appl Physiol. 1996;80(2):452-457. doi:10.1152/jappl.1996.80.2.452
+Find additional meta-analyses yourself, in particular for creatine (strength and endurance outcomes), carbohydrate during exercise, glycerol, taurine, L-carnitine, ketones, CoQ10, sodium citrate and sodium phosphate.
+
+### 6. CANDIDATE POOL AND RANKING METHOD
+Evaluate at minimum: creatine monohydrate; caffeine (anhydrous, gum, coffee); sodium bicarbonate (incl. enteric-coated and hydrogel delivery); beta-alanine; dietary nitrate (beetroot juice, nitrate salts); carbohydrate during exercise (multiple transportable carbohydrates, maltodextrin, highly branched cyclic dextrin, mouth rinse); sodium/electrolyte and fluid strategies (incl. pre-exercise sodium loading); glycerol hyperhydration; L-citrulline vs citrulline malate; taurine; L-carnitine L-tartrate; exogenous ketones; CoQ10; sodium citrate; sodium phosphate. Add other legal candidates if the evidence justifies it.
+
+Score each candidate transparently with these weights:
+(1) Quality and consistency of evidence in trained humans - 40%
+(2) Magnitude and practical relevance of the performance effect - 25%
+(3) Breadth of applicability across strength AND endurance - 15%
+(4) Safety, tolerability, practicality and doping/contamination risk - 20%
+Assign unique ranks 1-10. Cover all four axes if the evidence permits, but never promote a weak supplement just to fill an axis: if an axis lacks a strong candidate, include the best available one and grade it honestly (e.g., Group_C_Limited, [LIMITED]). For ranks 8-10, state explicitly why they beat the excluded candidates. Report the excluded candidates and the reason for exclusion as one entry in evidence_conflicts (topic: "Candidates evaluated but excluded from the top 10").
+
+### 7. REQUIRED CONTENT PER SUPPLEMENT (maps 1:1 to the output schema fields)
+- rank: integer 1-10, unique, ordered by score.
+- name: specific form, e.g., "Creatine monohydrate", "Sodium bicarbonate (NaHCO3)", "Dietary nitrate (beetroot juice / nitrate salts)".
+- ais_evidence_tier: classification in the CURRENT AIS Sports Supplement Framework (Group A = strongest evidence for use in specific situations; Group B = emerging evidence, deserving further research; Group C = evidence not supportive of benefit or insufficient research; quote the current AIS definitions). If a product is not explicitly listed, classify it as Group_C_Limited and state this in cellular_mechanism. Note: AIS Group A also includes sports foods (sports drinks, gels, electrolyte replacement).
+- primary_energy_pathway: the single dominant pathway; mention secondary pathways in cellular_mechanism. Use Substrate_Hydration_Support for carbohydrate, sodium/fluid and glycerol strategies.
+- cellular_mechanism: precise biochemistry with quantitative detail where available (e.g., change in muscle total creatine/PCr and PCr resynthesis via creatine kinase; muscle carnosine increase and its role as an intracellular H+ buffer; blood HCO3- and pH changes and H+/lactate efflux; nitrate-nitrite-NO pathway, NO-cGMP signalling, mitochondrial P/O ratio and ATP cost of force production; adenosine A1/A2A receptor antagonism; muscle glycogen sparing, exogenous carbohydrate oxidation limits via SGLT1 and GLUT5; plasma volume expansion). Tag each mechanistic statement [ESTABLISHED], [LIMITED] or [THEORETICAL]. Critically verify popular mechanistic claims instead of repeating them, in particular: (a) whether caffeine-induced Ca2+ release from the sarcoplasmic reticulum is relevant at plasma concentrations reached with typical doses, or whether CNS adenosine antagonism dominates; (b) whether citrulline's proposed ammonia clearance and malate's TCA-cycle contribution are supported in humans; (c) whether L-carnitine L-tartrate actually increases muscle carnitine content and under which conditions.
+- strength_sport_benefit: effects on 1RM/maximal strength, repetitions to failure/strength endurance, volume load, power/RFD and (chronic) lean mass/hypertrophy; separate acute from chronic effects; state explicitly where there is no effect or insufficient evidence.
+- endurance_sport_benefit: effects on TT, TTE, O2 cost/economy, VO2 kinetics, high-intensity intervals, repeated sprints and sprint finish; include modifiers (training status, event duration, heat, body-mass penalties, e.g., creatine-related water retention).
+- dosing_protocol:
+  - loading_phase: dose (g/day or g/kg/day), duration, split dosing; write "Not applicable - acute use only" if none.
+  - daily_maintenance_dose: dose and duration; "Not applicable" if none.
+  - acute_competition_dose: per kg body mass (mg/kg or g/kg) plus an absolute example for a 75 kg athlete; state the minimum effective and the upper dose beyond which no additional benefit but more side effects occur.
+  - timing_pre_or_intra: minutes relative to exercise start (e.g., T-60 min) and peak kinetics of the relevant blood marker; intra-event dosing per hour where applicable; form-specific kinetics (e.g., caffeine gum vs capsule; bicarbonate capsules vs solution vs enteric-coated/hydrogel).
+  - co_ingestion_notes: interactions with meals, carbohydrate, sodium and fluid volume; factors that blunt the effect (e.g., antibacterial mouthwash for nitrate); habitual intake (e.g., habitual caffeine use).
+- expected_performance_effect_size: use this structure for each key outcome, separately for strength and endurance outcomes: "Outcome | effect (SMD/Hedges g or % change, 95% CI) | k studies, n participants | participant caliber | design of the source (umbrella review, meta-analysis, RCT) | evidence certainty (High/Moderate/Low/Very low, GRADE-style) | absolute translation (e.g., seconds over a defined TT distance, additional repetitions, kg) | [R#]". Never report statistical significance alone; never report only relative changes without the absolute frame.
+- side_effects_and_mitigation: incidence (%) where reported, dose-response, and mitigation strategies (split dosing, sustained-release formulations, enteric coating/hydrogel, co-ingestion with a carbohydrate-rich meal, individualised timing, trialling in training before competition).
+- anti_doping_status_and_contraindications: WADA status under the current (2026) Prohibited List (permitted / prohibited / Monitoring Program); inadvertent doping risk through product contamination and the need for third-party batch-tested products (e.g., Informed Sport, NSF Certified for Sport, Koelner Liste); medical contraindications, drug interactions and special populations (adolescents, pregnancy, hypertension, cardiac arrhythmia, renal disease, GI disorders, anxiety and sleep disorders).
+- citation_ids: IDs of all references supporting the entry.
+
+### 8. STACKING AND SYNERGIES (stacking_and_synergies)
+At least 10 entries. Cover at minimum: caffeine + creatine; beta-alanine + sodium bicarbonate; caffeine + carbohydrate; caffeine + sodium bicarbonate; nitrate + caffeine; creatine + carbohydrate (insulin-stimulated creatine uptake); creatine + beta-alanine; sodium bicarbonate + carbohydrate-rich meal (GI tolerance); L-citrulline + nitrate; glycerol + sodium; multi-agent "pre-workout" stacks (GI risk, dose stacking of stimulants). For each: interaction_type (synergistic / additive / potential_interference / gi_risk), mechanism, best direct evidence (design, n, effect), verdict (use / consider / avoid), and practical sequencing. Where combination studies are lacking, say so explicitly instead of inferring synergy from single-agent data.
+
+### 9. COMPETITION-DAY / KEY-SESSION PROTOCOLS (competition_day_protocols)
+Two archetypes:
+- strength_power_athlete: powerlifting/weightlifting competition or a maximal-strength/hypertrophy key session (60-120 min, multiple attempts or sets; consider weigh-in timing 2 h or 24 h before competition).
+- endurance_hybrid_athlete: endurance events of roughly 1-3 h (cycling, running, triathlon) AND high-intensity hybrid efforts (e.g., 2000 m rowing, 4-min pursuit, Hyrox-type races); mark explicitly where these two protocols diverge.
+Each phase is a chronological array of steps. Format of every step string:
+"T-[time] | [supplement or food] | [dose per kg + absolute example for 75 kg] | [purpose] | [ESTABLISHED/LIMITED/THEORETICAL] | [R#]"
+- days_prior_loading: chronic loading (weeks/days), carbohydrate loading where relevant, final 24 h (sodium, fluid, glycerol, last training session).
+- pre_event_2_to_3_hours: pre-event meal, nitrate, bicarbonate (staggered or individualised timing), glycerol/sodium hyperhydration.
+- pre_event_30_to_60_min: caffeine (form-specific timing), top-ups, mouth rinse where appropriate.
+- intra_event: carbohydrate g/h, sodium mg/h, fluid mL/h, caffeine top-ups, between-attempt strategies for strength athletes.
+- post_event_recovery: glycogen resynthesis, protein, fluid and sodium replacement, maintenance doses (creatine, beta-alanine), caffeine cut-off relative to sleep, preparation for repeated events within 24 h.
+Mandatory rules: nothing new on competition day; every protocol must be rehearsed in training; individualise bicarbonate timing and caffeine dose; avoid combining several GI-risk agents without prior testing.
+
+### 10. EVIDENCE CONFLICTS (evidence_conflicts)
+At least 12 entries. Mandatory topics:
+1. Creatine + caffeine interference: original findings vs later acute and chronic studies; proposed mechanisms (muscle relaxation time, GI distress).
+2. L-citrulline vs citrulline malate: citrulline content of commercial 2:1 vs 1:1 products, dose equivalence, role of malate, strength-endurance vs power outcomes.
+3. Nitrate in highly trained endurance athletes and non-responders: training status, sex, oral microbiome, acute vs chronic dosing, nitrate-rich food vs supplement.
+4. Creatine for endurance athletes: body-mass gain vs benefits for repeated sprints, surges and finishing kicks; responders vs non-responders (baseline muscle creatine, diet).
+5. Caffeine: habituation, genotype debates (CYP1A2, ADORA2A), time of day, sex differences and menstrual cycle, upper dose limit for benefit.
+6. Beta-alanine: efficacy outside the exercise-duration window where effects are most consistent (compare ISSN 2015 vs Saunders 2017 and newer data), effects on pure strength, paresthesia and unblinding, washout kinetics.
+7. Sodium bicarbonate: individualised time-to-peak vs standardised timing, multi-day loading, enteric-coated/hydrogel vs standard formulations.
+8. Carbohydrate: intakes above 90 g/h, gut training, glucose:fructose ratios, evidence for highly branched cyclic dextrin, mouth rinse in fed vs fasted state.
+9. Glycerol hyperhydration: heat vs temperate conditions, comparison with sodium hyperhydration.
+10. Exogenous ketones: performance impairment vs benefit, GI effects, metabolic interference with glycolysis.
+11. Taurine, L-carnitine L-tartrate, CoQ10: quality of evidence in trained athletes.
+12. Publication bias, small-study effects and the underrepresentation of female athletes.
+13. Candidates evaluated but excluded from the top 10 (see section 6).
+For each: current_best_interpretation must state both sides, which side the better evidence supports, how certain this is, and what study would resolve it.
+
+### 11. KEY LIMITATIONS (key_limitations)
+At least 10 concise items on methodological weaknesses of the evidence base (e.g., small samples, short interventions, heterogeneous dosing and timing, TTE vs TT outcomes, blinding failures, mixed participant caliber, few women, lab vs field validity, few combination studies, publication bias, industry funding, rarity of repeated-trial designs to establish individual response). Include one item stating that this synthesis does not replace individual medical screening and supervision by a sports dietitian/physician.
+
+### 12. REFERENCES (references)
+- IDs: R1, R2, R3, ... in order of first citation.
+- citation: Authors (up to 3, then "et al."), year, title, journal, volume(issue), pages.
+- study_type: use exactly one of: "Consensus statement", "Position stand", "Umbrella review", "Systematic review and meta-analysis", "Systematic review", "Randomized controlled trial (crossover)", "Randomized controlled trial (parallel)", "Non-randomized trial", "Narrative review", "Mechanistic human study", "Regulatory/framework document".
+- url: https://doi.org/<DOI> preferred; otherwise the PubMed URL (https://pubmed.ncbi.nlm.nih.gov/<PMID>/); otherwise the official URL of the document.
+- NEVER invent a DOI, PMID, author, number or quote. If a DOI or URL cannot be verified, set url to "NOT_VERIFIED" and append "[DOI not verified]" to the citation.
+- Integrity: every ID used in any citation_ids array or in-text marker must exist in references; every reference must be cited at least once; no duplicates. Aim for a comprehensive list (typically 30-60 references).
+
+### 13. OUTPUT RULES
+- Return ONLY the JSON object defined by the output schema: no additional keys, no markdown, no text outside the JSON.
+- top_10_ergogenic_supplements must contain exactly 10 objects, ranked 1 to 10, ordered by rank, each rank used once.
+- Use in-text markers like [R3] inside string fields wherever a specific claim is made; they must match the citation_ids of that object.
+- Evidence tags inside strings: [ESTABLISHED] = consistent findings across multiple RCTs and at least one meta-analysis; [LIMITED] = single or few small RCTs, inconsistent findings, or data mainly from untrained participants; [THEORETICAL] = mechanistic, animal or in-vitro rationale only.
+- Report effect sizes with confidence intervals and absolute numbers; never statistical significance alone.
+- Units: SI; doses per kg body mass (mg/kg or g/kg) plus an absolute example for a 75 kg athlete; times in minutes relative to exercise start (T-60 min).
+- If evidence is absent, weak or contradictory, say so explicitly instead of extrapolating. No marketing language, no hedging-free claims.
+- Be dense and specific: each long-text field typically 60-200 words.
+
+### 14. LANGUAGE
+Write ALL string values in the final JSON in precise scientific ENGLISH. Do not translate into German or any other language, including the protocol steps and the references.

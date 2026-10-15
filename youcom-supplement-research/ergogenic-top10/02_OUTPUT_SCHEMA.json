@@ -1,0 +1,178 @@
+{
+  "type": "object",
+  "properties": {
+    "top_10_ergogenic_supplements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rank": { "type": "integer" },
+          "name": { "type": "string" },
+          "ais_evidence_tier": {
+            "type": "string",
+            "enum": ["Group_A_Strong", "Group_B_Emerging", "Group_C_Limited"]
+          },
+          "primary_energy_pathway": {
+            "type": "string",
+            "enum": [
+              "ATP_CP_Phosphagen",
+              "Glycolytic_Acid_Buffering",
+              "Oxidative_NO_Vasodilation",
+              "CNS_Neuromuscular_Activation",
+              "Substrate_Hydration_Support"
+            ]
+          },
+          "cellular_mechanism": { "type": "string" },
+          "strength_sport_benefit": { "type": "string" },
+          "endurance_sport_benefit": { "type": "string" },
+          "dosing_protocol": {
+            "type": "object",
+            "properties": {
+              "loading_phase": { "type": "string" },
+              "daily_maintenance_dose": { "type": "string" },
+              "acute_competition_dose": { "type": "string" },
+              "timing_pre_or_intra": { "type": "string" },
+              "co_ingestion_notes": { "type": "string" }
+            },
+            "required": [
+              "loading_phase",
+              "daily_maintenance_dose",
+              "acute_competition_dose",
+              "timing_pre_or_intra",
+              "co_ingestion_notes"
+            ],
+            "additionalProperties": false
+          },
+          "expected_performance_effect_size": { "type": "string" },
+          "side_effects_and_mitigation": { "type": "string" },
+          "anti_doping_status_and_contraindications": { "type": "string" },
+          "citation_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": [
+          "rank",
+          "name",
+          "ais_evidence_tier",
+          "primary_energy_pathway",
+          "cellular_mechanism",
+          "strength_sport_benefit",
+          "endurance_sport_benefit",
+          "dosing_protocol",
+          "expected_performance_effect_size",
+          "side_effects_and_mitigation",
+          "anti_doping_status_and_contraindications",
+          "citation_ids"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "stacking_and_synergies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "combination": { "type": "string" },
+          "interaction_type": {
+            "type": "string",
+            "enum": ["synergistic", "additive", "potential_interference", "gi_risk"]
+          },
+          "mechanism_and_verdict": { "type": "string" },
+          "citation_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["combination", "interaction_type", "mechanism_and_verdict", "citation_ids"],
+        "additionalProperties": false
+      }
+    },
+    "competition_day_protocols": {
+      "type": "object",
+      "properties": {
+        "strength_power_athlete": {
+          "type": "object",
+          "properties": {
+            "days_prior_loading": { "type": "array", "items": { "type": "string" } },
+            "pre_event_2_to_3_hours": { "type": "array", "items": { "type": "string" } },
+            "pre_event_30_to_60_min": { "type": "array", "items": { "type": "string" } },
+            "intra_event": { "type": "array", "items": { "type": "string" } },
+            "post_event_recovery": { "type": "array", "items": { "type": "string" } }
+          },
+          "required": [
+            "days_prior_loading",
+            "pre_event_2_to_3_hours",
+            "pre_event_30_to_60_min",
+            "intra_event",
+            "post_event_recovery"
+          ],
+          "additionalProperties": false
+        },
+        "endurance_hybrid_athlete": {
+          "type": "object",
+          "properties": {
+            "days_prior_loading": { "type": "array", "items": { "type": "string" } },
+            "pre_event_2_to_3_hours": { "type": "array", "items": { "type": "string" } },
+            "pre_event_30_to_60_min": { "type": "array", "items": { "type": "string" } },
+            "intra_event": { "type": "array", "items": { "type": "string" } },
+            "post_event_recovery": { "type": "array", "items": { "type": "string" } }
+          },
+          "required": [
+            "days_prior_loading",
+            "pre_event_2_to_3_hours",
+            "pre_event_30_to_60_min",
+            "intra_event",
+            "post_event_recovery"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": ["strength_power_athlete", "endurance_hybrid_athlete"],
+      "additionalProperties": false
+    },
+    "evidence_conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "topic": { "type": "string" },
+          "current_best_interpretation": { "type": "string" },
+          "citation_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["topic", "current_best_interpretation", "citation_ids"],
+        "additionalProperties": false
+      }
+    },
+    "key_limitations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "citation": { "type": "string" },
+          "study_type": { "type": "string" },
+          "url": { "type": "string" }
+        },
+        "required": ["id", "citation", "study_type", "url"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "top_10_ergogenic_supplements",
+    "stacking_and_synergies",
+    "competition_day_protocols",
+    "evidence_conflicts",
+    "key_limitations",
+    "references"
+  ],
+  "additionalProperties": false
+}
