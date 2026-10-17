@@ -1,0 +1,407 @@
+{
+  "type": "object",
+  "description": "Result of one evidence module of a modular review on long-term fat loss with skeletal-muscle preservation.",
+  "properties": {
+    "module_id": {
+      "type": "string",
+      "description": "Copy MODULE_ID from the first line of the input, e.g. M1."
+    },
+    "search_summary": {
+      "type": "string",
+      "description": "<=60 words: main searches, key meta-analyses found, retraction/erratum checks, important gaps."
+    },
+    "candidates": {
+      "type": "array",
+      "description": "One entry per SCOPE item, in SCOPE order.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "strategy_name": {
+            "type": "string",
+            "description": "Exactly the quoted name from SCOPE."
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "nutrition",
+              "training",
+              "behavioral_adherence",
+              "recovery_lifestyle",
+              "metabolic_management"
+            ]
+          },
+          "phase_relevance": {
+            "type": "string",
+            "enum": [
+              "active_fat_loss_phase",
+              "weight_maintenance_phase",
+              "both_phases"
+            ]
+          },
+          "scores": {
+            "type": "object",
+            "description": "Per the SCORING anchors, 0-5 in steps of 0.5.",
+            "properties": {
+              "c1_long_term_weight": {
+                "type": "number",
+                "description": "C1, 0-5."
+              },
+              "c2_lean_mass": {
+                "type": "number",
+                "description": "C2, 0-5."
+              },
+              "c3_certainty": {
+                "type": "number",
+                "description": "C3, 0-5; consistent with evidence_grade."
+              },
+              "c4_generalisability": {
+                "type": "number",
+                "description": "C4, 0-5."
+              },
+              "c5_feasibility_safety": {
+                "type": "number",
+                "description": "C5, 0-5."
+              },
+              "weighted": {
+                "type": "number",
+                "description": "0.30*C1 + 0.25*C2 + 0.25*C3 + 0.10*C4 + 0.10*C5, 2 decimals."
+              }
+            },
+            "required": [
+              "c1_long_term_weight",
+              "c2_lean_mass",
+              "c3_certainty",
+              "c4_generalisability",
+              "c5_feasibility_safety",
+              "weighted"
+            ],
+            "additionalProperties": false
+          },
+          "score_rationale": {
+            "type": "string",
+            "description": "<=60 words: the decisive evidence and effect sizes behind each score."
+          },
+          "evidence_grade": {
+            "type": "string",
+            "description": "Certainty for the outcome that justifies the score.",
+            "enum": [
+              "high",
+              "moderate",
+              "low"
+            ]
+          },
+          "evidence_grade_by_outcome": {
+            "type": "object",
+            "properties": {
+              "long_term_weight_maintenance": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "moderate",
+                  "low",
+                  "insufficient",
+                  "not_applicable"
+                ]
+              },
+              "lean_mass_preservation": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "moderate",
+                  "low",
+                  "insufficient",
+                  "not_applicable"
+                ]
+              }
+            },
+            "required": [
+              "long_term_weight_maintenance",
+              "lean_mass_preservation"
+            ],
+            "additionalProperties": false
+          },
+          "evidence_grade_rationale": {
+            "type": "string",
+            "description": "<=90 words: designs, k studies, n, follow-up, consistency, risk of bias, indirectness; name the outcome behind the overall grade; label claims [ESTABLISHED], [PRELIMINARY] or [HYPOTHESIS]."
+          },
+          "effect_size_summary": {
+            "type": "string",
+            "description": "<=130 words: pooled estimate with 95% CI, I2, k, n and follow-up; absolute terms (kg lean mass preserved, kg less regain at 12/24 months, percentage points of weight lost as FFM); 'not reported' where none exists; no p-value-only statements."
+          },
+          "long_term_weight_loss_mechanism": {
+            "type": "string",
+            "description": "<=80 words: adherence, satiety, energy density, NEAT compensation, adaptive thermogenesis, self-regulation; separate demonstrated mechanisms from hypotheses."
+          },
+          "muscle_preservation_mechanism": {
+            "type": "string",
+            "description": "<=80 words: MPS, mechanical tension, protein breakdown, energy availability, anabolic resistance, hormones, glycogen; flag support that comes only from acute MPS or mechanistic studies."
+          },
+          "actionable_protocol": {
+            "type": "object",
+            "properties": {
+              "protocol_summary": {
+                "type": "string",
+                "description": "<=50 words."
+              },
+              "quantitative_targets": {
+                "type": "string",
+                "description": "<=7 lines, one target per line: 'Parameter: low-high unit | basis (g/kg BW, g/kg FFM, % TDEE, % BW/week ...) | population | [IDs]'."
+              },
+              "frequency_and_timing": {
+                "type": "string",
+                "description": "<=50 words."
+              },
+              "progression_and_adjustment_rules": {
+                "type": "string",
+                "description": "<=70 words: decision rules for a stall, strength loss, lean-mass decline and the transition to maintenance."
+              },
+              "monitoring_metrics": {
+                "type": "string",
+                "description": "<=50 words: what to measure, how often, with which method, target values."
+              },
+              "population_applicability": {
+                "type": "string",
+                "description": "<=60 words: populations the numbers come from (P1/P2/P3) and limits of transfer."
+              }
+            },
+            "required": [
+              "protocol_summary",
+              "quantitative_targets",
+              "frequency_and_timing",
+              "progression_and_adjustment_rules",
+              "monitoring_metrics",
+              "population_applicability"
+            ],
+            "additionalProperties": false
+          },
+          "counter_evidence_and_uncertainties": {
+            "type": "string",
+            "description": "<=100 words: strongest contradicting studies and objections, with ids."
+          },
+          "common_pitfalls": {
+            "type": "array",
+            "description": "3-4 real-world implementation pitfalls, <=20 words each.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "citation_ids": {
+            "type": "array",
+            "description": "All ids cited for this candidate; each must exist in references[].id.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "strategy_name",
+          "category",
+          "phase_relevance",
+          "scores",
+          "score_rationale",
+          "evidence_grade",
+          "evidence_grade_by_outcome",
+          "evidence_grade_rationale",
+          "effect_size_summary",
+          "long_term_weight_loss_mechanism",
+          "muscle_preservation_mechanism",
+          "actionable_protocol",
+          "counter_evidence_and_uncertainties",
+          "common_pitfalls",
+          "citation_ids"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "heuristic_tests": {
+      "type": "array",
+      "description": "One entry per heuristic listed in the input.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "heuristic_id": {
+            "type": "string",
+            "description": "H-number from the input, e.g. H1."
+          },
+          "claim": {
+            "type": "string",
+            "description": "The heuristic as stated in the input, <=40 words."
+          },
+          "evidence_for_and_against": {
+            "type": "string",
+            "description": "<=130 words: designs, populations, n and effect sizes on both sides."
+          },
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "supported",
+              "partially_supported",
+              "refuted",
+              "insufficient_evidence"
+            ]
+          },
+          "verdict_explanation": {
+            "type": "string",
+            "description": "<=80 words: in which population the verdict holds, with effect size and conditions."
+          },
+          "confidence_in_verdict": {
+            "type": "string",
+            "enum": [
+              "high",
+              "moderate",
+              "low"
+            ]
+          },
+          "citation_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "heuristic_id",
+          "claim",
+          "evidence_for_and_against",
+          "verdict",
+          "verdict_explanation",
+          "confidence_in_verdict",
+          "citation_ids"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "evidence_conflicts": {
+      "type": "array",
+      "description": "One entry per conflict listed in the input (plus at most one optional extra); empty if none.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "conflict_id": {
+            "type": "string",
+            "description": "K-number from the input, e.g. K5; X1 for an optional extra conflict."
+          },
+          "topic": {
+            "type": "string"
+          },
+          "conflicting_findings": {
+            "type": "string",
+            "description": "<=140 words: both sides with designs, populations, sample sizes and effect sizes."
+          },
+          "current_best_interpretation": {
+            "type": "string",
+            "description": "<=80 words."
+          },
+          "confidence_in_interpretation": {
+            "type": "string",
+            "enum": [
+              "high",
+              "moderate",
+              "low"
+            ]
+          },
+          "citation_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "conflict_id",
+          "topic",
+          "conflicting_findings",
+          "current_best_interpretation",
+          "confidence_in_interpretation",
+          "citation_ids"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "key_limitations": {
+      "type": "array",
+      "description": "One entry per limitation listed in the input, <=60 words each: limitation, effect on this module's evidence, practical consequence.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "additional_candidates": {
+      "type": "array",
+      "description": "At most 3: 'Strategy - estimated weighted score - one-line verdict - [IDs]'.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "references": {
+      "type": "array",
+      "description": "10-25 entries: every id cited in this answer and only those; only sources retrieved in this run.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Module prefix + surname + year + suffix, e.g. M1-Helms2014a."
+          },
+          "citation": {
+            "type": "string",
+            "description": "Authors (first three, et al.), year, title, journal, volume(issue), pages."
+          },
+          "study_type": {
+            "type": "string",
+            "enum": [
+              "umbrella_review",
+              "meta_analysis",
+              "systematic_review",
+              "position_stand_or_guideline",
+              "rct",
+              "randomized_crossover",
+              "non_randomized_trial",
+              "prospective_cohort",
+              "registry_observational",
+              "cross_sectional",
+              "narrative_review",
+              "mechanistic_or_acute_study"
+            ]
+          },
+          "design_population_n": {
+            "type": "string",
+            "description": "<=30 words: design, population, n (or k studies / total n), duration and follow-up."
+          },
+          "key_quantitative_finding": {
+            "type": "string",
+            "description": "<=30 words, effect size with units."
+          },
+          "url": {
+            "type": "string",
+            "description": "https://doi.org/<DOI> preferred; otherwise https://pubmed.ncbi.nlm.nih.gov/<PMID>/ or the PMC URL."
+          },
+          "retrieved_url": {
+            "type": "string",
+            "description": "URL of the page actually read in this run (PubMed, PMC, Europe PMC or publisher)."
+          }
+        },
+        "required": [
+          "id",
+          "citation",
+          "study_type",
+          "design_population_n",
+          "key_quantitative_finding",
+          "url",
+          "retrieved_url"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "module_id",
+    "search_summary",
+    "candidates",
+    "heuristic_tests",
+    "evidence_conflicts",
+    "key_limitations",
+    "additional_candidates",
+    "references"
+  ],
+  "additionalProperties": false
+}

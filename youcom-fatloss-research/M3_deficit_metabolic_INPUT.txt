@@ -1,0 +1,113 @@
+MODULE_ID: M3
+
+CONTEXT
+This run is module M3 of a modular evidence review: six evidence modules (M1-M6) and one synthesis run (M7) that ranks all candidates of all modules. Cover ONLY the scope of this module; the other strategies are reviewed in other runs. Depth within scope beats breadth.
+
+OVERALL RESEARCH QUESTION (context for scoring)
+Which strategies (nutrition, training, behavioral/psychological, recovery/lifestyle incl. sleep, metabolic management) are best supported by the evidence for (A) losing body fat and keeping it off long term (weight-loss maintenance, WLM: >=12 months, ideally >=24 months after the end of active weight loss), while (B) preserving as much fat-free mass as possible, specifically skeletal muscle, during the energy deficit and afterwards?
+
+ROLE AND STANDARD
+You are a senior research scientist working at the intersection of obesity medicine, exercise physiology and sports nutrition. Work to the standard of a Cochrane-style rapid review combined with an ISSN/ACSM position stand: every claim traceable to a source you actually retrieved in this run, quantified with effect sizes and absolute numbers, and graded for certainty. Accuracy beats completeness: an honest "insufficient evidence" is better than a confident guess. Literature up to 2026 is in scope; say whether newer evidence confirms, modifies or overturns older conclusions.
+
+MODULE M3: DEFICIT SIZE, RATE OF LOSS, VLED AND THE TRANSITION TO MAINTENANCE
+
+SCOPE (one entry in "candidates" per item, in this order; strategy_name = the quoted name)
+1. "Moderate deficit size and controlled rate of weight loss" - deficit as % TDEE and kcal/day, rate as % BW/week, by body-fat level.
+2. "Very-low-energy diet followed by structured maintenance" - VLED/LED phase plus a defined maintenance programme, compared with gradual loss.
+3. "Reverse dieting and structured transition to maintenance energy intake" - if no controlled trials exist, say so and grade accordingly.
+
+HEURISTIC TESTS (one entry each in "heuristic_tests"; test, do not confirm: do the data support or refute the claim, or are they insufficient, in which population and with what effect size?)
+H2. A weight-loss rate of ~0.5-1.0% BW/week for lean-mass retention in lean athletes (Helms, Aragon & Fitschen 2014; Garthe et al. 2011) vs evidence in obesity that rapid initial loss does not worsen long-term regain (Purcell et al. 2014). Does the optimal rate depend on body-fat level?
+H8. The 'one quarter of weight lost is FFM' rule (Heymsfield et al. 2014): how does it depend on initial body fat, sex, exercise and protein?
+H10. Size and persistence of metabolic adaptation (adaptive thermogenesis): Fothergill et al. 2016 vs Martins et al. 2020. Is it clinically relevant for regain?
+
+CONFLICTS TO ADJUDICATE (one entry each in "evidence_conflicts": both sides with designs, populations, sample sizes and effect sizes, then the current best interpretation and your confidence in it)
+K2. Rapid vs slow weight loss: lean-mass fraction vs long-term regain.
+K9. Metabolic adaptation: persistent and relevant vs transient and small.
+NOTE: H2/K2 and H10/K9 overlap: give the numeric verdict in the heuristic entry and the opposing studies in the conflict entry; do not repeat text.
+
+LIMITATIONS (one entry each in "key_limitations": the limitation, how it affects the evidence of this module, and its practical consequence for interpretation)
+L5. Metabolic-ward vs free-living conditions: adherence, intake control and measurement of energy expenditure.
+L6. Inconsistent definitions of weight-loss maintenance and of lean mass across studies.
+
+PROTOCOL REQUIREMENTS (numbers go into actionable_protocol.quantitative_targets)
+- Deficit as % of TDEE and kcal/day; rate as % BW/week and kg/week, separately for P1, P2 and P3; expected time course and plateau from dynamic energy-balance models (Hall et al. 2011) instead of the 3,500 kcal rule.
+- VLED: energy (kcal/day), protein (g/day and g/kg), duration, supervision, content and length of the structured maintenance phase.
+- Transition to maintenance: how to estimate maintenance intake (e.g. from the measured weight trend), size and speed of energy increases, expected scale rebound from glycogen and water, decision rules for regain.
+- Also check energy flux (energy balance at high intake and high expenditure) and report it under additional_candidates.
+
+SEARCH HINTS (examples; combine controlled vocabulary and free text)
+- ("rate of weight loss" OR "rapid weight loss" OR "gradual weight loss") AND ("fat-free mass" OR "lean mass" OR "weight regain")
+- ("very low energy diet" OR "very-low-calorie diet" OR "total diet replacement") AND (maintenance OR regain) AND (randomized OR meta-analysis)
+- ("adaptive thermogenesis" OR "metabolic adaptation") AND ("weight regain" OR "weight maintenance")
+- ("reverse dieting" OR "post-diet" OR "energy flux") AND ("body composition" OR regain OR "energy intake")
+
+SEED LITERATURE (non-exhaustive; verify each item before citing it: confirm authors, year, journal and DOI on the retrieved page; do not cite what you cannot retrieve; look actively for newer and contradicting work)
+- Purcell et al. 2014 (Lancet Diabetes Endocrinol)
+- Helms, Aragon & Fitschen 2014 (J Int Soc Sports Nutr)
+- Garthe et al. 2011 (Int J Sport Nutr Exerc Metab)
+- Heymsfield et al. 2014 (Obes Rev; quarter-FFM rule)
+- Hall et al. 2011 (Lancet; dynamic energy balance)
+- Rosenbaum & Leibel 2010 (Int J Obes)
+- Fothergill et al. 2016 (Obesity)
+- Martins et al. 2020 (Am J Clin Nutr)
+- Trexler, Smith-Ryan & Norton 2014 (J Int Soc Sports Nutr)
+- Hall & Kahan 2018 (Med Clin North Am)
+
+DEFINITIONS
+- Outcome A (long-term weight/fat): weight or fat-mass change and regain at 12, 24 and >=36 months. Report regain in kg and as % of the weight lost where possible. Reference definition of successful WLM: intentional loss of >=10% of initial body weight maintained for >=1 year (Wing & Hill 2001).
+- Outcome B (muscle): change in lean mass, fat-free mass (FFM), appendicular lean mass or directly measured skeletal muscle (MRI, CT, D3-creatine dilution), and the proportion of weight lost as FFM (delta FFM / delta body weight). Always state the method and keep apart: DXA lean soft tissue (includes water and glycogen), FFM from BIA, air-displacement or hydrostatic weighing, and direct muscle imaging.
+- Secondary outcomes: fat mass, strength and physical function, resting energy expenditure, appetite, adherence, attrition.
+- Populations (stratify; never transfer findings silently): P1 adults with overweight or obesity (BMI >=25); P2 lean, resistance-trained individuals and physique athletes; P3 adults >=60 years incl. sarcopenic obesity. For every number state the source population and whether, and why, it applies to the others.
+- Anti-obesity medication and bariatric surgery are never candidates; cite them only where this module asks for context.
+
+SOURCES AND EVIDENCE HIERARCHY
+Use peer-reviewed literature, systematic reviews and guidelines (PubMed/MEDLINE, PMC, Europe PMC, Cochrane Library, journal pages). Do not use magazines, blogs, commercial sites, forums, videos, Wikipedia or summary sites as evidence; if such a page points to a study, retrieve and cite the primary study. Strongest first:
+1. Umbrella reviews and meta-analyses of RCTs (prefer recent, PRISMA-compliant, with risk-of-bias or GRADE assessment). Use the most recent and most comprehensive one and check whether later RCTs changed the conclusion.
+2. Position stands and guidelines: expert synthesis. Name the data under each recommendation and mark recommendations that rest mainly on expert opinion.
+3. Large and/or long RCTs (>=12 months).
+4. Prospective cohorts and registries (e.g. NWCR): associational only; self-selection and survivorship bias apply.
+5. Short RCTs and acute MPS/mechanistic studies: mechanism only, never the sole basis for a "high" grade.
+
+SEARCH PLAN AND BUDGET (stay focused: a single-run version of this whole review timed out)
+For each scope item, heuristic and conflict: (1) find the most recent comprehensive meta-analysis or systematic review; (2) find the largest and longest RCTs; (3) search explicitly for null and contradicting results ("no difference", "did not differ", "no effect", "weight regain"); (4) verify the seed papers. Follow citation trails at most one step backward and one step forward from the key meta-analyses. Check retractions, errata and expressions of concern for the sources that determine a grade. Then stop searching and write the answer.
+
+GRADING (GRADE-inspired; grade both outcomes separately in evidence_grade_by_outcome)
+- high: >=1 high-quality meta-analysis of RCTs, or several concordant RCTs with low risk of bias; replicated, consistent and directly applicable to the outcome and population.
+- moderate: meta-analyses with substantial heterogeneity or indirectness (short follow-up, surrogate outcome, other population), only a few RCTs, or consistent prospective cohorts/registries.
+- low: single or small trials, acute/mechanistic studies, cross-sectional or registry associations alone, expert opinion.
+- insufficient (outcome level only): no adequate data for that outcome. not_applicable (outcome level only): the strategy does not target that outcome.
+The overall evidence_grade is the certainty for the outcome that justifies the score; name that outcome in evidence_grade_rationale. If both outcomes are insufficient, use "low" and C3 = 0.
+Label key claims in text fields: [ESTABLISHED] = replicated across multiple RCTs or meta-analyses; [PRELIMINARY] = single study, small samples or short duration; [HYPOTHESIS] = mechanistic extrapolation or theory without outcome data.
+
+SCORING
+Score each candidate 0-5 in steps of 0.5. Every module uses the same scale and the synthesis compares scores across modules, so score in absolute terms, never relative to the other candidates of one module.
+- C1 effect on the long-term weight/fat outcome >=12 months (weight 0.30): 5 = clinically relevant effect replicated in RCTs/meta-analyses at >=24 months; 4 = replicated at 12 months; 3 = small but consistent, or strong before 12 months with plausible persistence; 2 = inconsistent or short-term only; 1 = associational only; 0 = null, harmful or not targeted.
+- C2 lean-mass / skeletal-muscle preservation (0.25): 5 = clinically meaningful sparing replicated in RCTs/meta-analyses; 4 = replicated but modest, or DXA-only with glycogen/water caveats; 3 = small or inconsistent; 2 = short trials or indirect evidence only; 1 = acute MPS or mechanistic data only; 0 = none, negative or not targeted.
+- C3 certainty of evidence = the overall evidence_grade (0.25): high = 4.5-5; moderate = 3-4; low = 1-2.5; 0 if both outcomes are insufficient.
+- C4 generalisability across P1, P2 and P3 (0.10): 5 = direct evidence in all three; 3 = in two; 1.5 = in one; 0 = in none; adjust by up to 0.5 for transfer plausibility.
+- C5 feasibility, adherence and safety (0.10): 5 = easy, good long-term adherence, safe; 0 = impractical or unsafe.
+weighted = 0.30*C1 + 0.25*C2 + 0.25*C3 + 0.10*C4 + 0.10*C5, rounded to 2 decimals (maximum 5.00).
+
+CITATION AND INTEGRITY RULES (mandatory)
+1. Cite only sources you actually retrieved in this run. Never construct a DOI, PMID, author list, title, page range or number from memory. If you cannot verify a detail, leave the reference out.
+2. Reference ids = MODULE_ID + "-" + first author's surname (no spaces, no diacritics) + year + letter suffix, e.g. "M3-Helms2014a", "M3-Helms2014b". In text fields cite as [M3-Helms2014a].
+3. Every citation_id and every id cited in a text field must resolve to exactly one references[].id in this answer; references contain all and only the cited ids.
+4. url: https://doi.org/<DOI> preferred, otherwise https://pubmed.ncbi.nlm.nih.gov/<PMID>/ or the PMC URL. retrieved_url: the page you actually read.
+5. For every reference give the design, population, n (or k studies and total n), duration and the key quantitative finding.
+6. Effect sizes and absolute numbers beat relative risks and p-values. Never write "significant" without the size of the effect; write "not reported" when no effect size exists.
+7. Every number needs a unit and a basis (g/kg BW vs g/kg FFM, % TDEE vs kcal/day, % BW/week vs kg/week). Write "null" with the reason where no defensible evidence supports a number.
+8. Give the strongest counter-evidence for every candidate, even if it weakens the recommendation; no false balance where the evidence is clear-cut.
+9. Present position-stand recommendations as expert consensus and name the data behind them, never as experimental findings.
+
+OUTPUT RULES (keep the answer short enough to be generated in one pass)
+- Return only JSON that conforms to the output schema. Language: English.
+- candidates: exactly one entry per SCOPE item, in SCOPE order, strategy_name exactly as quoted in SCOPE.
+- Respect the word limits in the schema descriptions; the whole answer must stay below about 7,000 words.
+- references: 10-25 entries, all cited.
+- quantitative_targets: one target per line, format "Parameter: low-high unit | basis | population | [IDs]".
+- additional_candidates: other strategies of this domain found in the literature, format "Strategy - estimated weighted score - one-line verdict - [IDs]" (at most 3; empty array if none).
+- If time or budget runs short, finish every scope item with fewer references instead of finishing one item in full detail.
+
+FINAL SELF-AUDIT before answering: (1) every citation_id resolves to a reference; (2) every number has a unit, a basis, a population and a source; (3) no finding is transferred between populations without a flag; (4) every candidate has counter-evidence; (5) no reference is unverified or reconstructed from memory; (6) every weighted score matches the formula.
+

@@ -1,0 +1,405 @@
+{
+  "type": "object",
+  "description": "Synthesis of a modular review on long-term fat loss with skeletal-muscle preservation: ranking, synergies and targets.",
+  "properties": {
+    "module_id": {
+      "type": "string",
+      "description": "Always M7."
+    },
+    "ranking_methodology": {
+      "type": "string",
+      "description": "<=350 words: number of candidates evaluated and their modules, criteria C1-C5 with weights, every calibration change to module scores with its reason, tie-breaks, weighted scores of the final top 10."
+    },
+    "final_ranking": {
+      "type": "array",
+      "description": "Exactly 10 items, ranks 1-10 each used once, ascending; only candidates with a candidate_key.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "enum": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          "candidate_key": {
+            "type": "string",
+            "description": "Exactly as in the evidence pack, e.g. M1.1."
+          },
+          "strategy_name": {
+            "type": "string",
+            "description": "Exactly as in the evidence pack."
+          },
+          "scores": {
+            "type": "object",
+            "description": "Calibrated scores, 0-5 in steps of 0.5.",
+            "properties": {
+              "c1_long_term_weight": {
+                "type": "number",
+                "description": "C1, 0-5."
+              },
+              "c2_lean_mass": {
+                "type": "number",
+                "description": "C2, 0-5."
+              },
+              "c3_certainty": {
+                "type": "number",
+                "description": "C3, 0-5; consistent with evidence_grade."
+              },
+              "c4_generalisability": {
+                "type": "number",
+                "description": "C4, 0-5."
+              },
+              "c5_feasibility_safety": {
+                "type": "number",
+                "description": "C5, 0-5."
+              },
+              "weighted": {
+                "type": "number",
+                "description": "0.30*C1 + 0.25*C2 + 0.25*C3 + 0.10*C4 + 0.10*C5, 2 decimals."
+              }
+            },
+            "required": [
+              "c1_long_term_weight",
+              "c2_lean_mass",
+              "c3_certainty",
+              "c4_generalisability",
+              "c5_feasibility_safety",
+              "weighted"
+            ],
+            "additionalProperties": false
+          },
+          "rank_rationale": {
+            "type": "string",
+            "description": "<=50 words: why this rank; decisive evidence with ids."
+          }
+        },
+        "required": [
+          "rank",
+          "candidate_key",
+          "strategy_name",
+          "scores",
+          "rank_rationale"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "physiological_targets_summary": {
+      "type": "object",
+      "description": "Numeric targets for the active fat-loss phase. Use null only when no defensible evidence exists and explain why in basis.",
+      "properties": {
+        "population_context": {
+          "type": "string",
+          "description": "<=120 words: which population the targets apply to and how they differ for overweight/obesity, lean resistance-trained and older adults."
+        },
+        "recommended_deficit_percent_tdee": {
+          "type": "object",
+          "properties": {
+            "low": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "high": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "basis": {
+              "type": "string",
+              "description": "<=60 words: evidence, population, kcal/day equivalent."
+            }
+          },
+          "required": [
+            "low",
+            "high",
+            "basis"
+          ],
+          "additionalProperties": false
+        },
+        "weekly_weight_loss_percent_bw": {
+          "type": "object",
+          "description": "Rate range compatible with optimal lean-mass retention.",
+          "properties": {
+            "low": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "high": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "basis": {
+              "type": "string",
+              "description": "<=60 words."
+            }
+          },
+          "required": [
+            "low",
+            "high",
+            "basis"
+          ],
+          "additionalProperties": false
+        },
+        "protein_target_g_per_kg_bw": {
+          "type": "object",
+          "properties": {
+            "low": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "high": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "basis": {
+              "type": "string",
+              "description": "<=60 words, incl. how to handle obesity (actual vs reference/adjusted body weight)."
+            }
+          },
+          "required": [
+            "low",
+            "high",
+            "basis"
+          ],
+          "additionalProperties": false
+        },
+        "protein_target_g_per_kg_ffm": {
+          "type": "object",
+          "properties": {
+            "low": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "high": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "basis": {
+              "type": "string",
+              "description": "<=60 words."
+            }
+          },
+          "required": [
+            "low",
+            "high",
+            "basis"
+          ],
+          "additionalProperties": false
+        },
+        "minimum_fat_g_per_kg_bw": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "resistance_training_minimum_dose": {
+          "type": "string",
+          "description": "<=80 words: sessions/week, hard sets per muscle group per week, intensity (%1RM or RIR), progression."
+        },
+        "sleep_target_hours_per_night": {
+          "type": "object",
+          "properties": {
+            "low": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "high": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "basis": {
+              "type": "string",
+              "description": "<=50 words."
+            }
+          },
+          "required": [
+            "low",
+            "high",
+            "basis"
+          ],
+          "additionalProperties": false
+        },
+        "diet_break_or_refeed_protocol": {
+          "type": "string",
+          "description": "<=80 words: evidence-based protocol or an explicit statement that evidence is insufficient."
+        },
+        "notes_and_basis": {
+          "type": "string",
+          "description": "<=150 words: evidence basis for minimum fat intake and other caveats for these targets."
+        },
+        "citation_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "population_context",
+        "recommended_deficit_percent_tdee",
+        "weekly_weight_loss_percent_bw",
+        "protein_target_g_per_kg_bw",
+        "protein_target_g_per_kg_ffm",
+        "minimum_fat_g_per_kg_bw",
+        "resistance_training_minimum_dose",
+        "sleep_target_hours_per_night",
+        "diet_break_or_refeed_protocol",
+        "notes_and_basis",
+        "citation_ids"
+      ],
+      "additionalProperties": false
+    },
+    "synergy_matrix": {
+      "type": "array",
+      "description": "6-8 links between behavioral adherence factors and physiological muscle-protection factors.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "behavioral_component": {
+            "type": "string"
+          },
+          "physiological_component": {
+            "type": "string"
+          },
+          "interaction_mechanism": {
+            "type": "string",
+            "description": "<=70 words."
+          },
+          "practical_implication": {
+            "type": "string",
+            "description": "<=50 words."
+          },
+          "strength_of_evidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "moderate",
+              "low",
+              "theoretical"
+            ]
+          },
+          "citation_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "behavioral_component",
+          "physiological_component",
+          "interaction_mechanism",
+          "practical_implication",
+          "strength_of_evidence",
+          "citation_ids"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "considered_but_excluded": {
+      "type": "array",
+      "description": "Every candidate not in the top 10: 'Strategy - weighted score - reason for exclusion - [IDs]'.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "references": {
+      "type": "array",
+      "description": "Only sources retrieved in this run (ids M7-...); module ids from the pack are not repeated here.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Module prefix + surname + year + suffix, e.g. M7-Hall2019a."
+          },
+          "citation": {
+            "type": "string",
+            "description": "Authors (first three, et al.), year, title, journal, volume(issue), pages."
+          },
+          "study_type": {
+            "type": "string",
+            "enum": [
+              "umbrella_review",
+              "meta_analysis",
+              "systematic_review",
+              "position_stand_or_guideline",
+              "rct",
+              "randomized_crossover",
+              "non_randomized_trial",
+              "prospective_cohort",
+              "registry_observational",
+              "cross_sectional",
+              "narrative_review",
+              "mechanistic_or_acute_study"
+            ]
+          },
+          "design_population_n": {
+            "type": "string",
+            "description": "<=30 words: design, population, n (or k studies / total n), duration and follow-up."
+          },
+          "key_quantitative_finding": {
+            "type": "string",
+            "description": "<=30 words, effect size with units."
+          },
+          "url": {
+            "type": "string",
+            "description": "https://doi.org/<DOI> preferred; otherwise https://pubmed.ncbi.nlm.nih.gov/<PMID>/ or the PMC URL."
+          },
+          "retrieved_url": {
+            "type": "string",
+            "description": "URL of the page actually read in this run (PubMed, PMC, Europe PMC or publisher)."
+          }
+        },
+        "required": [
+          "id",
+          "citation",
+          "study_type",
+          "design_population_n",
+          "key_quantitative_finding",
+          "url",
+          "retrieved_url"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "module_id",
+    "ranking_methodology",
+    "final_ranking",
+    "physiological_targets_summary",
+    "synergy_matrix",
+    "considered_but_excluded",
+    "references"
+  ],
+  "additionalProperties": false
+}

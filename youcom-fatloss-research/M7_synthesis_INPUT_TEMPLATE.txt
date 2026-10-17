@@ -1,0 +1,35 @@
+MODULE_ID: M7
+
+CONTEXT
+This is the synthesis run (M7) of a modular evidence review on which strategies best support (A) losing body fat and keeping it off long term (weight-loss maintenance, WLM: >=12 months, ideally >=24 months after the end of active weight loss) while (B) preserving as much fat-free mass as possible, specifically skeletal muscle, during the energy deficit and afterwards. Six evidence modules (M1-M6) each reviewed and scored a group of candidate strategies; their condensed results are in the EVIDENCE PACK at the end. Populations: P1 adults with overweight or obesity (BMI >=25); P2 lean, resistance-trained individuals and physique athletes; P3 adults >=60 years incl. sarcopenic obesity. Anti-obesity medication and bariatric surgery are not candidates.
+
+ROLE AND STANDARD
+You are a senior research scientist (obesity medicine, exercise physiology, sports nutrition) working to the standard of a Cochrane-style rapid review combined with an ISSN/ACSM position stand. Accuracy beats completeness. Do not redo the module reviews: search only to verify synergy links, to resolve contradictions between modules, or to close a gap that blocks a target value.
+
+TASKS
+1. Calibrate and rank. The modules scored independently on the scale below. Re-check every candidate's scores against the anchors and the evidence in the pack. You may change a module score by at most 1.0 per criterion; report every change and its reason in ranking_methodology. Recompute the weighted scores, rank all candidates (ties: higher C3, then higher C1) and return the top 10 in final_ranking. Only candidates with a candidate_key (full module dossier) can enter the top 10. Do not force balance across categories: if, for example, three nutrition strategies rank above every behavioral one, say so.
+2. Synergy matrix: 6-8 links between behavioral adherence factors and physiological muscle-protection factors, e.g. higher protein -> satiety/adherence and MPS; resistance training -> FFM -> energy expenditure and appetite regulation; moderate deficit -> adherence and lower lean-mass loss; self-monitoring -> timely adjustment of intake; sleep -> appetite regulation and composition of weight lost; diet breaks -> adherence and possibly hormonal recovery. Grade each link high, moderate, low or theoretical and never present a theoretical link as established.
+3. Physiological targets for the active fat-loss phase: ranges with units and basis, derived from the module targets in the pack; state the population of every number and flag where a P2-derived number is applied to P1 or P3. Use null only when no defensible evidence exists and explain why in basis. Protein: give g/kg BW and g/kg FFM and how to handle obesity (actual vs reference or adjusted body weight).
+4. considered_but_excluded: every candidate not in the top 10, incl. the modules' additional candidates, format "Strategy - weighted score - reason for exclusion - [IDs]".
+
+SCORING (same scale as in the modules)
+Score each candidate 0-5 in steps of 0.5. Every module uses the same scale and the synthesis compares scores across modules, so score in absolute terms, never relative to the other candidates of one module.
+- C1 effect on the long-term weight/fat outcome >=12 months (weight 0.30): 5 = clinically relevant effect replicated in RCTs/meta-analyses at >=24 months; 4 = replicated at 12 months; 3 = small but consistent, or strong before 12 months with plausible persistence; 2 = inconsistent or short-term only; 1 = associational only; 0 = null, harmful or not targeted.
+- C2 lean-mass / skeletal-muscle preservation (0.25): 5 = clinically meaningful sparing replicated in RCTs/meta-analyses; 4 = replicated but modest, or DXA-only with glycogen/water caveats; 3 = small or inconsistent; 2 = short trials or indirect evidence only; 1 = acute MPS or mechanistic data only; 0 = none, negative or not targeted.
+- C3 certainty of evidence = the overall evidence_grade (0.25): high = 4.5-5; moderate = 3-4; low = 1-2.5; 0 if both outcomes are insufficient.
+- C4 generalisability across P1, P2 and P3 (0.10): 5 = direct evidence in all three; 3 = in two; 1.5 = in one; 0 = in none; adjust by up to 0.5 for transfer plausibility.
+- C5 feasibility, adherence and safety (0.10): 5 = easy, good long-term adherence, safe; 0 = impractical or unsafe.
+weighted = 0.30*C1 + 0.25*C2 + 0.25*C3 + 0.10*C4 + 0.10*C5, rounded to 2 decimals (maximum 5.00).
+
+CITATION RULES
+- Cite module evidence with the ids exactly as they appear in the pack, e.g. [M1-Morton2018a]; do not repeat these in references.
+- Sources you retrieve in this run get ids "M7-" + first author's surname (no spaces, no diacritics) + year + letter suffix, e.g. M7-Hall2019a, and must be listed in references; references contain only these M7 ids.
+- Never construct a DOI, PMID, author list, title or number from memory. Effect sizes and absolute numbers beat p-values. Every number needs a unit, a basis and a population.
+
+OUTPUT RULES
+- Return only JSON that conforms to the output schema. Language: English. The whole answer must stay below about 4,000 words.
+- final_ranking: exactly 10 items, ranks 1-10 each used once, ascending; candidate_key and strategy_name exactly as in the pack.
+- FINAL SELF-AUDIT: ranks match the recomputed weighted scores; every cited id is in the pack or in references; every number has a unit, a basis, a population and a source; no theoretical synergy is presented as established.
+
+EVIDENCE PACK
+<<<EVIDENCE_PACK>>>
