@@ -9,7 +9,10 @@ import tailwindcss from "tailwindcss";
 import autoprefixer from "autoprefixer";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+// Optionales Zielverzeichnis als erstes Argument; Standard: build/
 const outDir = path.resolve(root, process.argv[2] ?? "build");
+// Das SSR-Bundle bleibt im Projekt, damit `react` aus node_modules auflösbar ist.
+const tmpDir = path.join(root, "build");
 const r = (p) => path.join(root, p);
 
 const REACT_VERSION = "18.3.1";
@@ -19,6 +22,7 @@ const FONTS =
   "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400&display=swap";
 
 await mkdir(outDir, { recursive: true });
+await mkdir(tmpDir, { recursive: true });
 
 // 1) CSS
 const rawCss = await readFile(r("src/styles.css"), "utf8");
@@ -26,7 +30,7 @@ const tw = await postcss([tailwindcss({ config: r("tailwind.config.js") }), auto
 const { code: css } = await esbuild.transform(tw.css, { loader: "css", minify: true });
 
 // 2) Vorrendern auf dem Server
-const ssrFile = path.join(outDir, "ssr-bundle.mjs");
+const ssrFile = path.join(tmpDir, "ssr-bundle.mjs");
 await esbuild.build({
   entryPoints: [r("src/NSDRModule.jsx")],
   bundle: true,
