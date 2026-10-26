@@ -1,0 +1,2469 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!--ARTIFACT-START-->
+<title>Schlaf-Architektur &amp; Licht-Code</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Allrounder Life-Optimization Protokoll – Modul Schlaf-Architektur &amp; zirkadianer Licht-Code: Schlafzyklen, Licht und Hormone, Blaulicht-Faktencheck und ein interaktiver Regenerations-Simulator mit Evidenzgraden.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&amp;family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=JetBrains+Mono:wght@500;600;700&amp;display=swap">
+<style>
+/* Layout: Broadcast-Telemetrie. Eine Spalte, Kapitel als Etappen-Header mit großer Kapitelnummer,
+   Glas-Panels als Messinstrumente. Orange = Körper/Tag/Licht, Cyan = Gehirn/Nacht/Melatonin. */
+:root {
+  color-scheme: dark;
+  --bg: #0a0f18;
+  --bg-deep: #070b12;
+  --surface: #121925;
+  --glass: rgba(255, 255, 255, 0.045);
+  --glass-hi: rgba(255, 255, 255, 0.085);
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.18);
+  --nav-bg: rgba(10, 15, 24, 0.9);
+  --text: #f2f5fa;
+  --text-2: #aeb8c8;
+  --muted: #7c879a;
+  --orange: #ff7a2e;
+  --orange-mark: #e9661e;
+  --orange-wash: rgba(233, 102, 30, 0.14);
+  --cyan: #3dd6f2;
+  --cyan-mark: #10a3c2;
+  --cyan-wash: rgba(16, 163, 194, 0.16);
+  --grid: #1f2836;
+  --axis: #2c3747;
+  --link-line: #3a4658;
+  --stage-n2: #5e6f8c;
+  --stage-n1: #8d9ab3;
+  --stage-w: #c9d2e0;
+  --ev-yes: #3ddc97;
+  --ev-some: #f5c443;
+  --ev-hyp: #aab4ff;
+  --ev-no: #ff6b6b;
+  --font-display: "Barlow Condensed", "Roboto Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --radius: 16px;
+  --radius-sm: 10px;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 17px/1.6 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 40;
+  background: var(--nav-bg);
+}
+a { color: var(--cyan); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { color: var(--text); }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
+strong { font-weight: 600; color: var(--text); }
+p { margin: 0; }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
+sup { font-size: 0.5em; vertical-align: super; line-height: 0; }
+[hidden] { display: none !important; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.page { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- Navigation ---------- */
+.nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 30;
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap { display: flex; align-items: center; gap: 18px; padding-block: 10px; }
+.brand {
+  display: flex; align-items: center; gap: 10px; flex: none;
+  font: 700 12px/1 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text);
+  text-decoration: none;
+}
+.brand-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 4px rgba(255, 122, 46, 0.18); }
+.nav-links { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; min-width: 0; margin-left: auto; }
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-links a {
+  flex: none;
+  font: 600 13px/1 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-2); text-decoration: none; padding: 9px 10px; border-radius: 8px;
+}
+.nav-links a span { color: var(--muted); margin-right: 5px; font-variant-numeric: tabular-nums; }
+.nav-links a:hover { color: var(--text); background: var(--glass); }
+
+/* ---------- Shared type ---------- */
+.eyebrow {
+  font: 600 11.5px/1.4 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-2);
+}
+.lead { font-size: 18px; color: var(--text-2); max-width: 68ch; }
+.lead strong { color: var(--text); }
+.body-text { max-width: 68ch; color: var(--text-2); }
+.body-text + .body-text { margin-top: 12px; }
+.o { color: var(--orange); }
+.c { color: var(--cyan); }
+.cite { color: var(--text-2); text-decoration: underline dotted var(--muted); text-underline-offset: 3px; white-space: nowrap; }
+.cite:hover { color: var(--cyan); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ---------- Glass ---------- */
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.025));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  backdrop-filter: blur(16px) saturate(125%);
+  -webkit-backdrop-filter: blur(16px) saturate(125%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 18px 40px -24px rgba(0, 0, 0, 0.8);
+}
+
+/* ---------- Evidence badges ---------- */
+.ev {
+  --ev-c: var(--ev-yes);
+  display: inline-flex; align-items: center; gap: 3px; flex: none;
+  font: 700 10.5px/1 var(--font-mono); letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--ev-c);
+  background: color-mix(in srgb, var(--ev-c) 11%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ev-c) 40%, transparent);
+  padding: 5px 8px 5px 7px; border-radius: 6px; white-space: nowrap; vertical-align: middle;
+}
+.ev i { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--ev-c); }
+.ev i.o { background: transparent; box-shadow: inset 0 0 0 1.3px var(--ev-c); }
+.ev i:last-of-type { margin-right: 4px; }
+.ev i.x { width: auto; height: auto; background: none; font-style: normal; font-size: 11px; line-height: 1; }
+.ev.y { --ev-c: var(--ev-yes); }
+.ev.s { --ev-c: var(--ev-some); }
+.ev.h { --ev-c: var(--ev-hyp); }
+.ev.n { --ev-c: var(--ev-no); }
+.ev.d { --ev-c: var(--text-2); background: transparent; border-style: dashed; }
+.ev-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; isolation: isolate; padding-block: clamp(36px, 7vw, 92px) clamp(40px, 6vw, 72px); overflow: hidden; }
+.hero::before, .hero::after {
+  content: ""; position: absolute; z-index: -1; pointer-events: none; border-radius: 50%;
+}
+.hero::before { width: 760px; height: 760px; right: -220px; top: -260px; background: radial-gradient(closest-side, rgba(233, 102, 30, 0.28), transparent 70%); }
+.hero::after { width: 680px; height: 680px; left: -260px; top: 120px; background: radial-gradient(closest-side, rgba(16, 163, 194, 0.22), transparent 70%); }
+.tag {
+  display: inline-flex; align-items: center; gap: 10px; max-width: 100%;
+  font: 600 11.5px/1.45 var(--font-mono); letter-spacing: 0.13em; text-transform: uppercase; color: var(--text-2);
+  border: 1px solid var(--line); background: var(--glass); padding: 8px 13px; border-radius: 12px;
+}
+.tag::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 4px rgba(255, 122, 46, 0.16); }
+.hero-title {
+  margin-top: 26px;
+  font: 800 clamp(44px, 9vw, 120px)/0.94 var(--font-display);
+  text-transform: uppercase; letter-spacing: -0.005em;
+  hyphens: manual;
+}
+.hero-title span { display: block; }
+.hero-title .l2 { color: var(--orange); margin-top: 0.08em; }
+.hero-title .l2 sup { color: var(--text-2); font-size: 0.32em; margin-left: 0.08em; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-title span { animation: rise 700ms cubic-bezier(.2, .7, .2, 1) both; }
+  .hero-title .l2 { animation-delay: 120ms; }
+  @keyframes rise { from { transform: translateY(14px); opacity: 0.35; } to { transform: none; opacity: 1; } }
+}
+.hero-lede {
+  margin-top: 26px; max-width: 64ch;
+  font: italic 400 clamp(17px, 1.6vw, 20px)/1.55 var(--font-body); color: var(--text);
+}
+.hero-foot {
+  margin-top: 14px; max-width: 76ch; font-size: 13.5px; line-height: 1.55; color: var(--muted);
+}
+.hero-foot strong { color: var(--text-2); }
+.section-label {
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  margin-top: clamp(36px, 5vw, 56px); margin-bottom: 16px;
+}
+.section-label h2 { font: 700 clamp(22px, 2.4vw, 28px)/1.1 var(--font-display); text-transform: uppercase; letter-spacing: 0.03em; }
+.section-label p { color: var(--muted); font-size: 14px; }
+
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.stat { display: flex; flex-direction: column; gap: 10px; padding: 20px 20px 18px; min-width: 0; }
+.stat-eyebrow { font: 600 11px/1.3 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.stat-num {
+  font: 800 clamp(46px, 4.6vw, 60px)/0.95 var(--font-display); letter-spacing: -0.01em; color: var(--text);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.stat-num small { font-size: 0.5em; font-weight: 700; color: var(--text-2); margin-left: 3px; }
+.stat:nth-child(1) .stat-num, .stat:nth-child(3) .stat-num { color: var(--orange); }
+.stat:nth-child(4) .stat-num { color: var(--cyan); }
+.stat-label { font: 700 19px/1.15 var(--font-display); text-transform: uppercase; letter-spacing: 0.02em; }
+.stat-sub { font-size: 14.5px; line-height: 1.5; color: var(--text-2); }
+.stat-facts { margin: 0; display: grid; gap: 4px; font-size: 13.5px; }
+.stat-facts div { display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid var(--line); padding-top: 6px; }
+.stat-facts dt { color: var(--muted); }
+.stat-facts dd { margin: 0; color: var(--text); font-variant-numeric: tabular-nums; text-align: right; }
+.stat-caveat { font-size: 13px; line-height: 1.5; color: var(--text-2); background: rgba(0, 0, 0, 0.18); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 9px 11px; }
+.stat-caveat b { color: var(--text); font-weight: 600; }
+.stat-foot { margin-top: auto; display: grid; gap: 8px; padding-top: 4px; }
+.src { font-size: 12.5px; line-height: 1.45; color: var(--muted); }
+.src a { color: var(--text-2); }
+
+.legend-ev {
+  margin-top: 18px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px;
+  padding: 14px 16px;
+}
+.legend-ev div { display: grid; gap: 6px; align-content: start; justify-items: start; min-width: 0; }
+.legend-ev p { font-size: 13px; line-height: 1.45; color: var(--text-2); }
+
+/* ---------- Chapters ---------- */
+.chapter { position: relative; isolation: isolate; padding-block: clamp(56px, 8vw, 104px) 0; }
+.ch-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(14px, 3vw, 32px); align-items: end; margin-bottom: 28px; }
+.ch-num {
+  font: 800 clamp(72px, 12vw, 150px)/0.78 var(--font-display); letter-spacing: -0.03em;
+  color: transparent; -webkit-text-stroke: 1.5px var(--line-strong);
+  font-variant-numeric: tabular-nums;
+}
+.ch-head h2 {
+  margin-top: 8px;
+  font: 800 clamp(32px, 5.2vw, 66px)/0.95 var(--font-display); text-transform: uppercase; letter-spacing: -0.003em;
+}
+.chapter-intro { display: grid; gap: 12px; margin-bottom: 26px; }
+.inline-ev { display: inline-flex; vertical-align: middle; margin-left: 6px; }
+
+/* ---------- Figures ---------- */
+.figure { margin: 0; padding: clamp(16px, 2.4vw, 26px); min-width: 0; }
+.fig-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px 24px; margin-bottom: 14px; }
+.fig-kicker { font: 600 11px/1.3 var(--font-mono); letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); }
+.fig-title { margin-top: 6px; font: 700 clamp(20px, 2.2vw, 26px)/1.1 var(--font-display); text-transform: uppercase; letter-spacing: 0.02em; }
+.figure figcaption, .fig-caption { margin-top: 14px; font-size: 13.5px; line-height: 1.55; color: var(--muted); max-width: 90ch; }
+.figure figcaption strong { color: var(--text-2); }
+.chart { position: relative; width: 100%; min-height: 120px; }
+.chart svg { display: block; overflow: visible; touch-action: pan-y; }
+.chart svg:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-bottom: 10px; font-size: 13px; color: var(--text-2); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.key { width: 14px; height: 10px; border-radius: 3px; flex: none; }
+.key-line { width: 18px; height: 2px; border-radius: 2px; flex: none; }
+.k-n3 { background: var(--orange-mark); }
+.k-rem { background: var(--cyan-mark); }
+.k-light { background: var(--stage-n2); height: 4px; }
+.k-wake { background: var(--stage-w); height: 4px; opacity: 0.6; }
+.k-cort { background: var(--orange-mark); }
+.k-mel { background: var(--cyan-mark); }
+.k-ref { background: var(--muted); }
+
+/* SVG roles */
+.grid { stroke: var(--grid); stroke-width: 1; }
+.tick { stroke: var(--axis); stroke-width: 1; }
+.baseline { stroke: var(--axis); stroke-width: 1; }
+.axis-label { fill: var(--muted); font: 500 11.5px var(--font-body); font-variant-numeric: tabular-nums; }
+.axis-strong { fill: var(--text-2); font: 600 12px var(--font-body); }
+.anno { fill: var(--text-2); font: 500 12px var(--font-body); }
+.anno-strong { fill: var(--text); font: 600 12.5px var(--font-body); }
+.anno-muted { fill: var(--muted); font: 500 11px var(--font-body); }
+.anno-line { stroke: var(--muted); stroke-width: 1; fill: none; }
+.bracket { stroke: var(--line-strong); stroke-width: 1; fill: none; }
+.xhair { stroke: var(--text-2); stroke-width: 1; opacity: 0; pointer-events: none; }
+.hyp-link { stroke: var(--link-line); stroke-width: 1; }
+.seg-N3 { fill: var(--orange-mark); }
+.seg-REM { fill: var(--cyan-mark); }
+.seg-N2 { fill: var(--stage-n2); }
+.seg-N1 { fill: var(--stage-n1); }
+.seg-W { fill: var(--stage-w); opacity: 0.55; }
+.cut { fill: rgba(255, 255, 255, 0.04); stroke: rgba(255, 255, 255, 0.14); stroke-width: 1; }
+.band-sleep { fill: rgba(255, 255, 255, 0.035); }
+.band-dim { fill: rgba(16, 163, 194, 0.07); }
+.band-morning { fill: rgba(233, 102, 30, 0.1); }
+.line-cort { stroke: var(--orange-mark); stroke-width: 2; fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.line-mel { stroke: var(--cyan-mark); stroke-width: 2; fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.area-mel { fill: var(--cyan-mark); fill-opacity: 0.1; stroke: none; }
+.line-ref { stroke: var(--muted); stroke-width: 1.5; fill: none; stroke-linejoin: round; }
+.dot-mel { fill: var(--cyan-mark); stroke: var(--surface); stroke-width: 2; }
+.dot-cort { fill: var(--orange-mark); stroke: var(--surface); stroke-width: 2; }
+.dot-ref { fill: var(--muted); stroke: var(--surface); stroke-width: 2; }
+.lux-bar { fill: var(--orange-mark); }
+.lux-target { stroke: var(--cyan-mark); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.lux-target-dot { fill: var(--cyan-mark); stroke: var(--surface); stroke-width: 2; }
+.lux-hit { fill: transparent; }
+.lux-hit.is-active { fill: rgba(255, 255, 255, 0.04); }
+.group-label { fill: var(--muted); font: 700 10.5px var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; }
+.row-label { fill: var(--text); font: 500 13px var(--font-body); }
+.row-value { fill: var(--text-2); font: 600 12.5px var(--font-body); font-variant-numeric: tabular-nums; }
+.light-band { fill: var(--orange-mark); }
+.light-label { fill: var(--text); font: 600 11.5px var(--font-body); }
+.thresh { stroke: var(--line-strong); stroke-width: 1; }
+
+/* Tooltip */
+.tip {
+  position: absolute; z-index: 5; pointer-events: none; min-width: 130px; max-width: 260px;
+  background: rgba(14, 20, 31, 0.96); border: 1px solid var(--line-strong); border-radius: 10px;
+  padding: 9px 11px; box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8);
+  font-size: 12.5px; line-height: 1.4; color: var(--text-2);
+}
+.tip-row { display: flex; align-items: baseline; gap: 7px; }
+.tip-row + .tip-row { margin-top: 4px; }
+.tip-row strong { color: var(--text); font-weight: 650; font-variant-numeric: tabular-nums; }
+.tip-head { font: 600 11px/1.2 var(--font-mono); letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; }
+.tip-head strong { color: var(--text-2); font-weight: 600; }
+.tip-key { width: 12px; height: 2.5px; border-radius: 2px; flex: none; transform: translateY(-3px); }
+.tip-note { display: block; margin-top: 5px; font-size: 11.5px; color: var(--muted); }
+
+/* Segmented control */
+.seg { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 12px; background: rgba(0, 0, 0, 0.28); border: 1px solid var(--line); max-width: 100%; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px; }
+.seg label {
+  cursor: pointer; padding: 8px 12px; border-radius: 9px; color: var(--text-2);
+  font: 600 13.5px/1.15 var(--font-display); letter-spacing: 0.05em; text-transform: uppercase;
+  border: 1px solid transparent; transition: background 160ms, color 160ms, border-color 160ms;
+}
+.seg label small { display: block; font: 500 11px/1.2 var(--font-mono); letter-spacing: 0.04em; color: var(--muted); text-transform: none; margin-top: 2px; }
+.seg label:hover { color: var(--text); background: var(--glass); }
+.seg input:checked + label { color: var(--text); background: var(--glass-hi); border-color: var(--line-strong); }
+.seg input:checked + label small { color: var(--text-2); }
+.seg input:focus-visible + label { outline: 2px solid var(--cyan); outline-offset: 1px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.chip {
+  display: inline-flex; align-items: baseline; gap: 8px; padding: 8px 12px; border-radius: 10px;
+  background: rgba(0, 0, 0, 0.22); border: 1px solid var(--line); font-size: 13px; color: var(--text-2);
+}
+.chip .key { align-self: center; }
+.chip strong { font: 700 17px/1 var(--font-display); letter-spacing: 0.01em; color: var(--text); font-variant-numeric: tabular-nums; }
+.delta { font: 600 12px/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.delta.good { color: var(--ev-yes); }
+.delta.bad { color: var(--ev-no); }
+.delta.flat { color: var(--muted); }
+.scenario-note { margin-top: 12px; font-size: 15px; color: var(--text); max-width: 80ch; min-height: 3em; }
+
+details.tableview { margin-top: 12px; }
+details.tableview summary, details.method summary {
+  cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+  font: 600 12px/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2);
+  padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: rgba(0, 0, 0, 0.2);
+}
+details summary::-webkit-details-marker { display: none; }
+details summary::before { content: "+"; color: var(--cyan); font-weight: 700; }
+details[open] summary::before { content: "–"; }
+.table-wrap { overflow-x: auto; margin-top: 10px; border: 1px solid var(--line); border-radius: var(--radius-sm); }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 600 11px/1.3 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: rgba(0, 0, 0, 0.25); white-space: nowrap; }
+td { color: var(--text-2); }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+
+/* ---------- Fact check & cards ---------- */
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.factcheck { margin-top: 18px; }
+.fc { padding: 20px 22px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.fc-quote { font: 700 clamp(21px, 2vw, 25px)/1.15 var(--font-display); letter-spacing: 0.01em; color: var(--text); }
+.fc p { color: var(--text-2); font-size: 15px; }
+
+.card { padding: clamp(18px, 2.2vw, 26px); display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.card-head { display: grid; gap: 6px; }
+.card-kicker { font: 600 11px/1.3 var(--font-mono); letter-spacing: 0.13em; text-transform: uppercase; }
+.card-kicker.o { color: var(--orange); }
+.card-kicker.c { color: var(--cyan); }
+.card-title { font: 800 clamp(26px, 3vw, 36px)/1 var(--font-display); text-transform: uppercase; letter-spacing: 0.005em; }
+.card-sub { font-size: 14.5px; color: var(--text-2); }
+.items { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.items li { display: grid; gap: 6px; padding: 14px 0; border-top: 1px solid var(--line); }
+.items li:first-child { border-top: 0; padding-top: 2px; }
+.item-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 10px; }
+.item-head h4 { font: 700 17.5px/1.2 var(--font-display); text-transform: uppercase; letter-spacing: 0.03em; color: var(--text); }
+.items p { font-size: 14.5px; line-height: 1.55; color: var(--text-2); }
+.items .src { margin-top: 2px; }
+.correction { color: var(--text); }
+.correction::before { content: "Korrektur · "; font: 700 10.5px/1 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ev-no); }
+
+.protocol {
+  border-radius: var(--radius-sm); padding: 16px 18px; display: grid; gap: 10px;
+  background: linear-gradient(180deg, rgba(255, 122, 46, 0.09), rgba(255, 122, 46, 0.03));
+  border: 1px solid rgba(255, 122, 46, 0.28);
+}
+.protocol.cy { background: linear-gradient(180deg, rgba(61, 214, 242, 0.08), rgba(61, 214, 242, 0.025)); border-color: rgba(61, 214, 242, 0.26); }
+.protocol-title { font: 700 13px/1 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); }
+.protocol.cy .protocol-title { color: var(--cyan); }
+.protocol ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 7px; }
+.protocol li { position: relative; padding-left: 22px; font-size: 15px; color: var(--text); }
+.protocol li::before { content: ""; position: absolute; left: 2px; top: 0.45em; width: 10px; height: 6px; border-left: 2px solid var(--orange); border-bottom: 2px solid var(--orange); transform: rotate(-45deg); }
+.protocol.cy li::before { border-color: var(--cyan); }
+.protocol .src { color: var(--text-2); }
+
+.mech-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
+.mech { padding: clamp(18px, 2.2vw, 26px); display: grid; gap: 14px; align-content: start; min-width: 0; }
+.mech-time { font: 700 11px/1.3 var(--font-mono); letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
+.mech h3 { font: 800 clamp(26px, 2.8vw, 34px)/1 var(--font-display); text-transform: uppercase; }
+.mech > p { font-size: 15px; color: var(--text-2); }
+.point { display: grid; gap: 6px; padding-top: 12px; border-top: 1px solid var(--line); }
+.point p { font-size: 14.5px; color: var(--text-2); }
+.point .item-head h4 { font-size: 16px; }
+
+.diagram-wrap { overflow-x: auto; border-radius: var(--radius-sm); background: rgba(0, 0, 0, 0.22); border: 1px solid var(--line); padding: 10px; }
+.diagram-wrap svg { display: block; width: 100%; height: auto; color: var(--text-2); }
+.diagram-compact { display: none !important; }
+@media (max-width: 520px) { .diagram-wide { display: none !important; } .diagram-compact { display: block !important; } }
+.d-text { fill: var(--text-2); font: 500 12px var(--font-body); }
+.d-strong { fill: var(--text); font: 600 12.5px var(--font-body); }
+.d-small { fill: var(--muted); font: 500 10.5px var(--font-body); }
+
+.callout-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; margin-top: 18px; }
+
+/* Myth buster */
+.myth { padding: clamp(20px, 2.4vw, 28px); display: grid; gap: 16px; align-content: start; min-width: 0; }
+.myth-claim { font: 800 clamp(24px, 2.8vw, 34px)/1.05 var(--font-display); text-transform: uppercase; letter-spacing: 0.005em; }
+.myth.is-false .myth-claim { color: var(--text); }
+.myth.is-true .myth-claim { color: var(--text); }
+.myth h4 { font: 700 13px/1 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.evlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.evlist li { font-size: 14.5px; line-height: 1.55; color: var(--text-2); padding-left: 16px; position: relative; }
+.evlist li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+.evlist strong { color: var(--text); }
+.counter { border-radius: var(--radius-sm); border: 1px dashed var(--line-strong); padding: 14px 16px; display: grid; gap: 10px; background: rgba(0, 0, 0, 0.16); }
+.truth { font-size: 15.5px; color: var(--text); line-height: 1.55; }
+.truth strong { color: var(--orange); }
+
+/* Co-factors */
+.action { padding: clamp(18px, 2.2vw, 26px); display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.action-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.action-num { font: 800 46px/0.8 var(--font-display); color: transparent; -webkit-text-stroke: 1.2px var(--line-strong); }
+.action h3 { font: 800 clamp(24px, 2.4vw, 30px)/1 var(--font-display); text-transform: uppercase; }
+.action-stat { font: 800 40px/1 var(--font-display); color: var(--orange); font-variant-numeric: tabular-nums; }
+.action-stat small { font-size: 0.42em; color: var(--text-2); font-weight: 700; margin-left: 4px; letter-spacing: 0.03em; text-transform: uppercase; }
+.action .protocol { margin-top: auto; }
+@media (min-width: 1081px) { .action h3 { min-height: 2em; } }
+
+/* ---------- Simulator ---------- */
+.sim { padding: clamp(16px, 2.4vw, 28px); }
+.sim::before { content: none; }
+.sim-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; margin-bottom: 18px; }
+.presets { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.presets > span { font: 600 11px/1 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+.btn {
+  cursor: pointer; border: 1px solid var(--line-strong); background: rgba(0, 0, 0, 0.25); color: var(--text);
+  padding: 9px 13px; border-radius: 10px; font: 600 13.5px/1 var(--font-display); letter-spacing: 0.06em; text-transform: uppercase;
+  transition: background 160ms, border-color 160ms;
+}
+.btn:hover { background: var(--glass-hi); }
+.btn[aria-pressed="true"] { border-color: var(--orange); background: rgba(255, 122, 46, 0.12); }
+.ref-note { font-size: 12.5px; color: var(--muted); }
+.sim-grid { display: grid; grid-template-columns: minmax(280px, 360px) minmax(0, 1fr); gap: clamp(16px, 2.4vw, 28px); align-items: start; }
+.sim-controls { display: grid; gap: 14px; margin: 0; min-width: 0; }
+.ctrl { border: 1px solid var(--line); border-radius: 14px; padding: 14px; margin: 0; background: rgba(0, 0, 0, 0.2); min-width: 0; }
+.ctrl legend { padding: 0 6px; margin-left: -6px; font: 700 11px/1.3 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-2); }
+.ctrl-help { font-size: 12.5px; color: var(--muted); margin-top: 8px; line-height: 1.45; }
+.ctrl .seg { width: 100%; }
+.ctrl .seg label { flex: 1 1 0; text-align: center; }
+.opts { display: grid; gap: 8px; }
+.opts input { position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px; }
+.opts label {
+  cursor: pointer; display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 2px 10px; align-items: start;
+  padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.02);
+  transition: border-color 160ms, background 160ms;
+}
+.opts label::before {
+  content: ""; grid-row: span 2; width: 16px; height: 16px; margin-top: 2px; border-radius: 50%;
+  border: 1.5px solid var(--muted); box-shadow: inset 0 0 0 3px transparent;
+}
+.opts label b { font: 700 14.5px/1.2 var(--font-display); letter-spacing: 0.04em; text-transform: uppercase; color: var(--text); }
+.opts label span { font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+.opts label:hover { background: var(--glass); }
+.opts input:checked + label { border-color: var(--line-strong); background: var(--glass-hi); }
+.opts input:checked + label::before { border-color: var(--orange); background: var(--orange); box-shadow: inset 0 0 0 3px var(--surface); }
+.opts input:focus-visible + label { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.range-row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.range-val { font: 800 34px/1 var(--font-display); color: var(--text); font-variant-numeric: tabular-nums; }
+.range-val small { font-size: 0.5em; color: var(--text-2); margin-left: 3px; }
+.range-sub { font: 500 12px/1.3 var(--font-mono); color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+input[type="range"] { width: 100%; margin: 14px 0 4px; appearance: none; -webkit-appearance: none; background: transparent; height: 26px; }
+input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 6px; background: linear-gradient(90deg, var(--orange-mark) var(--fill, 40%), var(--axis) var(--fill, 40%)); }
+input[type="range"]::-moz-range-track { height: 6px; border-radius: 6px; background: var(--axis); }
+input[type="range"]::-moz-range-progress { height: 6px; border-radius: 6px; background: var(--orange-mark); }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; margin-top: -8px; border-radius: 50%; background: var(--text); border: 3px solid var(--orange-mark); box-shadow: 0 0 0 4px rgba(233, 102, 30, 0.18); }
+input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--text); border: 3px solid var(--orange-mark); }
+input[type="range"]:focus-visible { outline: none; }
+input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px var(--cyan); }
+.range-scale { display: flex; justify-content: space-between; font: 500 11px/1 var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.sim-out { display: grid; gap: 16px; min-width: 0; }
+.sim-chart-box { border: 1px solid var(--line); border-radius: 14px; background: rgba(0, 0, 0, 0.22); padding: 14px 14px 8px; min-width: 0; }
+.sim-chart-box .legend { margin-bottom: 4px; }
+.kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.kpi { border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; background: rgba(0, 0, 0, 0.22); display: grid; gap: 8px; align-content: start; min-width: 0; }
+.kpi-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.kpi-label { font: 700 11px/1.3 var(--font-mono); letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-2); }
+.kpi-value { font: 800 clamp(34px, 3.4vw, 44px)/1 var(--font-display); color: var(--text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.kpi-value small { font-size: 0.45em; color: var(--text-2); font-weight: 700; margin-left: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+.kpi-note { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+.meter { position: relative; height: 10px; border-radius: 6px; background: var(--axis); overflow: hidden; }
+.meter > span { position: absolute; inset: 0 auto 0 0; border-radius: 6px; background: var(--orange-mark); transition: width 420ms cubic-bezier(.2, .7, .2, 1); }
+.meter.ref-mark::after { content: ""; position: absolute; top: -2px; bottom: -2px; left: var(--ref, 100%); width: 2px; background: var(--text); opacity: 0.6; }
+.comp { display: grid; gap: 4px; margin: 0; }
+.comp div { display: flex; justify-content: space-between; gap: 10px; font-size: 12.5px; color: var(--text-2); }
+.comp dt { margin: 0; }
+.comp dd { margin: 0; color: var(--text); font-variant-numeric: tabular-nums; }
+.split { display: flex; height: 26px; border-radius: 7px; overflow: hidden; gap: 2px; background: var(--surface); }
+.split span { display: flex; align-items: center; padding: 0 8px; font: 700 12px/1 var(--font-mono); white-space: nowrap; overflow: hidden; transition: flex-basis 420ms cubic-bezier(.2, .7, .2, 1); }
+.split .fat { background: var(--orange-mark); color: #160b04; }
+.split .ffm { background: var(--stage-n2); color: var(--text); justify-content: flex-end; }
+.split-legend { display: flex; justify-content: space-between; gap: 10px; font-size: 12.5px; color: var(--text-2); }
+.sleep-lines { display: grid; gap: 6px; }
+.sleep-lines div { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-2); }
+.sleep-lines strong { font: 700 18px/1 var(--font-display); color: var(--text); font-variant-numeric: tabular-nums; margin-left: auto; }
+.insight { border-radius: 14px; padding: 14px 16px; background: linear-gradient(180deg, rgba(61, 214, 242, 0.08), rgba(61, 214, 242, 0.02)); border: 1px solid rgba(61, 214, 242, 0.24); font-size: 15px; color: var(--text); }
+.insight b { font: 700 11px/1 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); display: block; margin-bottom: 6px; }
+.sim-live {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px;
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  background: var(--nav-bg); border-top: 1px solid var(--line-strong);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+}
+.sim-live div { display: grid; gap: 3px; min-width: 0; }
+.sim-live span { font: 600 9.5px/1.2 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sim-live strong { font: 800 19px/1 var(--font-display); color: var(--text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+@media (min-width: 1081px) { .sim-live { display: none !important; } }
+details.method { margin-top: 20px; }
+.method-body { margin-top: 12px; display: grid; gap: 12px; }
+.method-body p { font-size: 14px; color: var(--text-2); max-width: 90ch; }
+
+/* ---------- Sources & footer ---------- */
+.sources { padding-block: clamp(56px, 8vw, 96px) 24px; }
+.src-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.src-group { padding: 18px 20px; min-width: 0; }
+.src-group h3 { font: 700 15px/1.2 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-2); margin-bottom: 10px; }
+.src-group ol { margin: 0; padding-left: 0; list-style: none; display: grid; gap: 10px; }
+.src-group li { font-size: 13.5px; line-height: 1.5; color: var(--text-2); scroll-margin-top: 90px; }
+.src-group li:target { color: var(--text); background: rgba(61, 214, 242, 0.08); border-radius: 6px; box-shadow: 0 0 0 6px rgba(61, 214, 242, 0.08); }
+.src-group li b { color: var(--text); font-weight: 600; }
+.src-group li em { font-style: italic; color: var(--text-2); }
+.src-group .design { font: 600 11px/1 var(--font-mono); letter-spacing: 0.04em; color: var(--muted); white-space: nowrap; }
+.footer { border-top: 1px solid var(--line); margin-top: 40px; padding-block: 26px 40px; color: var(--muted); font-size: 13px; }
+.footer p + p { margin-top: 8px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1080px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .legend-ev { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .three { grid-template-columns: minmax(0, 1fr); }
+  .sim-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 860px) {
+  .two, .mech-grid, .callout-row, .src-groups { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .stats { grid-template-columns: minmax(0, 1fr); }
+  .legend-ev { grid-template-columns: minmax(0, 1fr); }
+  .brand-text { display: none; }
+  .kpis { grid-template-columns: minmax(0, 1fr); }
+  .ch-head { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .ch-num { font-size: 64px; }
+  .seg label { padding: 8px 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+</style>
+</head>
+<body>
+<div class="page" lang="de">
+
+<nav class="nav" aria-label="Kapitel">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="brand-dot" aria-hidden="true"></span><span class="brand-text">Schlaf · Licht</span></a>
+    <div class="nav-links">
+      <a href="#k1"><span>01</span>Architektur</a>
+      <a href="#k2"><span>02</span>Licht-Code</a>
+      <a href="#k3"><span>03</span>Blaulicht</a>
+      <a href="#k4"><span>04</span>Co-Faktoren</a>
+      <a href="#k5"><span>05</span>Simulator</a>
+      <a href="#quellen">Quellen</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="wrap">
+    <p class="tag">Allrounder Life-Optimization Protokoll · Modul: Schlaf-Architektur &amp; Licht-Code</p>
+    <h1 class="hero-title">
+      <span class="l1">Schlaf ist keine Pause.</span>
+      <span class="l2">Es ist dein stärkstes Anabolikum.<sup>*</sup></span>
+    </h1>
+    <p class="hero-lede">„Kein Supplement und keine Makro-Verteilung macht Schlafmangel wett, und auch das beste Training federt nur einzelne Folgen ab. Training und Ernährung setzen den Reiz. Ob daraus Muskelerhalt, Fettverlust und Regeneration werden, entscheidet zu einem großen Teil die Nacht.“</p>
+    <p class="hero-foot"><strong>* Metapher.</strong> Schlaf ist kein Wirkstoff. Ohne ihn sinkt aber die Muskelproteinsynthese messbar: um 18&nbsp;% nach einer durchwachten Nacht (<a class="cite" href="#q-lamon">Lamon 2021</a>) und um 19&nbsp;% nach fünf Nächten à 4&nbsp;Std. (<a class="cite" href="#q-saner">Saner 2020</a>). Im Kaloriendefizit verschiebt sich der Gewichtsverlust dann Richtung fettfreie Masse. Jede Aussage auf dieser Seite trägt ihren Evidenzgrad.</p>
+
+    <div class="section-label">
+      <h2>Der Preis von Schlafmangel &amp; der Gratis-Hebel</h2>
+      <p>Vier Zahlen, jeweils mit Studie, Design und Gegenevidenz.</p>
+    </div>
+
+    <div class="stats">
+      <article class="stat glass">
+        <p class="stat-eyebrow">Kaloriendefizit · 14&nbsp;Tage</p>
+        <p class="stat-num">−55<small>%</small></p>
+        <h3 class="stat-label">Fettanteil am Gewichtsverlust</h3>
+        <p class="stat-sub">Bei 5,5 statt 8,5&nbsp;Std. Schlafgelegenheit und exakt gleichen Kalorien. Der Verlust an fettfreier Masse stieg um <strong>60&nbsp;%</strong>.</p>
+        <dl class="stat-facts">
+          <div><dt>Fett</dt><dd>−0,6&nbsp;vs. −1,4&nbsp;kg</dd></div>
+          <div><dt>Fettfreie Masse</dt><dd>−2,4&nbsp;vs. −1,5&nbsp;kg</dd></div>
+        </dl>
+        <p class="stat-caveat"><b>Einordnung:</b> Fettfreie Masse umfasst Muskel, Wasser und Glykogen. Gleichsetzen mit „Muskel“ geht zu weit. Die Studie war klein und kurz.</p>
+        <footer class="stat-foot">
+          <div class="ev-row"><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></div>
+          <p class="src"><a href="#q-nedeltcheva">Nedeltcheva et al. 2010</a>, Ann Intern Med · Crossover-RCT, n&nbsp;=&nbsp;10 · Richtung bestätigt: <a href="#q-wang">Wang et al. 2018</a>, RCT, n&nbsp;=&nbsp;36</p>
+        </footer>
+      </article>
+
+      <article class="stat glass">
+        <p class="stat-eyebrow">1 Woche · 5&nbsp;Std. Bettzeit</p>
+        <p class="stat-num">−10–15<small>%</small></p>
+        <h3 class="stat-label">Testosteron tagsüber</h3>
+        <p class="stat-sub">Bei jungen, gesunden Männern. Die Pressemitteilung setzte das mit 10–15&nbsp;Jahren Alterung gleich, gerechnet mit 1–2&nbsp;% Abfall pro Lebensjahr.</p>
+        <p class="stat-caveat"><b>Gegenevidenz:</b> Zwei randomisierte Studien fanden bei verkürztem Schlaf keinen Abfall (<a class="cite" href="#q-smith">Smith 2019</a>). Eine Meta-Analyse sieht einen klaren Effekt nur nach komplett durchwachten Nächten (<a class="cite" href="#q-su">Su 2021</a>).</p>
+        <footer class="stat-foot">
+          <div class="ev-row"><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span><span class="ev d">Umstritten</span></div>
+          <p class="src"><a href="#q-leproult">Leproult &amp; Van Cauter 2011</a>, JAMA · Vorher-nachher ohne Kontrollgruppe, n&nbsp;=&nbsp;10</p>
+        </footer>
+      </article>
+
+      <article class="stat glass">
+        <p class="stat-eyebrow">Erste Tiefschlafphase</p>
+        <p class="stat-num">~70<small>%</small></p>
+        <h3 class="stat-label">des täglichen Wachstumshormons (Männer)</h3>
+        <p class="stat-sub">Der größte GH-Puls des Tages folgt kurz auf das Einschlafen und fällt mit dem ersten Tiefschlaf zusammen. Bei Frauen ist der schlafgebundene Anteil kleiner und variabler.</p>
+        <p class="stat-caveat"><b>Offen:</b> Ob nächtliches GH beim Erwachsenen Muskeln aufbaut. GH-Gabe steigerte die Magermasse, aber nicht die Kraft (<a class="cite" href="#q-liu">Liu 2008</a>).</p>
+        <footer class="stat-foot">
+          <div class="ev-row"><span class="ev y"><i></i><i></i><i></i>Belegt</span><span class="src">Ausschüttung</span><span class="ev h"><i></i><i class="o"></i><i class="o"></i>Hypothese</span><span class="src">Muskelwirkung</span></div>
+          <p class="src"><a href="#q-vc1998">Van Cauter et al. 1998</a>, Sleep · <a href="#q-vc2000">Van Cauter et al. 2000</a>, JAMA: 60–70&nbsp;%, n&nbsp;=&nbsp;149&nbsp;Männer</p>
+        </footer>
+      </article>
+
+      <article class="stat glass">
+        <p class="stat-eyebrow">Morgenlicht draußen</p>
+        <p class="stat-num">10.000+<small>lx</small></p>
+        <h3 class="stat-label">Tageslicht an einem hellen Tag, auch ohne Sonne</h3>
+        <p class="stat-sub">Drinnen sind es meist 50–500&nbsp;lx. Morgenlicht stellt die innere Uhr, die im Mittel 24,2&nbsp;Std. läuft, jeden Tag neu. Der abendliche Melatonin-Anstieg kommt dadurch früher, typischerweise rund 2&nbsp;Std. vor der gewohnten Einschlafzeit.</p>
+        <p class="stat-caveat"><b>Korrektur:</b> Einen festen „16-Stunden-Countdown“ gibt es nicht. Wann Melatonin steigt, hängt vom Licht des ganzen Tages ab, auch vom Abendlicht.</p>
+        <footer class="stat-foot">
+          <div class="ev-row"><span class="ev y"><i></i><i></i><i></i>Belegt</span></div>
+          <p class="src"><a href="#q-czeisler">Czeisler et al. 1999</a> · <a href="#q-wright">Wright et al. 2013</a> · <a href="#q-stothard">Stothard et al. 2017</a> · <a href="#q-sletten">Sletten et al. 2010</a></p>
+        </footer>
+      </article>
+    </div>
+
+    <div class="legend-ev glass" aria-label="Legende der Evidenzgrade">
+      <div><span class="ev y"><i></i><i></i><i></i>Belegt</span><p>Viele Studien oder Meta-Analysen, repliziert.</p></div>
+      <div><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span><p>Wenige oder kleine Studien, Beobachtungsdaten. Richtung konsistent.</p></div>
+      <div><span class="ev h"><i></i><i class="o"></i><i class="o"></i>Hypothese</span><p>Plausibel über Mechanismus oder Tiermodell, beim Menschen kaum geprüft.</p></div>
+      <div><span class="ev n"><i class="x" aria-hidden="true">✕</i>Nicht bestätigt</span><p>Geprüft, kein Effekt gefunden oder widerlegt.</p></div>
+      <div><span class="ev d">Umstritten</span><p>Zusatz: Studien widersprechen sich.</p></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== KAPITEL 01 ===================== -->
+<section class="chapter" id="k1" aria-labelledby="k1-title">
+  <div class="wrap">
+    <header class="ch-head">
+      <div class="ch-num" aria-hidden="true">01</div>
+      <div>
+        <p class="eyebrow">Kapitel 01 · Die Architektur der Nacht</p>
+        <h2 id="k1-title">Tiefschlaf &amp; REM: <span class="o">Die nächtliche Werkstatt</span></h2>
+      </div>
+    </header>
+
+    <div class="chapter-intro">
+      <p class="lead">Eine Nacht besteht aus <strong>4–6 Zyklen von je rund 90 Minuten</strong> (Spanne etwa 70–120). Jeder Zyklus führt vom Leichtschlaf (N1, N2) in den Tiefschlaf (N3) und endet meist mit einer REM-Phase. Über die Nacht verschiebt sich die Mischung: <strong>Tiefschlaf ballt sich in der ersten Hälfte, die REM-Phasen werden zum Morgen hin länger.</strong> <span class="inline-ev"><span class="ev y"><i></i><i></i><i></i>Belegt</span></span></p>
+      <p class="src">Standardwerk: <a href="#q-carskadon">Carskadon &amp; Dement</a>, Principles and Practice of Sleep Medicine. Junge Erwachsene: N3 ≈ 13–23&nbsp;%, REM ≈ 20–25&nbsp;% der Schlafzeit. Der Tiefschlaf-Anteil sinkt mit dem Alter (<a href="#q-ohayon">Ohayon et al. 2004</a>, Meta-Analyse, 65&nbsp;Studien).</p>
+    </div>
+
+    <figure class="figure glass" id="fig-hypno">
+      <div class="fig-head">
+        <div>
+          <p class="fig-kicker">Grafik 1 · Hypnogramm</p>
+          <h3 class="fig-title">Eine Nacht in Zyklen: Tiefschlaf zuerst, REM zum Morgen</h3>
+        </div>
+        <div class="seg" role="radiogroup" aria-label="Szenario für das Hypnogramm">
+          <input type="radio" name="hyp" id="hyp-normal" value="normal" checked><label for="hyp-normal">Normal<small>23:00–07:00</small></label>
+          <input type="radio" name="hyp" id="hyp-late" value="late"><label for="hyp-late">Später ins Bett<small>01:00–07:00</small></label>
+          <input type="radio" name="hyp" id="hyp-early" value="early"><label for="hyp-early">Früher Wecker<small>23:00–05:00</small></label>
+        </div>
+      </div>
+      <div class="legend" aria-hidden="true">
+        <span><i class="key k-n3"></i>N3 · Tiefschlaf (Körper)</span>
+        <span><i class="key k-rem"></i>REM (Gehirn)</span>
+        <span><i class="key k-light"></i>N1/N2 · Leichtschlaf</span>
+        <span><i class="key k-wake"></i>Wach</span>
+      </div>
+      <div class="chart" id="hypno-chart"></div>
+      <div class="chips" id="hypno-kpis" aria-live="polite"></div>
+      <p class="scenario-note" id="hypno-note"></p>
+      <figcaption><strong>Schematisches Modell</strong> einer jungen, gesunden Person, kein Messwert. Abgeleitet aus typischen Schlaflabor-Verläufen; REM mit circadianem Gipfel in den frühen Morgenstunden (<a class="cite" href="#q-dijk">Dijk &amp; Czeisler 1995</a>). Mit der Maus oder den Pfeiltasten über die Grafik fahren zeigt das Stadium zu jeder Uhrzeit.</figcaption>
+      <details class="tableview"><summary>Als Tabelle</summary><div class="table-wrap" id="hypno-table"></div></details>
+    </figure>
+
+    <div class="callout-row">
+      <div class="fc glass">
+        <div class="ev-row"><span class="ev n"><i class="x" aria-hidden="true">✕</i>Nicht bestätigt</span></div>
+        <p class="fc-quote">„Wer spät ins Bett geht, verliert den Großteil seines Tiefschlafs.“</p>
+        <p>Tiefschlaf hängt vor allem am Schlafdruck, also daran, wie lange du wach warst. Deshalb kommt er in den ersten Zyklen, egal wann du einschläfst. Im Forced-Desynchrony-Experiment schwankte die Tiefschlaf-Aktivität kaum mit der inneren Uhrzeit, REM dagegen deutlich (<a class="cite" href="#q-dijk">Dijk &amp; Czeisler 1995</a>, n&nbsp;=&nbsp;8). Über 14&nbsp;Nächte mit 4 oder 6&nbsp;Std. Bettzeit sanken alle Schlafstadien außer dem Tiefschlaf (<a class="cite" href="#q-vandongen">Van Dongen et al. 2003</a>).</p>
+        <p>Spät ins Bett kostet trotzdem: weniger Gesamtschlaf, weniger REM und N2 und messbar schlechtere Leistung am nächsten Tag.</p>
+      </div>
+      <div class="fc glass">
+        <div class="ev-row"><span class="ev y"><i></i><i></i><i></i>Belegt</span></div>
+        <p class="fc-quote">„Wer den Wecker früher stellt, kappt den REM-Schlaf.“</p>
+        <p>REM ist an die innere Uhr gekoppelt und erreicht sein Maximum kurz nach dem Tiefpunkt der Körpertemperatur, also in den frühen Morgenstunden (<a class="cite" href="#q-dijk">Dijk &amp; Czeisler 1995</a>). Die letzten 90 Minuten vor dem Wecker sind deshalb die REM-reichsten der Nacht. Wer sie streicht, verliert überproportional viel REM.</p>
+      </div>
+    </div>
+
+    <div class="two" style="margin-top:18px">
+      <article class="card glass" aria-labelledby="card-n3">
+        <div class="card-head">
+          <p class="card-kicker o">Slow-Wave Sleep · Delta-Wellen 0,5–2&nbsp;Hz</p>
+          <h3 class="card-title" id="card-n3">Tiefschlaf: Körper-Reboot</h3>
+          <p class="card-sub">Langsame, hohe Wellen im EEG. Dominiert die erste Nachthälfte.</p>
+        </div>
+        <ul class="items">
+          <li>
+            <div class="item-head"><h4>Wachstumshormon-Puls</h4><span class="ev y"><i></i><i></i><i></i>Belegt</span></div>
+            <p>Der größte GH-Puls des Tages folgt kurz auf das Einschlafen und ist an den ersten Tiefschlaf gekoppelt. Mit dem Tiefschlaf sinkt im Alter auch die GH-Ausschüttung: Tiefschlaf-Anteil 18,9&nbsp;% mit 16–25&nbsp;Jahren, 3,4&nbsp;% mit 36–50&nbsp;Jahren.</p>
+            <p class="src"><a href="#q-vc1998">Van Cauter et al. 1998</a> · <a href="#q-vc2000">Van Cauter et al. 2000</a>, n&nbsp;=&nbsp;149&nbsp;Männer</p>
+          </li>
+          <li>
+            <div class="item-head"><h4>GH → Muskelaufbau?</h4><span class="ev h"><i></i><i class="o"></i><i class="o"></i>Hypothese</span></div>
+            <p class="correction">Beim Erwachsenen nicht belegt. GH-Gabe steigerte die Kollagen-Synthese in Sehne und Muskel-Bindegewebe, nicht aber die myofibrilläre Proteinsynthese. Über 27&nbsp;Studien hinweg brachte GH mehr Magermasse (+2,1&nbsp;kg), aber keine messbar bessere Kraft. Auch trainingsbedingte Hormonspitzen verbesserten Muskelwachstum und Kraft nicht.</p>
+            <p class="src"><a href="#q-doessing">Doessing et al. 2010</a>, RCT · <a href="#q-liu">Liu et al. 2008</a>, systematisches Review · <a href="#q-west">West et al. 2010</a>, 15&nbsp;Wochen, n&nbsp;=&nbsp;12</p>
+          </li>
+          <li>
+            <div class="item-head"><h4>Muskelproteinsynthese</h4><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></div>
+            <p>Fünf Nächte à 4&nbsp;Std. senkten die myofibrilläre Proteinsynthese um rund 19&nbsp;% (1,24&nbsp;vs. 1,53&nbsp;%/Tag). HIIT-Einheiten während der kurzen Nächte hielten sie auf Normalniveau. Eine durchwachte Nacht: Proteinsynthese −18&nbsp;%, Cortisol +21&nbsp;%, Testosteron −24&nbsp;%.</p>
+            <p class="src"><a href="#q-saner">Saner et al. 2020</a>, n&nbsp;=&nbsp;24 · <a href="#q-lamon">Lamon et al. 2021</a>, Crossover, n&nbsp;=&nbsp;13</p>
+          </li>
+          <li>
+            <div class="item-head"><h4>Gehirn-Spülung (glymphatisch)</h4><div class="ev-row"><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span><span class="ev d">Umstritten</span></div></div>
+            <p class="correction">Die Gehirnzellen schrumpfen nicht um 60&nbsp;%. Bei schlafenden Mäusen wurde der Raum zwischen den Zellen um rund 60&nbsp;% größer, Beta-Amyloid wurde etwa doppelt so schnell abtransportiert. Eine neuere Mausstudie misst das Gegenteil: weniger Clearance im Schlaf.</p>
+            <p>Beim Menschen: Im NREM-Schlaf laufen Liquor-Wellen im Takt der langsamen Hirnwellen. Nach einer durchwachten Nacht blieb ein Kontrastmittel länger im Gehirn, Beta-Amyloid stieg um rund 5&nbsp;%.</p>
+            <p class="src">Maus: <a href="#q-xie">Xie et al. 2013</a> · <a href="#q-miao">Miao et al. 2024</a> · <a href="#q-hauglund">Hauglund et al. 2025</a> · Mensch: <a href="#q-fultz">Fultz et al. 2019</a> · <a href="#q-eide">Eide et al. 2021</a>, n&nbsp;=&nbsp;7&nbsp;vs. 17 · <a href="#q-shokri">Shokri-Kojori et al. 2018</a>, n&nbsp;=&nbsp;20</p>
+          </li>
+          <li>
+            <div class="item-head"><h4>Herz-Kreislauf fährt runter</h4><span class="ev y"><i></i><i></i><i></i>Belegt</span></div>
+            <p>Im tiefen NREM-Schlaf sinken Sympathikus-Aktivität (Burst-Amplitude auf 41&nbsp;% des Wachwerts), Blutdruck und Puls. Im REM steigt die Sympathikus-Aktivität dagegen auf rund 215&nbsp;% des Wachniveaus.</p>
+            <p class="src"><a href="#q-somers">Somers et al. 1993</a>, NEJM, n&nbsp;=&nbsp;8</p>
+          </li>
+          <li>
+            <div class="item-head"><h4>Muskel-Glykogen auffüllen?</h4><span class="ev h"><i></i><i class="o"></i><i class="o"></i>Hypothese</span></div>
+            <p>Für einen eigenen Tiefschlaf-Effekt auf die Glykogenspeicher haben wir keine Humanstudie gefunden. Die Wiederauffüllung hängt vor allem von der Kohlenhydratzufuhr ab.</p>
+          </li>
+        </ul>
+      </article>
+
+      <article class="card glass" aria-labelledby="card-rem">
+        <div class="card-head">
+          <p class="card-kicker c">Rapid Eye Movement · Muskeln entspannt, Gehirn aktiv</p>
+          <h3 class="card-title" id="card-rem">REM-Schlaf: Mental- &amp; Skill-Reboot</h3>
+          <p class="card-sub">Wach-ähnliches EEG, schnelle Augenbewegungen. Dominiert die zweite Nachthälfte.</p>
+        </div>
+        <ul class="items">
+          <li>
+            <div class="item-head"><h4>Emotionale Verarbeitung</h4><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></div>
+            <p>Nach einer Nacht mit REM-Schlaf reagierte die Amygdala schwächer auf zuvor gesehene emotionale Bilder, und die Bilder wurden am nächsten Tag als weniger belastend bewertet. Der Effekt hing mit der REM-Physiologie zusammen.</p>
+            <p class="src"><a href="#q-vdhelm">van der Helm et al. 2011</a>, fMRT, n&nbsp;=&nbsp;34</p>
+          </li>
+          <li>
+            <div class="item-head"><h4>Kreatives Problemlösen</h4><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></div>
+            <p>Ein Nickerchen mit REM-Schlaf verbesserte das Verknüpfen entfernter Begriffe stärker als ruhiges Wachsein oder NREM-Schlaf.</p>
+            <p class="src"><a href="#q-cai">Cai et al. 2009</a>, PNAS</p>
+          </li>
+          <li>
+            <div class="item-head"><h4>Bewegungsabläufe aus dem Training</h4><div class="ev-row"><span class="ev n"><i class="x" aria-hidden="true">✕</i>Nicht bestätigt</span><span class="ev d">Umstritten</span></div></div>
+            <p class="correction">Nicht REM-spezifisch. Der Lerngewinn über Nacht (+20&nbsp;% Tempo bei Finger-Sequenzen) hing mit N2-Leichtschlaf in der späten Nacht zusammen. Eine Meta-Analyse bezweifelt, dass Schlaf hier überhaupt einen eigenen Effekt hat.</p>
+            <p>Praktisch heißt das trotzdem: Die späte Nacht mit REM und N2 zählt für Technik-Lernen. Ein weiterer Grund, den Wecker nicht vorzuziehen.</p>
+            <p class="src"><a href="#q-walker">Walker et al. 2002</a> · <a href="#q-pan">Pan &amp; Rickard 2015</a>, Meta-Analyse</p>
+          </li>
+          <li>
+            <div class="item-head"><h4>REM ist kein Ruhezustand</h4><span class="ev y"><i></i><i></i><i></i>Belegt</span></div>
+            <p>Im REM schwanken Puls und Blutdruck, die Sympathikus-Aktivität liegt über dem Wachniveau, die Skelettmuskulatur ist weitgehend gelähmt. Erholung für den Kreislauf liefert vor allem der Tiefschlaf.</p>
+            <p class="src"><a href="#q-somers">Somers et al. 1993</a></p>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== KAPITEL 02 ===================== -->
+<section class="chapter" id="k2" aria-labelledby="k2-title">
+  <div class="wrap">
+    <header class="ch-head">
+      <div class="ch-num" aria-hidden="true">02</div>
+      <div>
+        <p class="eyebrow">Kapitel 02 · Der zirkadiane Licht-Code</p>
+        <h2 id="k2-title">Licht steuert Hormone: <span class="c">Der 24-Stunden-Code</span></h2>
+      </div>
+    </header>
+
+    <div class="chapter-intro">
+      <p class="lead">Die Hauptuhr im Gehirn, der <strong>Nucleus suprachiasmaticus (SCN)</strong>, läuft im Mittel etwa 24,2 Stunden. Ohne tägliches Lichtsignal würde sie jeden Tag ein Stück später werden. <strong>Licht am Morgen stellt sie vor, Licht am Abend stellt sie zurück</strong>, und mit ihr verschieben sich Cortisol, Melatonin und Körpertemperatur. <span class="inline-ev"><span class="ev y"><i></i><i></i><i></i>Belegt</span></span></p>
+      <p class="src"><a href="#q-czeisler">Czeisler et al. 1999</a>, Science: Eigenperiode 24,18&nbsp;Std. · Phasenverschiebung durch Licht: <a href="#q-chang2012">Chang et al. 2012</a> · Feld: <a href="#q-wright">Wright et al. 2013</a>, <a href="#q-stothard">Stothard et al. 2017</a></p>
+    </div>
+
+    <figure class="figure glass" id="fig-hormones">
+      <div class="fig-head">
+        <div>
+          <p class="fig-kicker">Grafik 2 · Doppel-Welle über 24 Stunden</p>
+          <h3 class="fig-title">Cortisol und Melatonin: zwei Gegenspieler</h3>
+        </div>
+      </div>
+      <div class="legend" aria-hidden="true">
+        <span><i class="key-line k-cort"></i>Cortisol · Aktivierung, Tag</span>
+        <span><i class="key-line k-mel"></i>Melatonin · Nachtsignal</span>
+      </div>
+      <div class="chart" id="hormone-chart"></div>
+      <figcaption><strong>Schematisch</strong> für Aufstehen um 07:00 und Einschlafen um 23:00. Beide Kurven sind auf ihr eigenes Tagesmaximum normiert, weil die Hormone unterschiedliche Einheiten haben. Cortisol steigt in den ersten 30–45&nbsp;Min. nach dem Aufwachen steil an (<a class="cite" href="#q-stalder">Stalder et al. 2016</a>). Der Melatonin-Anstieg liegt im Mittel rund 2&nbsp;Std. vor dem Einschlafen, mit Streuung von mehreren Stunden zwischen Menschen (<a class="cite" href="#q-sletten">Sletten et al. 2010</a>).</figcaption>
+      <details class="tableview"><summary>Als Tabelle</summary><div class="table-wrap" id="hormone-table"></div></details>
+    </figure>
+
+    <div class="mech-grid">
+      <article class="mech glass" aria-labelledby="mech1">
+        <p class="mech-time">Mechanismus 1 · 07:00–09:00 Uhr</p>
+        <h3 id="mech1">Der Morgenlicht-<span class="o">Anker</span></h3>
+        <p>Spezielle Ganglienzellen der Netzhaut, die <strong>ipRGCs</strong>, enthalten das Lichtpigment Melanopsin. Sie messen Helligkeit und melden sie über den retinohypothalamischen Trakt direkt an den SCN. <span class="inline-ev"><span class="ev y"><i></i><i></i><i></i>Belegt</span></span> <span class="src">(<a href="#q-berson">Berson et al. 2002</a>)</span></p>
+
+        <div class="diagram-wrap">
+          <svg class="diagram-wide" viewBox="0 0 440 300" role="img" aria-label="Licht von oben fällt durch die Linse auf die untere Netzhaut. Die Melanopsin-Zellen dort melden Helligkeit an die Hauptuhr SCN, die die Melatonin-Ausschüttung der Zirbeldrüse bremst.">
+            <defs>
+              <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+              <marker id="arro" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e9661e"/></marker>
+            </defs>
+            <circle cx="46" cy="44" r="14" fill="#e9661e" fill-opacity="0.9"/>
+            <g stroke="#e9661e" stroke-width="2" stroke-linecap="round">
+              <line x1="46" y1="20" x2="46" y2="14"/><line x1="46" y1="68" x2="46" y2="74"/>
+              <line x1="22" y1="44" x2="16" y2="44"/><line x1="70" y1="44" x2="76" y2="44"/>
+              <line x1="29" y1="27" x2="25" y2="23"/><line x1="63" y1="61" x2="67" y2="65"/>
+              <line x1="63" y1="27" x2="67" y2="23"/><line x1="29" y1="61" x2="25" y2="65"/>
+            </g>
+            <text class="d-strong" x="88" y="34">Licht von oben</text>
+            <text class="d-small" x="88" y="50">Himmel oder Deckenlampe</text>
+            <circle cx="180" cy="150" r="72" fill="#121925" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M 112 122 Q 96 150 112 178" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <ellipse cx="124" cy="150" rx="8" ry="22" fill="#121925" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M 214 86 A 72 72 0 0 1 252 150" fill="none" stroke="#5e6f8c" stroke-width="5" stroke-linecap="round"/>
+            <path d="M 252 150 A 72 72 0 0 1 196 220" fill="none" stroke="#10a3c2" stroke-width="6" stroke-linecap="round"/>
+            <text class="d-small" x="222" y="76">obere Netzhaut</text>
+            <g stroke="#e9661e" stroke-width="1.6" fill="none">
+              <line x1="60" y1="66" x2="118" y2="136"/>
+              <line x1="70" y1="60" x2="122" y2="128"/>
+              <line x1="118" y1="136" x2="194" y2="211" marker-end="url(#arro)"/>
+              <line x1="122" y1="128" x2="207" y2="207" marker-end="url(#arro)"/>
+            </g>
+            <line x1="214" y1="216" x2="236" y2="244" stroke="currentColor" stroke-width="1"/>
+            <text class="d-strong" x="150" y="262">untere Netzhaut: ipRGCs</text>
+            <text class="d-small" x="150" y="278">Melanopsin misst Helligkeit</text>
+            <path d="M 252 150 L 300 150" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text class="d-small" x="258" y="142">Sehnerv</text>
+            <rect x="304" y="122" width="126" height="56" rx="10" fill="#121925" stroke="#10a3c2" stroke-width="1.5"/>
+            <text class="d-strong" x="367" y="146" text-anchor="middle">SCN</text>
+            <text class="d-small" x="367" y="164" text-anchor="middle">Hauptuhr im Gehirn</text>
+            <path d="M 367 180 L 367 222" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text class="d-small" x="374" y="204">„Es ist Tag“</text>
+            <rect x="304" y="226" width="126" height="56" rx="10" fill="#121925" stroke="currentColor" stroke-width="1.2"/>
+            <text class="d-strong" x="367" y="250" text-anchor="middle">Zirbeldrüse</text>
+            <text class="d-small" x="367" y="268" text-anchor="middle">Melatonin wird gebremst</text>
+          </svg>
+          <svg class="diagram-compact" viewBox="0 0 300 436" role="img" aria-label="Licht von oben fällt durch die Linse auf die untere Netzhaut. Die Melanopsin-Zellen dort melden Helligkeit an die Hauptuhr SCN, die die Melatonin-Ausschüttung der Zirbeldrüse bremst.">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+              <marker id="arro-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e9661e"/></marker>
+            </defs>
+            <circle cx="46" cy="44" r="14" fill="#e9661e" fill-opacity="0.9"/>
+            <g stroke="#e9661e" stroke-width="2" stroke-linecap="round">
+              <line x1="46" y1="20" x2="46" y2="14"/><line x1="46" y1="68" x2="46" y2="74"/>
+              <line x1="22" y1="44" x2="16" y2="44"/><line x1="70" y1="44" x2="76" y2="44"/>
+              <line x1="29" y1="27" x2="25" y2="23"/><line x1="63" y1="61" x2="67" y2="65"/>
+              <line x1="63" y1="27" x2="67" y2="23"/><line x1="29" y1="61" x2="25" y2="65"/>
+            </g>
+            <text class="d-strong" x="88" y="34">Licht von oben</text>
+            <text class="d-small" x="88" y="50">Himmel oder Deckenlampe</text>
+            <circle cx="180" cy="150" r="72" fill="#121925" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M 112 122 Q 96 150 112 178" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <ellipse cx="124" cy="150" rx="8" ry="22" fill="#121925" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M 214 86 A 72 72 0 0 1 252 150" fill="none" stroke="#5e6f8c" stroke-width="5" stroke-linecap="round"/>
+            <path d="M 252 150 A 72 72 0 0 1 196 220" fill="none" stroke="#10a3c2" stroke-width="6" stroke-linecap="round"/>
+            <text class="d-small" x="222" y="76">obere Netzhaut</text>
+            <g stroke="#e9661e" stroke-width="1.6" fill="none">
+              <line x1="60" y1="66" x2="118" y2="136"/>
+              <line x1="70" y1="60" x2="122" y2="128"/>
+              <line x1="118" y1="136" x2="194" y2="211" marker-end="url(#arro-c)"/>
+              <line x1="122" y1="128" x2="207" y2="207" marker-end="url(#arro-c)"/>
+            </g>
+            <line x1="200" y1="219" x2="186" y2="244" stroke="currentColor" stroke-width="1"/>
+            <text class="d-strong" x="190" y="260" text-anchor="end">untere Netzhaut: ipRGCs</text>
+            <text class="d-small" x="190" y="276" text-anchor="end">Melanopsin misst Helligkeit</text>
+            <path d="M 252 150 L 276 150 L 276 296" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr-c)"/>
+            <text class="d-small" x="258" y="142">Sehnerv</text>
+            <rect x="130" y="300" width="160" height="48" rx="10" fill="#121925" stroke="#10a3c2" stroke-width="1.5"/>
+            <text class="d-strong" x="210" y="320" text-anchor="middle">SCN</text>
+            <text class="d-small" x="210" y="337" text-anchor="middle">Hauptuhr im Gehirn</text>
+            <path d="M 210 348 L 210 376" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr-c)"/>
+            <text class="d-small" x="218" y="366">„Es ist Tag“</text>
+            <rect x="130" y="380" width="160" height="48" rx="10" fill="#121925" stroke="currentColor" stroke-width="1.2"/>
+            <text class="d-strong" x="210" y="400" text-anchor="middle">Zirbeldrüse</text>
+            <text class="d-small" x="210" y="417" text-anchor="middle">Melatonin wird gebremst</text>
+          </svg>
+        </div>
+
+        <div class="point">
+          <div class="item-head"><h4>Licht von oben zählt mehr</h4><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></div>
+          <p>Licht aus dem oberen Gesichtsfeld fällt auf die untere Netzhaut. Belichtung nur der unteren Hälfte drückte Melatonin deutlich, Belichtung nur der oberen Hälfte unterschied sich nicht von Dunkelheit.</p>
+          <p class="src"><a href="#q-glickman">Glickman et al. 2003</a>, n&nbsp;=&nbsp;9, 200&nbsp;lx</p>
+        </div>
+
+        <div class="point">
+          <div class="item-head"><h4>Cortisol am Morgen</h4><div class="ev-row"><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span><span class="ev d">Umstritten</span></div></div>
+          <p>Die Cortisol-Aufwachreaktion läuft auch im Dunkeln ab. Ob Morgenlicht sie verstärkt, ist uneinheitlich: Ein systematisches Review fand nach hellem Licht spät nachts oder früh morgens eher höhere Werte. 6,7&nbsp;Std. mit rund 10.000&nbsp;lx senkten Cortisol dagegen.</p>
+          <p class="src"><a href="#q-robertson">Robertson-Dixon et al. 2023</a>, 12&nbsp;Studien, n&nbsp;=&nbsp;337 · <a href="#q-jung">Jung et al. 2010</a>, n&nbsp;=&nbsp;20</p>
+        </div>
+
+        <div class="point">
+          <div class="item-head"><h4>Tageslicht im Alltag</h4><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></div>
+          <p>In der UK Biobank ging jede zusätzliche Stunde draußen mit weniger Insomnie-Symptomen und leichterem Aufwachen einher. Lichtsensor-Daten von 88.905 Personen: Das hellste Zehntel am Tag hatte ein um 17–34&nbsp;% geringeres Sterberisiko als die dunklere Hälfte, helle Nächte gingen mit 21–34&nbsp;% höherem Risiko einher. Beobachtungsdaten, keine Kausalität.</p>
+          <p class="src"><a href="#q-burns">Burns et al. 2021</a>, Selbstauskunft · <a href="#q-windred-light">Windred et al. 2024</a>, PNAS, Kohorte</p>
+        </div>
+
+        <div class="protocol">
+          <p class="protocol-title">Protokoll · Morgen</p>
+          <ul>
+            <li>Direkt nach dem Aufstehen 10–30&nbsp;Min. nach draußen, bei Bewölkung eher länger.</li>
+            <li>Ohne Sonnenbrille, aber nie direkt in die Sonne schauen.</li>
+            <li>Am Fenster drinnen kommt nur ein Bruchteil an (siehe Lux-Skala unten).</li>
+          </ul>
+          <p class="src">Belegt ist die Richtung, nicht die Mindestdosis: Nach einem Camping-Wochenende kam der Melatonin-Anstieg 1,4&nbsp;Std. früher (<a href="#q-stothard">Stothard 2017</a>), nach einer Woche rund 2&nbsp;Std. (<a href="#q-wright">Wright 2013</a>). Büroangestellte mit viel Morgenlicht schliefen schneller ein (<a href="#q-figueiro">Figueiro 2017</a>, n&nbsp;=&nbsp;109, Beobachtung). Schon 12&nbsp;Min. helles Licht verstellten im Labor die Uhr (<a href="#q-chang2012">Chang 2012</a>). Exakt 10–15&nbsp;Min. als Alltagsdosis ist nicht untersucht.</p>
+          <div class="ev-row"><span class="ev y"><i></i><i></i><i></i>Belegt</span><span class="src">Richtung</span><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span><span class="src">Dosis</span></div>
+        </div>
+      </article>
+
+      <article class="mech glass" aria-labelledby="mech2">
+        <p class="mech-time">Mechanismus 2 · ab 2–3&nbsp;Std. vor dem Schlaf</p>
+        <h3 id="mech2">Die Abend-<span class="c">Abschaltung</span></h3>
+        <p>Fällt abends helles Licht von oben ins Auge, melden die Melanopsin-Zellen: Es ist noch Tag. Die Zirbeldrüse hält Melatonin zurück. Schon gewöhnliches Raumlicht reicht dafür. <span class="inline-ev"><span class="ev y"><i></i><i></i><i></i>Belegt</span></span></p>
+
+        <div class="point">
+          <div class="item-head"><h4>Raumlicht vor dem Schlafen</h4><span class="ev y"><i></i><i></i><i></i>Belegt</span></div>
+          <p>Raumlicht unter 200&nbsp;lx in den 8&nbsp;Std. vor dem Schlafen ließ den Melatonin-Anstieg bei <strong>99&nbsp;%</strong> der Teilnehmenden später beginnen und verkürzte die Melatonin-Phase um rund <strong>90&nbsp;Min.</strong> Raumlicht während der üblichen Schlafenszeit drückte Melatonin in 85&nbsp;% der Durchgänge um mehr als 50&nbsp;%.</p>
+          <p class="src"><a href="#q-gooley">Gooley et al. 2011</a>, n&nbsp;=&nbsp;116, Vergleich mit &lt; 3&nbsp;lx</p>
+        </div>
+        <div class="point">
+          <div class="item-head"><h4>Die Schwelle ist niedrig</h4><span class="ev y"><i></i><i></i><i></i>Belegt</span></div>
+          <p>Die halbe Melatonin-Unterdrückung trat im Mittel schon bei rund <strong>25&nbsp;lx</strong> auf. Zwischen Menschen lag die Empfindlichkeit über 50-fach auseinander (6–350&nbsp;lx).</p>
+          <p class="src"><a href="#q-phillips">Phillips et al. 2019</a>, n&nbsp;=&nbsp;55, 10–2.000&nbsp;lx über 5&nbsp;Std.</p>
+        </div>
+        <div class="point">
+          <div class="item-head"><h4>Echte Wohnungen</h4><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></div>
+          <p>In knapp der Hälfte der untersuchten Haushalte war das Abendlicht hell genug für 50&nbsp;% Melatonin-Unterdrückung. Haushalte mit LED-Sparlampen hatten fast doppelt so viel melanopisch wirksames Licht wie solche mit Glühlampen.</p>
+          <p class="src"><a href="#q-cain">Cain et al. 2020</a>, Sci Rep</p>
+        </div>
+
+        <div class="protocol cy">
+          <p class="protocol-title">Protokoll · Abend</p>
+          <ul>
+            <li>Ab 2–3&nbsp;Std. vor dem Schlafen Deckenlichter komplett aus.</li>
+            <li>Nur warmes, gedimmtes Licht auf oder unter Augenhöhe: Tisch-, Boden- oder Leselampe.</li>
+            <li>Zielwert: höchstens 10&nbsp;lx melanopisch am Auge, im Schlafzimmer nachts höchstens 1&nbsp;lx.</li>
+          </ul>
+          <p class="src">Zielwerte aus dem Experten-Konsens von <a href="#q-brown">Brown et al. 2022</a>, der den Abend ab 3&nbsp;Std. vor dem Schlaf ansetzt. Warmweißes LED-Licht (2700&nbsp;K) wirkt pro Lux etwa 0,4–0,5-fach melanopisch (<a href="#q-zumtobel">Herstellerdaten</a>); 10&nbsp;lx melanopisch entsprechen damit grob 20–25&nbsp;lx einer warmweißen Lampe.</p>
+          <div class="ev-row"><span class="ev y"><i></i><i></i><i></i>Belegt</span><span class="src">Mechanismus · Konsens-Empfehlung</span></div>
+        </div>
+      </article>
+    </div>
+
+    <figure class="figure glass" id="fig-lux" style="margin-top:18px">
+      <div class="fig-head">
+        <div>
+          <p class="fig-kicker">Grafik 3 · Netzhaut-Lux-Vergleich</p>
+          <h3 class="fig-title">Was deine Netzhaut misst: der Lux-Schock</h3>
+        </div>
+      </div>
+      <div class="chart" id="lux-chart"></div>
+      <figcaption><strong>Logarithmische Skala:</strong> Jeder Teilstrich ist ein Faktor 10. Ein bewölkter Tag liefert ein Vielfaches (Faktor ~5–200) eines abendlichen Wohnzimmers; für die innere Uhr ist es drinnen eher Dämmerung. Richtwerte nach <a class="cite" href="#q-wiki-lux">Lux-Referenztabelle</a>, <a class="cite" href="#q-heath">Heath 2014</a>, <a class="cite" href="#q-bauducco">Bauducco 2024</a> und <a class="cite" href="#q-brown">Brown 2022</a>. Reale Werte schwanken stark mit Tageszeit, Wetter und Blickrichtung.</figcaption>
+    </figure>
+
+    <div class="callout-row">
+      <div class="fc glass">
+        <div class="ev-row"><span class="ev n"><i class="x" aria-hidden="true">✕</i>Nicht bestätigt</span><span class="src">für normale Fenster</span></div>
+        <p class="fc-quote">„Fensterglas schluckt 50–80&nbsp;% der relevanten Photonen.“</p>
+        <p>Moderne Zweifach-Wärmeschutzverglasung lässt etwa 75–80&nbsp;% des sichtbaren Lichts durch, Dreifachverglasung gut 70&nbsp;% (<a class="cite" href="#q-glas">Baunetz Wissen</a>). Werte um 50&nbsp;% und darunter erreichen vor allem Sonnenschutz- und getönte Gläser.</p>
+      </div>
+      <div class="fc glass">
+        <div class="ev-row"><span class="ev y"><i></i><i></i><i></i>Belegt</span><span class="src">Bauphysik</span></div>
+        <p class="fc-quote">Der große Verlust ist der Raum, nicht das Glas.</p>
+        <p>Drinnen siehst du nur einen kleinen Ausschnitt des Himmels. Die Tageslichtnorm EN 17037 wertet einen Raum schon als ausreichend hell, wenn er rund 300&nbsp;lx erreicht, bei typisch ~15.000&nbsp;lx draußen also etwa 2&nbsp;% des Außenlichts (<a class="cite" href="#q-en17037">EN 17037</a>). Ein paar Meter vom Fenster entfernt ist es oft noch weniger.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== KAPITEL 03 ===================== -->
+<section class="chapter" id="k3" aria-labelledby="k3-title">
+  <div class="wrap">
+    <header class="ch-head">
+      <div class="ch-num" aria-hidden="true">03</div>
+      <div>
+        <p class="eyebrow">Kapitel 03 · Faktencheck</p>
+        <h2 id="k3-title">Der Blaulicht-Irrtum: <span class="o">Warum Brillen &amp; Night-Shift nicht reichen</span></h2>
+      </div>
+    </header>
+
+    <div class="chapter-intro">
+      <p class="lead">Licht wirkt auf die innere Uhr wie eine Dosis: <strong>Helligkeit am Auge × Dauer × Spektrum</strong>. Ein Farbfilter dreht nur am letzten Regler. Wer abends unter der Deckenlampe sitzt, bekommt eine viel größere Dosis als vom Handy.</p>
+    </div>
+
+    <div class="two">
+      <article class="myth glass is-false" aria-labelledby="myth1">
+        <div class="ev-row"><span class="ev n"><i class="x" aria-hidden="true">✕</i>Nicht bestätigt</span><span class="src">kaum Effekt auf den Schlaf</span></div>
+        <h3 class="myth-claim" id="myth1">„Der Smartphone-Blaulichtfilter (Night Shift) rettet deinen Schlaf.“</h3>
+        <h4>Die Studienlage</h4>
+        <ul class="evlist">
+          <li><strong>Feld-RCT, 167 junge Erwachsene, 7&nbsp;Nächte:</strong> keine Unterschiede im Schlaf zwischen Night Shift an, Night Shift aus und gar keinem Handy in der Stunde vor dem Schlaf. Gemessen per Handgelenk-Aktigraphie, nicht im Schlaflabor. <span class="src">(<a href="#q-duraccio">Duraccio et al. 2021</a>)</span></li>
+          <li><strong>Labor, n&nbsp;=&nbsp;12:</strong> Night Shift drückte Melatonin weniger als ein heller Blaulicht-Modus, aber mehr als die Dunkel-Kontrolle. Die Stärke der Farbverschiebung machte keinen Unterschied. Farbe ändern ohne Helligkeit zu senken reicht also nicht. <span class="src">(<a href="#q-nagare">Nagare et al. 2019</a>)</span></li>
+          <li><strong>Übersicht über 11 Experimente:</strong> Bildschirmlicht verzögerte das Einschlafen um höchstens rund 10&nbsp;Min. Selbst die hellsten Displays erreichten am Auge nicht mehr als ~80&nbsp;lx. <span class="src">(<a href="#q-bauducco">Bauducco et al. 2024</a>, theoretisches Review; Zahlen laut Begleitmaterial der Autoren)</span></li>
+          <li><strong>Brillen:</strong> Cochrane-Review mit 17&nbsp;RCTs: Ob Blaulichtfilter-Gläser den Schlaf verbessern, ist unklar. Die Studien waren klein und kurz. <span class="src">(<a href="#q-cochrane">Singh et al. 2023</a>)</span></li>
+        </ul>
+        <div class="counter">
+          <div class="ev-row"><span class="src">Gegenevidenz · das Spektrum ist nicht egal</span></div>
+          <ul class="evlist">
+            <li>4&nbsp;Std. Lesen am hellen iPad an 5 Abenden: rund 10&nbsp;Min. längere Einschlafzeit, weniger REM, Melatonin gedrückt, innere Uhr später. <span class="src">(<a href="#q-chang2015">Chang et al. 2015</a>, n&nbsp;=&nbsp;12)</span></li>
+            <li>Bei gleicher Display-Helligkeit wirkte Licht mit weniger melanopischem Anteil schwächer auf Einschlafzeit und Melatonin. <span class="src">(<a href="#q-schoellhorn">Schöllhorn et al. 2023</a>, n&nbsp;=&nbsp;72&nbsp;Männer)</span></li>
+            <li>Maus: Bei gleicher Melanopsin-Aktivierung wirkten „blaue“ Farbtöne sogar schwächer auf die Uhr als „gelbe“. Beim Menschen nicht bestätigt. <span class="ev h"><i></i><i class="o"></i><i class="o"></i>Hypothese</span> <span class="src">(<a href="#q-mouland">Mouland et al. 2019</a>)</span></li>
+          </ul>
+        </div>
+        <h4>Warum der Filter so wenig bringt</h4>
+        <ul class="evlist">
+          <li><strong>Dosis:</strong> Ein Handy liefert wenige bis ~80&nbsp;lx aus 30 cm Abstand. Eine Deckenlampe beleuchtet dich stundenlang aus dem ganzen Raum und von oben.</li>
+          <li><strong>Aktivierung:</strong> Am Handy hält vor allem der Inhalt wach: Nachrichten, Feeds, das „nur noch kurz“. Schlafzeit wird verdrängt. <span class="src">(<a href="#q-bauducco">Bauducco 2024</a>)</span> Dass dabei speziell Dopamin den Schlaf blockiert, ist eine populäre Erklärung, beim Menschen aber nicht direkt gemessen. <span class="ev h"><i></i><i class="o"></i><i class="o"></i>Hypothese</span></li>
+        </ul>
+      </article>
+
+      <article class="myth glass is-true" aria-labelledby="myth2">
+        <div class="ev-row"><span class="ev y"><i></i><i></i><i></i>Belegt</span></div>
+        <h3 class="myth-claim" id="myth2">„Helle Zimmerlampen &amp; Deckenlicht sind der wahre Melatonin-Killer.“</h3>
+        <h4>Die Studienlage</h4>
+        <ul class="evlist">
+          <li><strong>Raumlicht &lt; 200&nbsp;lx in den 8&nbsp;Std. vor dem Schlafen:</strong> Melatonin-Anstieg bei 99&nbsp;% später, Melatonin-Phase rund 90&nbsp;Min. kürzer. Raumlicht während der üblichen Schlafenszeit: Melatonin in 85&nbsp;% der Durchgänge um mehr als 50&nbsp;% gedrückt. <span class="src">(<a href="#q-gooley">Gooley et al. 2011</a>, n&nbsp;=&nbsp;116)</span></li>
+          <li><strong>Halbe Wirkung schon bei ~25&nbsp;lx</strong>, mit über 50-fachen Unterschieden zwischen Menschen. <span class="src">(<a href="#q-phillips">Phillips et al. 2019</a>, n&nbsp;=&nbsp;55)</span></li>
+          <li><strong>Zuhause gemessen:</strong> In knapp der Hälfte der Haushalte reichte das Abendlicht für 50&nbsp;% Unterdrückung. Mehr Abendlicht als üblich ging mit mehr Wachzeit nach dem Zubettgehen einher. <span class="src">(<a href="#q-cain">Cain et al. 2020</a>)</span></li>
+        </ul>
+        <div class="counter">
+          <div class="ev-row"><span class="src">Genau gelesen</span></div>
+          <ul class="evlist">
+            <li>Gooley 2011 misst eine um 90&nbsp;Min. <strong>kürzere Melatonin-Phase</strong>, keine reine Verschiebung um 90&nbsp;Min. Die „über 50&nbsp;%“ betreffen Licht <strong>während der üblichen Schlafenszeit</strong>, nicht die Stunden vor dem Einschlafen.</li>
+            <li>Gemessen wurde Melatonin. Wie stark sich das auf Einschlafzeit und Schlafqualität überträgt, ist im Alltag weniger klar belegt.</li>
+          </ul>
+        </div>
+        <h4>Die Wahrheit für die Praxis</h4>
+        <p class="truth">Wer abends mit Blaulichtfilter am Handy unter einer 200-lx-Deckenlampe sitzt oder vor dem hellen Badspiegel steht, optimiert am falschen Regler. <strong>Entscheidend ist nicht der Farbfilter am Handy, sondern das Ausschalten der Zimmer- und Deckenbeleuchtung.</strong> Klare „Blaulicht“-Gläser filtern nur einen Teil des Spektrums, ihr Nutzen für den Schlaf ist unbelegt. Der größte Hebel kostet nichts: dimmen und Deckenlampen aus.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== KAPITEL 04 ===================== -->
+<section class="chapter" id="k4" aria-labelledby="k4-title">
+  <div class="wrap">
+    <header class="ch-head">
+      <div class="ch-num" aria-hidden="true">04</div>
+      <div>
+        <p class="eyebrow">Kapitel 04 · Das Komplett-Protokoll</p>
+        <h2 id="k4-title">Die 3 Co-Faktoren für <span class="o">10/10 Schlafqualität</span></h2>
+      </div>
+    </header>
+
+    <div class="three">
+      <article class="action glass" aria-labelledby="act1">
+        <div class="action-top"><h3 id="act1">Thermo&shy;regulation</h3><span class="action-num" aria-hidden="true">1</span></div>
+        <p class="action-stat">40–42,5&nbsp;°C<small>Dusche/Bad</small></p>
+        <ul class="items">
+          <li>
+            <div class="item-head"><h4>Wärme muss raus</h4><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></div>
+            <p>Einschlafen fällt in die Phase, in der die Kerntemperatur abends sinkt. Der Schlaf selbst senkt sie zusätzlich um rund 0,3&nbsp;°C. Bester Prädiktor für schnelles Einschlafen: warme Hände und Füße, also Wärmeabgabe über die Haut.</p>
+            <p class="correction">Eine feste „−1&nbsp;°C-Schwelle“ fürs Einschlafen ist nicht belegt.</p>
+            <p class="src"><a href="#q-barrett">Barrett et al. 1993</a> · <a href="#q-kraeuchi">Kräuchi et al. 1999</a>, Nature</p>
+          </li>
+          <li>
+            <div class="item-head"><h4>Warme Dusche am Abend</h4><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></div>
+            <p>Wasser mit 40–42,5&nbsp;°C, 1–2&nbsp;Std. vor dem Schlafen, schon ab rund 10&nbsp;Min.: kürzere Einschlafzeit, bessere Schlafqualität und Schlafeffizienz.</p>
+            <p class="src"><a href="#q-haghayegh">Haghayegh et al. 2019</a>, Meta-Analyse, 13&nbsp;Studien quantitativ</p>
+          </li>
+          <li>
+            <div class="item-head"><h4>Kühles Schlafzimmer</h4><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></div>
+            <p>Hitze bringt mehr Wachphasen und weniger Tief- und REM-Schlaf. In Wearable-Daten von über 47.000 Menschen kosteten Nächte über 30&nbsp;°C rund 14&nbsp;Min. Schlaf. Die verbreitete Spanne 16–18&nbsp;°C ist eine Faustregel, direkt getestet ist sie kaum. Ältere schliefen bei 20–25&nbsp;°C am effizientesten.</p>
+            <p class="src"><a href="#q-okamoto">Okamoto-Mizuno 2012</a>, Review · <a href="#q-minor">Minor et al. 2022</a> · <a href="#q-baniassadi">Baniassadi et al. 2023</a>, n&nbsp;=&nbsp;50</p>
+          </li>
+        </ul>
+        <div class="protocol">
+          <p class="protocol-title">Protokoll</p>
+          <ul>
+            <li>Schlafzimmer kühl, etwa 16–20&nbsp;°C, Decke nach Gefühl.</li>
+            <li>Warme Dusche oder Bad 1–2&nbsp;Std. vor dem Schlafen.</li>
+            <li>Hitze über 25&nbsp;°C im Schlafzimmer vermeiden.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="action glass" aria-labelledby="act2">
+        <div class="action-top"><h3 id="act2">Die 3-Stunden-Essensbremse</h3><span class="action-num" aria-hidden="true">2</span></div>
+        <p class="action-stat">≥ 3&nbsp;Std.<small>zwischen Essen und Bett</small></p>
+        <ul class="items">
+          <li>
+            <div class="item-head"><h4>Reflux-Schutz</h4><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></div>
+            <p>Lagen weniger als 3&nbsp;Std. zwischen Abendessen und Bett, war die Chance auf eine Refluxkrankheit 7,45-fach erhöht (Odds Ratio) im Vergleich zu mindestens 4&nbsp;Std.</p>
+            <p class="src"><a href="#q-fujiwara">Fujiwara et al. 2005</a>, Fall-Kontroll-Studie, 147&nbsp;vs. 294</p>
+          </li>
+          <li>
+            <div class="item-head"><h4>Tiefschlaf &amp; Schlafstadien</h4><div class="ev-row"><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span><span class="ev d">Umstritten</span></div></div>
+            <p>Abendessen 1&nbsp;Std. statt 5&nbsp;Std. vor dem Schlafen änderte die Schlafstadien nicht; am Nachtbeginn zeigte sich sogar etwas mehr Delta-Aktivität. Eine kohlenhydratreiche Mahlzeit 4&nbsp;Std. vor dem Bett verkürzte die Einschlafzeit stärker als dieselbe Mahlzeit 1&nbsp;Std. vorher (9,0&nbsp;vs. 14,6&nbsp;Min.).</p>
+            <p class="src"><a href="#q-duan">Duan et al. 2021</a>, Crossover, n&nbsp;=&nbsp;20 · <a href="#q-afaghi">Afaghi et al. 2007</a>, n&nbsp;=&nbsp;12 · Lage insgesamt dünn: <a href="#q-saidi">Saidi et al. 2024</a>, Scoping-Review</p>
+          </li>
+          <li>
+            <div class="item-head"><h4>Nachtpuls +5–10 · HGH-Bremse</h4><span class="ev h"><i></i><i class="o"></i><i class="o"></i>Hypothese</span></div>
+            <p class="correction">Für einen um 5–10 Schläge/Min. erhöhten Nachtpuls und eine gebremste GH-Ausschüttung durch spätes Essen haben wir keine belastbare Humanstudie gefunden.</p>
+          </li>
+          <li>
+            <div class="item-head"><h4>Protein-Snack ist okay</h4><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></div>
+            <p>Rund 28 g Protein vor dem Schlafen plus Krafttraining brachten nach 12&nbsp;Wochen mehr Quadrizeps-Zuwachs (8,4&nbsp;vs. 4,8&nbsp;cm²). Die Gesamt-Proteinmenge war allerdings höher als in der Kontrollgruppe.</p>
+            <p class="src"><a href="#q-snijders">Snijders et al. 2015</a>, RCT, n&nbsp;=&nbsp;44</p>
+          </li>
+        </ul>
+        <div class="protocol">
+          <p class="protocol-title">Protokoll</p>
+          <ul>
+            <li>Große, fettreiche Mahlzeit mindestens 3&nbsp;Std. vor dem Schlafen.</li>
+            <li>Kleiner Protein-Snack (z.&nbsp;B. Quark) danach ist unproblematisch.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="action glass" aria-labelledby="act3">
+        <div class="action-top"><h3 id="act3">Konstante Aufstehzeit</h3><span class="action-num" aria-hidden="true">3</span></div>
+        <p class="action-stat">±30&nbsp;Min.<small>auch am Wochenende</small></p>
+        <ul class="items">
+          <li>
+            <div class="item-head"><h4>Der Anker der Uhr</h4><span class="ev y"><i></i><i></i><i></i>Belegt</span></div>
+            <p>Aufstehen plus Morgenlicht ist das stärkste tägliche Zeitsignal für die innere Uhr. Wer am Wochenende später aufsteht, bekommt das Licht später und verschiebt die Uhr nach hinten.</p>
+            <p class="src"><a href="#q-czeisler">Czeisler et al. 1999</a> · <a href="#q-stothard">Stothard et al. 2017</a></p>
+          </li>
+          <li>
+            <div class="item-head"><h4>Regelmäßigkeit &amp; Sterblichkeit</h4><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></div>
+            <p>Schlafregelmäßigkeit sagte die Sterblichkeit besser voraus als die Schlafdauer: Die vier regelmäßigeren Fünftel hatten ein 20–48&nbsp;% geringeres Sterberisiko als das unregelmäßigste. Beobachtungsdaten, keine Kausalität.</p>
+            <p class="src"><a href="#q-windred-sleep">Windred et al. 2024</a>, UK Biobank, n&nbsp;=&nbsp;60.977, Accelerometer</p>
+          </li>
+          <li>
+            <div class="item-head"><h4>Social Jetlag</h4><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></div>
+            <p>Die Verschiebung der Schlafmitte zwischen Arbeits- und freien Tagen war mit höherem BMI verbunden (Querschnittsdaten).</p>
+            <p class="src"><a href="#q-roenneberg">Roenneberg et al. 2012</a></p>
+          </li>
+        </ul>
+        <div class="protocol">
+          <p class="protocol-title">Protokoll</p>
+          <ul>
+            <li>Wecker täglich zur gleichen Zeit, auch Samstag und Sonntag.</li>
+            <li>±30&nbsp;Min. ist eine praktikable Faustregel, kein in Studien ermittelter Grenzwert.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== KAPITEL 05 · SIMULATOR ===================== -->
+<section class="chapter" id="k5" aria-labelledby="k5-title">
+  <div class="wrap">
+    <header class="ch-head">
+      <div class="ch-num" aria-hidden="true">05</div>
+      <div>
+        <p class="eyebrow">Kapitel 05 · Interaktives Tool</p>
+        <h2 id="k5-title">Zirkadianer Licht- &amp; <span class="o">Regenerations-Simulator</span></h2>
+      </div>
+    </header>
+    <div class="chapter-intro">
+      <p class="lead">Stell deinen Tag ein und sieh live, was sich verschiebt. Das Modell rechnet mit den Studien-Ankern aus diesem Modul und mit offen markierten Annahmen. <strong>Es ist ein Lernmodell, keine individuelle Vorhersage.</strong> Aufstehen ist fix um 07:00.</p>
+    </div>
+
+    <div class="sim glass">
+      <div class="sim-top">
+        <div class="presets" role="group" aria-label="Beispiel-Szenarien">
+          <span>Beispiel laden</span>
+          <button class="btn" type="button" data-preset="workday">Typischer Arbeitstag</button>
+          <button class="btn" type="button" data-preset="protocol">Protokoll umgesetzt</button>
+          <button class="btn" type="button" data-preset="short">Kurze Nacht</button>
+        </div>
+        <p class="ref-note">Referenz für alle Vergleiche: 8&nbsp;Std. Bettzeit · Morgenlicht · gedimmtes Abendlicht · Essen 3+ Std. vorher</p>
+      </div>
+
+      <div class="sim-grid">
+        <form class="sim-controls" id="sim-form" novalidate>
+          <fieldset class="ctrl">
+            <legend>Morgenlicht im Freien</legend>
+            <div class="seg" role="radiogroup" aria-label="Morgenlicht im Freien, 10–15 Minuten nach dem Aufstehen">
+              <input type="radio" name="morning" id="sim-morning-yes" value="yes"><label for="sim-morning-yes">Ja</label>
+              <input type="radio" name="morning" id="sim-morning-no" value="no" checked><label for="sim-morning-no">Nein</label>
+            </div>
+            <p class="ctrl-help">10–15&nbsp;Min. draußen direkt nach dem Aufstehen.</p>
+          </fieldset>
+
+          <fieldset class="ctrl">
+            <legend>Abend-Beleuchtung ab 20:30 Uhr</legend>
+            <div class="opts">
+              <input type="radio" name="evening" id="sim-ev-bright" value="bright" checked>
+              <label for="sim-ev-bright"><b>Helles Deckenlicht / Badspiegel</b><span>~200&nbsp;lx von oben</span></label>
+              <input type="radio" name="evening" id="sim-ev-phone" value="phone">
+              <label for="sim-ev-phone"><b>Nur Handy im Dunkeln</b><span>mit Night Shift</span></label>
+              <input type="radio" name="evening" id="sim-ev-dim" value="dim">
+              <label for="sim-ev-dim"><b>Deckenlicht aus + Bodenlicht</b><span>gedimmt, unter 15&nbsp;lx</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="ctrl">
+            <legend>Schlafdauer (Zeit im Bett)</legend>
+            <div class="range-row">
+              <output class="range-val" id="sim-tib-out" for="sim-tib">6,5<small>Std.</small></output>
+              <span class="range-sub" id="sim-tib-sub">Bett 00:30 → 07:00</span>
+            </div>
+            <input type="range" id="sim-tib" name="tib" min="5" max="9" step="0.25" value="6.5" aria-describedby="sim-tib-sub">
+            <div class="range-scale" aria-hidden="true"><span>5,0</span><span>6,0</span><span>7,0</span><span>8,0</span><span>9,0</span></div>
+          </fieldset>
+
+          <fieldset class="ctrl">
+            <legend>Letzte große Mahlzeit vor dem Schlaf</legend>
+            <div class="seg" role="radiogroup" aria-label="Letzte große Mahlzeit vor dem Schlaf">
+              <input type="radio" name="meal" id="sim-meal-late" value="late" checked><label for="sim-meal-late">&lt; 1&nbsp;Std.</label>
+              <input type="radio" name="meal" id="sim-meal-early" value="early"><label for="sim-meal-early">3+ Std.</label>
+            </div>
+          </fieldset>
+        </form>
+
+        <div class="sim-out">
+          <div class="sim-chart-box">
+            <div class="legend" aria-hidden="true">
+              <span><i class="key-line k-mel"></i>Melatonin · dein Szenario</span>
+              <span><i class="key-line k-ref"></i>Referenz</span>
+              <span><i class="key k-n3"></i>Tiefschlaf</span>
+              <span><i class="key k-rem"></i>REM</span>
+              <span><i class="key k-light" style="background:var(--orange-mark);opacity:.55"></i>Licht</span>
+            </div>
+            <div class="chart" id="sim-chart"></div>
+          </div>
+
+          <div class="chips" id="sim-chips" style="margin-top:0"></div>
+
+          <div class="kpis">
+            <div class="kpi" id="kpi-mel">
+              <div class="kpi-head"><p class="kpi-label">Melatonin-Start</p><span class="delta" data-delta></span></div>
+              <p class="kpi-value" data-value>--:--</p>
+              <p class="kpi-note">Zeitpunkt, an dem Melatonin 20&nbsp;% des Referenz-Gipfels erreicht. Helles Deckenlicht allein verschiebt ihn um rund 90&nbsp;Min.</p>
+            </div>
+            <div class="kpi" id="kpi-ana">
+              <div class="kpi-head"><p class="kpi-label">Anaboles Potenzial</p><span class="delta" data-delta></span></div>
+              <p class="kpi-value" data-value>--<small>%</small></p>
+              <div class="meter ref-mark" data-meter style="--ref:100%"><span></span></div>
+              <dl class="comp" data-comp></dl>
+              <p class="kpi-note">Modell-Index aus GH-Puls (Tiefschlaf), Testosteron-Erhalt und Muskelproteinsynthese. 100&nbsp;% = genug Schlaf.</p>
+            </div>
+            <div class="kpi" id="kpi-part">
+              <div class="kpi-head"><p class="kpi-label">Diät-Partitioning</p><span class="delta" data-delta></span></div>
+              <p class="kpi-value" data-value>--<small>% Fett</small></p>
+              <div class="split" data-split><span class="fat"></span><span class="ffm"></span></div>
+              <div class="split-legend"><span>Fett</span><span>fettfreie Masse</span></div>
+              <p class="kpi-note" data-verdict></p>
+            </div>
+            <div class="kpi" id="kpi-sws">
+              <div class="kpi-head"><p class="kpi-label">Tiefschlaf-Ausbeute</p><span class="delta" data-delta></span></div>
+              <p class="kpi-value" data-value>--<small>Min.</small></p>
+              <div class="sleep-lines" data-lines></div>
+              <p class="kpi-note">Tiefschlaf ist robust, weil der Körper ihn zuerst holt. Kurze Nächte kosten vor allem REM.</p>
+            </div>
+          </div>
+
+          <p class="insight" id="sim-insight" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="sim-live" id="sim-live" hidden aria-hidden="true">
+        <div><span>Melatonin</span><strong data-live="mel">--:--</strong></div>
+        <div><span>Anabol</span><strong data-live="ana">--</strong></div>
+        <div><span>Fettanteil</span><strong data-live="fat">--</strong></div>
+        <div><span>Tief / REM</span><strong data-live="sleep">--</strong></div>
+      </div>
+
+      <details class="method" id="sim-method">
+        <summary>So rechnet der Simulator</summary>
+        <div class="method-body">
+          <p>Jede Eingabe wirkt über einen offen benannten Anker. Wo keine Studie eine Zahl liefert, steht <strong>Annahme</strong>. Das Modell gilt für eine junge, gesunde Person. Mehrere Abende hintereinander mit hellem Licht würden die Uhr zusätzlich verschieben (<a class="cite" href="#q-chang2015">Chang 2015</a>); das bildet der Simulator nicht ab.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Eingabe</th><th>Wirkung im Modell</th><th>Anker</th><th>Evidenz</th></tr></thead>
+              <tbody>
+                <tr><td>Schlafdauer</td><td>Zyklen à 90–95&nbsp;Min. ab dem Einschlafen; Tiefschlaf in den ersten Zyklen, REM wächst zum Morgen und hat einen circadianen Gipfel gegen 05:30</td><td><a class="cite" href="#q-carskadon">Carskadon &amp; Dement</a>, <a class="cite" href="#q-dijk">Dijk 1995</a>, <a class="cite" href="#q-vandongen">Van Dongen 2003</a></td><td><span class="ev y"><i></i><i></i><i></i>Belegt</span></td></tr>
+                <tr><td>Schlafdauer → Fettanteil</td><td>Linear zwischen 5,5&nbsp;Std. (20&nbsp;%) und 8,5&nbsp;Std. (48&nbsp;%), außerhalb konstant. Die Anteile sind aus den Absolutwerten der Studie berechnet (Fett 0,6 bzw. 1,4&nbsp;kg, fettfreie Masse 2,4 bzw. 1,5&nbsp;kg).</td><td><a class="cite" href="#q-nedeltcheva">Nedeltcheva 2010</a>, n&nbsp;=&nbsp;10</td><td><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></td></tr>
+                <tr><td>Schlaf → Testosteron</td><td>Linear bis −12,5&nbsp;% bei 4,8&nbsp;Std. Schlaf, kein Effekt ab 8&nbsp;Std.</td><td><a class="cite" href="#q-leproult">Leproult 2011</a>; Gegenevidenz <a class="cite" href="#q-smith">Smith 2019</a>, <a class="cite" href="#q-su">Su 2021</a></td><td><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span> <span class="ev d">Umstritten</span></td></tr>
+                <tr><td>Schlaf → Proteinsynthese</td><td>Linear bis −19&nbsp;% bei 3,8&nbsp;Std. Schlaf, kein Effekt ab 7,4&nbsp;Std.</td><td><a class="cite" href="#q-saner">Saner 2020</a>, n&nbsp;=&nbsp;24</td><td><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></td></tr>
+                <tr><td>Tiefschlaf → GH-Puls</td><td>Proportional zu den Tiefschlaf-Minuten (Referenz 80&nbsp;Min.)</td><td><a class="cite" href="#q-vc1998">Van Cauter 1998</a></td><td><span class="ev y"><i></i><i></i><i></i>Belegt</span> Muster · <span class="ev h"><i></i><i class="o"></i><i class="o"></i>Hypothese</span> Muskel</td></tr>
+                <tr><td>Abendlicht</td><td>Melatonin-Unterdrückung, solange das Licht an ist: Deckenlicht 68&nbsp;% (so gewählt, dass der Anstieg ~90&nbsp;Min. später kommt als in der Referenz), Handy 30&nbsp;%, gedimmt 10&nbsp;%. Einschlafzeit +10 / +10 / ±0&nbsp;Min.</td><td><a class="cite" href="#q-gooley">Gooley 2011</a>, <a class="cite" href="#q-chang2015">Chang 2015</a>, <a class="cite" href="#q-bauducco">Bauducco 2024</a>; Handy- und Dimm-Werte: Annahme</td><td><span class="ev y"><i></i><i></i><i></i>Belegt</span> Richtung</td></tr>
+                <tr><td>Morgenlicht</td><td>Nein: Melatonin-Anstieg +20&nbsp;Min., Einschlafzeit +5&nbsp;Min.</td><td>Annahme; Richtung: <a class="cite" href="#q-wright">Wright 2013</a>, <a class="cite" href="#q-stothard">Stothard 2017</a>, <a class="cite" href="#q-figueiro">Figueiro 2017</a></td><td><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></td></tr>
+                <tr><td>Mahlzeit &lt; 1&nbsp;Std.</td><td>Einschlafzeit +5&nbsp;Min.; keine Wirkung auf Tiefschlaf oder GH; Reflux-Hinweis</td><td><a class="cite" href="#q-afaghi">Afaghi 2007</a>, <a class="cite" href="#q-duan">Duan 2021</a>, <a class="cite" href="#q-fujiwara">Fujiwara 2005</a></td><td><span class="ev s"><i></i><i></i><i class="o"></i>Hinweise</span></td></tr>
+                <tr><td>Anaboles Potenzial</td><td>Mittelwert aus GH-Puls, Testosteron und Proteinsynthese</td><td>Didaktische Zusammenfassung</td><td>Modell</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== QUELLEN ===================== -->
+<section class="sources" id="quellen" aria-labelledby="q-title">
+  <div class="wrap">
+    <header class="ch-head">
+      <div class="ch-num" aria-hidden="true">Q</div>
+      <div>
+        <p class="eyebrow">Primärquellen · Stand Oktober 2026</p>
+        <h2 id="q-title">Quellen &amp; <span class="c">Studiendesign</span></h2>
+      </div>
+    </header>
+    <div class="src-groups">
+      <div class="src-group glass">
+        <h3>Schlaf, Muskel &amp; Hormone</h3>
+        <ol>
+          <li id="q-nedeltcheva"><b>Nedeltcheva AV et al. (2010).</b> Insufficient sleep undermines dietary efforts to reduce adiposity. <em>Ann Intern Med</em> 153(7):435–441. <span class="design">Crossover-RCT · n = 10</span> <a href="https://pubmed.ncbi.nlm.nih.gov/20921542/" target="_blank" rel="noopener">PubMed</a></li>
+          <li id="q-wang"><b>Wang X et al. (2018).</b> Influence of sleep restriction on weight loss outcomes associated with caloric restriction. <em>Sleep</em> 41(5). <span class="design">RCT · n = 36 · 8&nbsp;Wochen</span> <a href="https://pubmed.ncbi.nlm.nih.gov/29438540/" target="_blank" rel="noopener">PubMed</a></li>
+          <li id="q-leproult"><b>Leproult R, Van Cauter E (2011).</b> Effect of 1 week of sleep restriction on testosterone levels in young healthy men. <em>JAMA</em> 305(21):2173–2174. <span class="design">Vorher-nachher · n = 10</span> <a href="https://stacks.cdc.gov/view/cdc/212252" target="_blank" rel="noopener">Volltext</a></li>
+          <li id="q-smith"><b>Smith I et al. (2019).</b> Sleep restriction and testosterone concentrations in young healthy males: randomized controlled studies of acute and chronic short sleep. <em>Sleep Health</em>. <span class="design">2&nbsp;RCTs · n = 14 + 13</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6917985/" target="_blank" rel="noopener">PMC</a></li>
+          <li id="q-su"><b>Su L et al. (2021).</b> Effect of partial and total sleep deprivation on serum testosterone in healthy males: a systematic review and meta-analysis. <em>Sleep Med</em>. <span class="design">Meta-Analyse</span> <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Effect+of+partial+and+total+sleep+deprivation+on+serum+testosterone+in+healthy+males" target="_blank" rel="noopener">PubMed-Suche</a></li>
+          <li id="q-vc1998"><b>Van Cauter E, Plat L, Copinschi G (1998).</b> Interrelations between sleep and the somatotropic axis. <em>Sleep</em> 21(6):553–566. <span class="design">Review</span> <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Interrelations+between+sleep+and+the+somatotropic+axis" target="_blank" rel="noopener">PubMed-Suche</a></li>
+          <li id="q-vc2000"><b>Van Cauter E, Leproult R, Plat L (2000).</b> Age-related changes in slow wave sleep and REM sleep and relationship with growth hormone and cortisol levels in healthy men. <em>JAMA</em> 284(7):861–868. <span class="design">Gepoolte Labordaten · n = 149</span> <a href="https://jamanetwork.com/journals/jama/fullarticle/192981" target="_blank" rel="noopener">JAMA</a></li>
+          <li id="q-liu"><b>Liu H et al. (2008).</b> Systematic review: the effects of growth hormone on athletic performance. <em>Ann Intern Med</em> 148(10):747–758. <span class="design">Systematisches Review · 27&nbsp;Studien</span> <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Systematic+review+the+effects+of+growth+hormone+on+athletic+performance" target="_blank" rel="noopener">PubMed-Suche</a></li>
+          <li id="q-doessing"><b>Doessing S et al. (2010).</b> Growth hormone stimulates the collagen synthesis in human tendon and skeletal muscle without affecting myofibrillar protein synthesis. <em>J Physiol</em> 588(2):341–351. <span class="design">RCT · 14&nbsp;Tage</span> <a href="https://pubmed.ncbi.nlm.nih.gov/19933753/" target="_blank" rel="noopener">PubMed</a></li>
+          <li id="q-west"><b>West DWD et al. (2010).</b> Elevations in ostensibly anabolic hormones with resistance exercise enhance neither training-induced muscle hypertrophy nor strength of the elbow flexors. <em>J Appl Physiol</em> 108(1):60–67. <span class="design">15&nbsp;Wochen · n = 12</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2885075/" target="_blank" rel="noopener">PMC</a></li>
+          <li id="q-lamon"><b>Lamon S et al. (2021).</b> The effect of acute sleep deprivation on skeletal muscle protein synthesis and the hormonal environment. <em>Physiol Rep</em> 9(1):e14660. <span class="design">Crossover · n = 13</span> <a href="https://doi.org/10.14814/phy2.14660" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-saner"><b>Saner NJ et al. (2020).</b> The effect of sleep restriction, with or without high-intensity interval exercise, on myofibrillar protein synthesis in healthy young men. <em>J Physiol</em> 598(8):1523–1536. <span class="design">3 Gruppen · n = 24</span> <a href="https://doi.org/10.1113/JP278828" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-somers"><b>Somers VK et al. (1993).</b> Sympathetic-nerve activity during sleep in normal subjects. <em>N Engl J Med</em> 328(5):303–307. <span class="design">Mikroneurographie · n = 8</span> <a href="https://doi.org/10.1056/NEJM199302043280502" target="_blank" rel="noopener">DOI</a></li>
+        </ol>
+      </div>
+
+      <div class="src-group glass">
+        <h3>Schlafarchitektur &amp; Gehirn</h3>
+        <ol>
+          <li id="q-carskadon"><b>Carskadon MA, Dement WC.</b> Normal human sleep: an overview. In: Kryger, Roth, Dement (Hrsg.), <em>Principles and Practice of Sleep Medicine</em>. <span class="design">Standardwerk</span></li>
+          <li id="q-ohayon"><b>Ohayon MM et al. (2004).</b> Meta-analysis of quantitative sleep parameters from childhood to old age in healthy individuals. <em>Sleep</em> 27(7):1255–1273. <span class="design">Meta-Analyse · 65&nbsp;Studien · n = 3.577</span> <a href="https://pubmed.ncbi.nlm.nih.gov/15586779/" target="_blank" rel="noopener">PubMed</a></li>
+          <li id="q-dijk"><b>Dijk DJ, Czeisler CA (1995).</b> Contribution of the circadian pacemaker and the sleep homeostat to sleep propensity, sleep structure, electroencephalographic slow waves, and sleep spindle activity in humans. <em>J Neurosci</em> 15(5):3526–3538. <span class="design">Forced Desynchrony · n = 8</span> <a href="https://pubmed.ncbi.nlm.nih.gov/7751928/" target="_blank" rel="noopener">PubMed</a></li>
+          <li id="q-vandongen"><b>Van Dongen HPA et al. (2003).</b> The cumulative cost of additional wakefulness: dose-response effects on neurobehavioral functions and sleep physiology from chronic sleep restriction and total sleep deprivation. <em>Sleep</em> 26(2):117–126. <span class="design">Labor-RCT · 14&nbsp;Tage</span> <a href="https://pubmed.ncbi.nlm.nih.gov/12683469/" target="_blank" rel="noopener">PubMed</a></li>
+          <li id="q-walker"><b>Walker MP et al. (2002).</b> Practice with sleep makes perfect: sleep-dependent motor skill learning. <em>Neuron</em> 35(1):205–211. <span class="design">Experiment</span> <a href="https://walkerlab.berkeley.edu/reprints/Walker%20et%20al._Neuron_2002.pdf" target="_blank" rel="noopener">PDF</a></li>
+          <li id="q-pan"><b>Pan SC, Rickard TC (2015).</b> Sleep and motor learning: is there room for consolidation? <em>Psychol Bull</em> 141(4):812–834. <span class="design">Meta-Analyse</span> <a href="https://doi.org/10.1037/bul0000009" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-vdhelm"><b>van der Helm E et al. (2011).</b> REM sleep depotentiates amygdala activity to emotional experiences. <em>Curr Biol</em> 21(23):2029–2032. <span class="design">fMRT · n = 34</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3237718/" target="_blank" rel="noopener">PMC</a></li>
+          <li id="q-cai"><b>Cai DJ et al. (2009).</b> REM, not incubation, improves creativity by priming associative networks. <em>PNAS</em> 106(25):10130–10134. <span class="design">Nap-Experiment</span> <a href="https://pubmed.ncbi.nlm.nih.gov/19506253/" target="_blank" rel="noopener">PubMed</a></li>
+          <li id="q-xie"><b>Xie L et al. (2013).</b> Sleep drives metabolite clearance from the adult brain. <em>Science</em> 342(6156):373–377. <span class="design">Maus</span> <a href="https://doi.org/10.1126/science.1241224" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-miao"><b>Miao A et al. (2024).</b> Brain clearance is reduced during sleep and anesthesia. <em>Nat Neurosci</em> 27:1046–1050. <span class="design">Maus</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11156584/" target="_blank" rel="noopener">PMC</a></li>
+          <li id="q-hauglund"><b>Hauglund NL et al. (2025).</b> Norepinephrine-mediated slow vasomotion drives glymphatic clearance during sleep. <em>Cell</em>. <span class="design">Maus</span> <a href="https://doi.org/10.1016/j.cell.2024.11.027" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-fultz"><b>Fultz NE et al. (2019).</b> Coupled electrophysiological, hemodynamic, and cerebrospinal fluid oscillations in human sleep. <em>Science</em> 366(6465):628–631. <span class="design">Schnelles fMRT · Mensch</span> <a href="https://doi.org/10.1126/science.aax5440" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-eide"><b>Eide PK et al. (2021).</b> Sleep deprivation impairs molecular clearance from the human brain. <em>Brain</em> 144(3):863–874. <span class="design">MRT-Tracer · n = 7&nbsp;vs. 17</span> <a href="https://www.simula.no/research/sleep-deprivation-impairs-molecular-clearance-human-brain" target="_blank" rel="noopener">Simula</a></li>
+          <li id="q-shokri"><b>Shokri-Kojori E et al. (2018).</b> β-Amyloid accumulation in the human brain after one night of sleep deprivation. <em>PNAS</em> 115(17):4483–4488. <span class="design">PET · n = 20</span> <a href="https://doi.org/10.1073/pnas.1721694115" target="_blank" rel="noopener">DOI</a></li>
+        </ol>
+      </div>
+
+      <div class="src-group glass">
+        <h3>Licht, innere Uhr &amp; Cortisol</h3>
+        <ol>
+          <li id="q-czeisler"><b>Czeisler CA et al. (1999).</b> Stability, precision, and near-24-hour period of the human circadian pacemaker. <em>Science</em> 284(5423):2177–2181. <span class="design">Forced Desynchrony</span> <a href="https://pubmed.ncbi.nlm.nih.gov/10381883/" target="_blank" rel="noopener">PubMed</a></li>
+          <li id="q-berson"><b>Berson DM, Dunn FA, Takao M (2002).</b> Phototransduction by retinal ganglion cells that set the circadian clock. <em>Science</em> 295(5557):1070–1073. <span class="design">Tiermodell · Grundlagen</span> <a href="https://doi.org/10.1126/science.1067262" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-glickman"><b>Glickman G et al. (2003).</b> Inferior retinal light exposure is more effective than superior retinal light exposure in suppressing melatonin in humans. <em>J Biol Rhythms</em> 18(1):71–79. <span class="design">n = 9</span> <a href="https://doi.org/10.1177/0748730402239678" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-wright"><b>Wright KP Jr et al. (2013).</b> Entrainment of the human circadian clock to the natural light-dark cycle. <em>Curr Biol</em> 23(16):1554–1558. <span class="design">Feldstudie (Camping)</span> <a href="https://doi.org/10.1016/j.cub.2013.06.039" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-stothard"><b>Stothard ER et al. (2017).</b> Circadian entrainment to the natural light-dark cycle across seasons and the weekend. <em>Curr Biol</em> 27(4):508–513. <span class="design">Feldstudie · n = 14</span> <a href="https://doi.org/10.1016/j.cub.2016.12.041" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-sletten"><b>Sletten TL et al. (2010).</b> Timing of sleep and its relationship with the endogenous melatonin rhythm. <em>Front Neurol</em> 1:137. <span class="design">n = 28</span> <a href="https://doi.org/10.3389/fneur.2010.00137" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-chang2012"><b>Chang AM et al. (2012).</b> Human responses to bright light of different durations. <em>J Physiol</em> 590(13):3103–3112. <span class="design">Labor · n = 39</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3406393/" target="_blank" rel="noopener">PMC</a></li>
+          <li id="q-figueiro"><b>Figueiro MG et al. (2017).</b> The impact of daytime light exposures on sleep and mood in office workers. <em>Sleep Health</em> 3(3):204–215. <span class="design">Beobachtung · n = 109</span> <a href="https://pubmed.ncbi.nlm.nih.gov/?term=The+impact+of+daytime+light+exposures+on+sleep+and+mood+in+office+workers" target="_blank" rel="noopener">PubMed-Suche</a></li>
+          <li id="q-burns"><b>Burns AC et al. (2021).</b> Time spent in outdoor light is associated with mood, sleep, and circadian rhythm-related outcomes. <em>J Affect Disord</em>. <span class="design">UK Biobank · Beobachtung</span> <a href="https://doi.org/10.1016/j.jad.2021.08.056" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-windred-light"><b>Windred DP et al. (2024).</b> Brighter nights and darker days predict higher mortality risk: a prospective analysis of personal light exposure in &gt;88,000 individuals. <em>PNAS</em>. <span class="design">Kohorte · n = 88.905</span> <a href="https://doi.org/10.1073/pnas.2405924121" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-stalder"><b>Stalder T et al. (2016).</b> Assessment of the cortisol awakening response: expert consensus guidelines. <em>Psychoneuroendocrinology</em> 63:414–432. <span class="design">Konsens</span> <a href="https://doi.org/10.1016/j.psyneuen.2015.10.010" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-robertson"><b>Robertson-Dixon I et al. (2023).</b> The influence of light wavelength on human HPA axis rhythms: a systematic review. <em>Life</em> 13(10):1968. <span class="design">Syst. Review · 12&nbsp;Studien · n = 337</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10608196/" target="_blank" rel="noopener">PMC</a></li>
+          <li id="q-jung"><b>Jung CM et al. (2010).</b> Acute effects of bright light exposure on cortisol levels. <em>J Biol Rhythms</em> 25(3):208–216. <span class="design">Labor · n = 20</span> <a href="https://pubmed.ncbi.nlm.nih.gov/20484692/" target="_blank" rel="noopener">PubMed</a></li>
+          <li id="q-gooley"><b>Gooley JJ et al. (2011).</b> Exposure to room light before bedtime suppresses melatonin onset and shortens melatonin duration in humans. <em>J Clin Endocrinol Metab</em> 96(3):E463–E472. <span class="design">Labor · n = 116</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3047226/" target="_blank" rel="noopener">PMC</a></li>
+          <li id="q-phillips"><b>Phillips AJK et al. (2019).</b> High sensitivity and interindividual variability in the response of the human circadian system to evening light. <em>PNAS</em> 116(24):12019–12024. <span class="design">Dosis-Wirkung · n = 55</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6575863/" target="_blank" rel="noopener">PMC</a></li>
+          <li id="q-cain"><b>Cain SW et al. (2020).</b> Evening home lighting adversely impacts the circadian system and sleep. <em>Sci Rep</em> 10:19110. <span class="design">Feldmessung + Labor</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7644684/" target="_blank" rel="noopener">PMC</a></li>
+          <li id="q-brown"><b>Brown TM et al. (2022).</b> Recommendations for daytime, evening, and nighttime indoor light exposure to best support physiology, sleep, and wakefulness in healthy adults. <em>PLoS Biol</em> 20(3):e3001571. <span class="design">Experten-Konsens</span> <a href="https://doi.org/10.1371/journal.pbio.3001571" target="_blank" rel="noopener">DOI</a></li>
+        </ol>
+      </div>
+
+      <div class="src-group glass">
+        <h3>Bildschirme &amp; Blaulicht</h3>
+        <ol>
+          <li id="q-duraccio"><b>Duraccio KM et al. (2021).</b> Does iPhone night shift mitigate negative effects of smartphone use on sleep outcomes in emerging adults? <em>Sleep Health</em>. <span class="design">RCT · n = 167 · Aktigraphie</span> <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Does+iPhone+night+shift+mitigate+negative+effects+of+smartphone+use" target="_blank" rel="noopener">PubMed-Suche</a></li>
+          <li id="q-nagare"><b>Nagare R, Plitnick B, Figueiro MG (2019).</b> Does the iPad Night Shift mode reduce melatonin suppression? <em>Lighting Res Technol</em> 51(3):373–383. <span class="design">Labor · n = 12</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6561503/" target="_blank" rel="noopener">PMC</a></li>
+          <li id="q-chang2015"><b>Chang AM et al. (2015).</b> Evening use of light-emitting eReaders negatively affects sleep, circadian timing, and next-morning alertness. <em>PNAS</em> 112(4):1232–1237. <span class="design">Crossover · n = 12</span> <a href="https://pubmed.ncbi.nlm.nih.gov/25535358/" target="_blank" rel="noopener">PubMed</a></li>
+          <li id="q-schoellhorn"><b>Schöllhorn I et al. (2023).</b> Melanopic irradiance defines the impact of evening display light on sleep latency, melatonin and alertness. <em>Commun Biol</em> 6:228. <span class="design">Labor · n = 72</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9974389/" target="_blank" rel="noopener">PMC</a></li>
+          <li id="q-bauducco"><b>Bauducco S et al. (2024).</b> A bidirectional model of sleep and technology use: a theoretical review of how much, for whom, and which mechanisms. <em>Sleep Med Rev</em> 76:101933. <span class="design">Theoretisches Review</span> <a href="https://doi.org/10.1016/j.smrv.2024.101933" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-heath"><b>Heath M et al. (2014).</b> Does one hour of bright or short-wavelength filtered tablet screenlight have a meaningful effect on adolescents' pre-bedtime alertness, sleep, and daytime functioning? <em>Chronobiol Int</em>. <span class="design">Crossover · n = 16</span> <a href="https://researchnow.flinders.edu.au/en/publications/does-one-hour-of-bright-or-short-wavelength-filtered-tablet-scree/" target="_blank" rel="noopener">Flinders</a></li>
+          <li id="q-mouland"><b>Mouland JW et al. (2019).</b> Cones support alignment to an inconsistent world by suppressing mouse circadian responses to the blue colors associated with twilight. <em>Curr Biol</em> 29(24):4260–4267. <span class="design">Maus</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6926481/" target="_blank" rel="noopener">PMC</a></li>
+          <li id="q-cochrane"><b>Singh S et al. (2023).</b> Blue-light filtering spectacle lenses for visual performance, sleep, and macular health in adults. <em>Cochrane Database Syst Rev</em> CD013244. <span class="design">Cochrane-Review · 17&nbsp;RCTs</span> <a href="https://doi.org/10.1002/14651858.CD013244.pub2" target="_blank" rel="noopener">DOI</a></li>
+        </ol>
+      </div>
+
+      <div class="src-group glass">
+        <h3>Co-Faktoren</h3>
+        <ol>
+          <li id="q-kraeuchi"><b>Kräuchi K et al. (1999).</b> Warm feet promote the rapid onset of sleep. <em>Nature</em> 401(6748):36–37. <span class="design">Labor</span> <a href="https://doi.org/10.1038/43366" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-barrett"><b>Barrett J et al. (1993).</b> The sleep-evoked decrease of body temperature. <em>Sleep</em> 16(2):93–99. <span class="design">Labor</span> <a href="https://researchnow.flinders.edu.au/en/publications/the-sleep-evoked-decrease-of-body-temperature/" target="_blank" rel="noopener">Flinders</a></li>
+          <li id="q-haghayegh"><b>Haghayegh S et al. (2019).</b> Before-bedtime passive body heating by warm shower or bath to improve sleep: a systematic review and meta-analysis. <em>Sleep Med Rev</em>. <span class="design">Meta-Analyse · 17&nbsp;Studien</span> <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Before-bedtime+passive+body+heating+by+warm+shower+or+bath+to+improve+sleep" target="_blank" rel="noopener">PubMed-Suche</a></li>
+          <li id="q-okamoto"><b>Okamoto-Mizuno K, Mizuno K (2012).</b> Effects of thermal environment on sleep and circadian rhythm. <em>J Physiol Anthropol</em> 31:14. <span class="design">Review</span> <a href="https://doi.org/10.1186/1880-6805-31-14" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-minor"><b>Minor K et al. (2022).</b> Rising temperatures erode human sleep globally. <em>One Earth</em>. <span class="design">7&nbsp;Mio. Nächte · &gt; 47.000&nbsp;Personen</span> <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Rising+temperatures+erode+human+sleep+globally" target="_blank" rel="noopener">PubMed-Suche</a></li>
+          <li id="q-baniassadi"><b>Baniassadi A et al. (2023).</b> Nächtliche Raumtemperatur und Schlaf bei Menschen ab 65. <em>Sci Total Environ</em>. <span class="design">Beobachtung · n = 50 · ~11.000&nbsp;Nächte</span> <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Baniassadi+nighttime+ambient+temperature+sleep+older+adults" target="_blank" rel="noopener">PubMed-Suche</a></li>
+          <li id="q-fujiwara"><b>Fujiwara Y et al. (2005).</b> Association between dinner-to-bed time and gastro-esophageal reflux disease. <em>Am J Gastroenterol</em> 100(12):2633–2636. <span class="design">Fall-Kontroll · 147&nbsp;vs. 294</span> <a href="https://pubmed.ncbi.nlm.nih.gov/16393212/" target="_blank" rel="noopener">PubMed</a></li>
+          <li id="q-duan"><b>Duan D et al. (2021).</b> Effects of dinner timing on sleep stage distribution and EEG power spectrum in healthy volunteers. <em>Nat Sci Sleep</em> 13:601–612. <span class="design">Crossover · n = 20</span> <a href="https://doi.org/10.2147/NSS.S301113" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-afaghi"><b>Afaghi A, O'Connor H, Chow CM (2007).</b> High-glycemic-index carbohydrate meals shorten sleep onset. <em>Am J Clin Nutr</em> 85(2):426–430. <span class="design">Crossover · n = 12</span> <a href="https://pubmed.ncbi.nlm.nih.gov/?term=High-glycemic-index+carbohydrate+meals+shorten+sleep+onset" target="_blank" rel="noopener">PubMed-Suche</a></li>
+          <li id="q-saidi"><b>Saidi O et al. (2024).</b> Chrono-nutrition and sleep: lessons from the temporal feature of eating patterns in human studies. <em>Sleep Med Rev</em>. <span class="design">Scoping-Review</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12090848/" target="_blank" rel="noopener">PMC</a></li>
+          <li id="q-snijders"><b>Snijders T et al. (2015).</b> Protein ingestion before sleep increases muscle mass and strength gains during prolonged resistance-type exercise training in healthy young men. <em>J Nutr</em> 145(6):1178–1184. <span class="design">RCT · n = 44 · 12&nbsp;Wochen</span> <a href="https://doi.org/10.3945/jn.114.208371" target="_blank" rel="noopener">DOI</a></li>
+          <li id="q-windred-sleep"><b>Windred DP et al. (2024).</b> Sleep regularity is a stronger predictor of mortality risk than sleep duration: a prospective cohort study. <em>Sleep</em> 47(1). <span class="design">Kohorte · n = 60.977</span> <a href="https://pubmed.ncbi.nlm.nih.gov/37738616/" target="_blank" rel="noopener">PubMed</a></li>
+          <li id="q-roenneberg"><b>Roenneberg T et al. (2012).</b> Social jetlag and obesity. <em>Curr Biol</em> 22(10):939–943. <span class="design">Querschnitt</span> <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Roenneberg+Social+jetlag+and+obesity" target="_blank" rel="noopener">PubMed-Suche</a></li>
+        </ol>
+      </div>
+
+      <div class="src-group glass">
+        <h3>Referenzwerte &amp; Technik</h3>
+        <ol>
+          <li id="q-wiki-lux"><b>Wikipedia: Lux.</b> Tabelle typischer Beleuchtungsstärken (direkte Sonne 32.000–100.000&nbsp;lx, Tageslicht ohne Sonne 10.000–25.000&nbsp;lx, bewölkt ~1.000&nbsp;lx, Büro 320–500&nbsp;lx, Wohnzimmer ~50&nbsp;lx). <span class="design">Referenztabelle</span> <a href="https://en.wikipedia.org/wiki/Lux" target="_blank" rel="noopener">Wikipedia</a></li>
+          <li id="q-en17037"><b>NIH Office of Research Facilities (2019).</b> Daylighting – European Standard EN 17037. Technical Bulletin. <span class="design">Norm-Zusammenfassung</span> <a href="https://orf.od.nih.gov/TechnicalResources/Documents/Technical%20Bulletins/19TB/Daylighting%20%e2%80%93%20European%20Standard%20EN%2017037%20October%202019-Technical%20Bulletin_508.pdf" target="_blank" rel="noopener">PDF</a></li>
+          <li id="q-glas"><b>Baunetz Wissen.</b> Kennwerte von Verglasungen: Lichttransmissionsgrad. <span class="design">Fachlexikon</span> <a href="https://www.baunetzwissen.de/sonnenschutz/fachwissen/verglasungen/kennwerte-von-verglasungen-5481723" target="_blank" rel="noopener">Baunetz</a></li>
+          <li id="q-zumtobel"><b>Zumtobel.</b> Datenblatt mit melanopischem Faktor (MDER 0,48 bei 2700&nbsp;K, Ra &gt; 90; 0,71 bei 4000&nbsp;K). <span class="design">Herstellerangabe</span> <a href="https://www.zumtobel.com/media/images/42186783_LFE_EN.pdf" target="_blank" rel="noopener">PDF</a></li>
+        </ol>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>Allrounder Life-Optimization Protokoll · Modul Schlaf-Architektur &amp; Licht-Code · Stand Oktober 2026.</p>
+      <p>Bildungsinhalt, keine medizinische Beratung. Anhaltende Schlafprobleme, lautes Schnarchen mit Atemaussetzern oder starke Tagesmüdigkeit gehören ärztlich abgeklärt. Einige Primärquellen sind über eine PubMed-Suche verlinkt, wenn der direkte Datensatz nicht geprüft werden konnte.</p>
+    </footer>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  document.documentElement.lang = 'de';
+
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const NS = 'http://www.w3.org/2000/svg';
+  const reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  /* ---------- helpers ---------- */
+  function svgEl(tag, attrs, parent) {
+    const e = document.createElementNS(NS, tag);
+    if (attrs) for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function svgText(parent, x, y, str, attrs) {
+    const t = svgEl('text', Object.assign({ x, y }, attrs || {}), parent);
+    t.textContent = str;
+    return t;
+  }
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const fmtClock = (m) => {
+    const mm = ((Math.round(m) % 1440) + 1440) % 1440;
+    return String(Math.floor(mm / 60)).padStart(2, '0') + ':' + String(mm % 60).padStart(2, '0');
+  };
+  const fmtDur = (min) => {
+    const t = Math.round(min);
+    return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0');
+  };
+  const nf0 = new Intl.NumberFormat('de-DE', { maximumFractionDigits: 0 });
+  const nf1 = new Intl.NumberFormat('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const fmtH = (h) => (Math.round(h * 4) % 2 === 0 ? nf1 : new Intl.NumberFormat('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })).format(h);
+  const NBSP = ' ';
+  function signed(v, unit) {
+    const r = Math.round(v);
+    const s = r > 0 ? '+' : r < 0 ? '−' : '±';
+    return s + nf0.format(Math.abs(r)) + (unit ? NBSP + unit : '');
+  }
+  let measureCtx = null;
+  function textWidth(str, font) {
+    if (!measureCtx) measureCtx = document.createElement('canvas').getContext('2d');
+    measureCtx.font = font;
+    return measureCtx.measureText(str).width;
+  }
+  function monotone(points) {
+    const xs = points.map(p => p[0]), ys = points.map(p => p[1]);
+    const n = xs.length, d = [], m = new Array(n);
+    for (let i = 0; i < n - 1; i++) d.push((ys[i + 1] - ys[i]) / (xs[i + 1] - xs[i]));
+    m[0] = d[0]; m[n - 1] = d[n - 2];
+    for (let i = 1; i < n - 1; i++) m[i] = d[i - 1] * d[i] <= 0 ? 0 : (d[i - 1] + d[i]) / 2;
+    for (let i = 0; i < n - 1; i++) {
+      if (d[i] === 0) { m[i] = 0; m[i + 1] = 0; continue; }
+      const a = m[i] / d[i], b = m[i + 1] / d[i], s = a * a + b * b;
+      if (s > 9) { const t = 3 / Math.sqrt(s); m[i] = t * a * d[i]; m[i + 1] = t * b * d[i]; }
+    }
+    return (x) => {
+      if (x <= xs[0]) return ys[0];
+      if (x >= xs[n - 1]) return ys[n - 1];
+      let i = 0;
+      while (x > xs[i + 1]) i++;
+      const h = xs[i + 1] - xs[i], t = (x - xs[i]) / h, t2 = t * t, t3 = t2 * t;
+      return (2 * t3 - 3 * t2 + 1) * ys[i] + (t3 - 2 * t2 + t) * h * m[i] + (-2 * t3 + 3 * t2) * ys[i + 1] + (t3 - t2) * h * m[i + 1];
+    };
+  }
+  function pathFrom(pts) {
+    let d = '';
+    for (let i = 0; i < pts.length; i++) d += (i ? 'L' : 'M') + pts[i][0].toFixed(1) + ',' + pts[i][1].toFixed(1);
+    return d;
+  }
+
+  /* ---------- tooltip + crosshair ---------- */
+  function makeTip(wrap) {
+    let tip = wrap.querySelector(':scope > .tip');
+    if (!tip) {
+      tip = document.createElement('div');
+      tip.className = 'tip';
+      tip.hidden = true;
+      tip.setAttribute('aria-hidden', 'true');
+      wrap.appendChild(tip);
+    }
+    return {
+      show(x, y, rows) {
+        tip.replaceChildren();
+        for (const r of rows) {
+          const row = document.createElement('div');
+          row.className = 'tip-row' + (r.head ? ' tip-head' : '');
+          if (r.key) {
+            const k = document.createElement('span');
+            k.className = 'tip-key';
+            k.style.background = r.key;
+            row.appendChild(k);
+          }
+          const v = document.createElement('strong');
+          v.textContent = r.value;
+          row.appendChild(v);
+          if (r.label) {
+            const l = document.createElement('span');
+            l.textContent = r.label;
+            row.appendChild(l);
+          }
+          tip.appendChild(row);
+          if (r.note) {
+            const n = document.createElement('span');
+            n.className = 'tip-note';
+            n.textContent = r.note;
+            tip.appendChild(n);
+          }
+        }
+        tip.hidden = false;
+        const W = wrap.clientWidth, tw = tip.offsetWidth, th = tip.offsetHeight;
+        let left = x + 14;
+        if (left + tw > W - 2) left = x - tw - 14;
+        left = clamp(left, 0, Math.max(0, W - tw));
+        let top = y - th - 12;
+        if (top < 0) top = y + 16;
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+      },
+      hide() { tip.hidden = true; }
+    };
+  }
+
+  function crosshair(svg, wrap, cfg) {
+    const line = svgEl('line', { class: 'xhair', x1: -20, x2: -20, y1: cfg.top, y2: cfg.bottom }, svg);
+    const tip = makeTip(wrap);
+    let cur = null;
+    function place(t, py) {
+      t = clamp(t, cfg.x0, cfg.x1);
+      cur = t;
+      const px = cfg.sx(t);
+      line.setAttribute('x1', px);
+      line.setAttribute('x2', px);
+      line.style.opacity = 1;
+      tip.show(px, py != null ? py : cfg.top + 24, cfg.rows(t));
+    }
+    function hide() { line.style.opacity = 0; tip.hide(); }
+    svg.addEventListener('pointermove', (e) => {
+      const r = svg.getBoundingClientRect();
+      const px = e.clientX - r.left, py = e.clientY - r.top;
+      if (px < cfg.sx(cfg.x0) - 8 || px > cfg.sx(cfg.x1) + 8) { hide(); return; }
+      let t = cfg.toT(px);
+      if (cfg.snap) t = Math.round(t / cfg.snap) * cfg.snap;
+      place(t, py);
+    });
+    svg.addEventListener('pointerleave', hide);
+    svg.addEventListener('blur', hide);
+    svg.addEventListener('focus', () => place(cur != null ? cur : cfg.focusT));
+    svg.addEventListener('keydown', (e) => {
+      const keys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+      if (!keys.includes(e.key)) return;
+      e.preventDefault();
+      let t = cur != null ? cur : cfg.focusT;
+      const step = cfg.keyStep || 15;
+      if (e.key === 'ArrowLeft') t -= step;
+      else if (e.key === 'ArrowRight') t += step;
+      else if (e.key === 'Home') t = cfg.x0;
+      else t = cfg.x1;
+      place(t);
+    });
+    return { hide };
+  }
+
+  function mountSvg(wrap, svg) {
+    const old = wrap.querySelector(':scope > svg');
+    if (old) old.remove();
+    wrap.insertBefore(svg, wrap.firstChild);
+  }
+
+  /* ---------- sleep model ---------- */
+  // Template per cycle (minutes). N3 is homeostatic (front-loaded), REM grows across the night
+  // and is modulated by a circadian factor peaking around 05:30 (Dijk & Czeisler 1995).
+  const N1_BY_CYCLE = [7, 3, 2, 3, 3, 3, 3];
+  const N3_BY_CYCLE = [40, 25, 10, 5, 0, 0, 0];
+  const REM_BASE = [8, 15, 22, 28, 32, 32, 32];
+  const W_BY_CYCLE = [0, 0, 0, 4, 4, 4, 4];
+  const CYCLE_LEN = [90, 95, 95, 95, 95, 95, 95];
+  const N3_REF = 80;
+
+  function remCirc(clockMin) {
+    let h = (((clockMin / 60) % 24) + 24) % 24;
+    if (h > 12) h -= 24;
+    return 0.7 + 0.6 * Math.exp(-Math.pow((h - 5.5) / 2.2, 2));
+  }
+  function pushSeg(segs, stage, start, dur) {
+    if (dur <= 0.01) return start;
+    const last = segs[segs.length - 1];
+    if (last && last.stage === stage && Math.abs(last.end - start) < 0.01) last.end = start + dur;
+    else segs.push({ stage, start, end: start + dur });
+    return start + dur;
+  }
+  function buildNight(bed, sol, wake) {
+    const segs = [];
+    pushSeg(segs, 'W', bed, sol);
+    let t = bed + sol;
+    for (let i = 0; i < CYCLE_LEN.length && t < wake - 0.5; i++) {
+      const len = CYCLE_LEN[i], remain = wake - t;
+      const n1 = N1_BY_CYCLE[i], n3 = N3_BY_CYCLE[i], w = W_BY_CYCLE[i];
+      let rem = REM_BASE[i] * remCirc(t + len * 0.8);
+      rem = Math.min(rem, len - n1 - n3 - w - 12);
+      let c = t;
+      if (remain >= len) {
+        const n2 = len - n1 - n3 - rem - w;
+        const n2a = n3 > 0 ? n2 * 0.55 : n2;
+        c = pushSeg(segs, 'N1', c, n1);
+        c = pushSeg(segs, 'N2', c, n2a);
+        c = pushSeg(segs, 'N3', c, n3);
+        c = pushSeg(segs, 'N2', c, n2 - n2a);
+        c = pushSeg(segs, 'REM', c, rem);
+        pushSeg(segs, 'W', c, w);
+        t += len;
+      } else {
+        if (remain >= 45) {
+          const remP = Math.min(rem, remain * 0.45);
+          const n3P = Math.min(n3, Math.max(0, remain - n1 - remP - 10));
+          const n2 = Math.max(0, remain - n1 - n3P - remP);
+          const n2a = n3P > 0 ? n2 * 0.55 : n2;
+          c = pushSeg(segs, 'N1', c, n1);
+          c = pushSeg(segs, 'N2', c, n2a);
+          c = pushSeg(segs, 'N3', c, n3P);
+          c = pushSeg(segs, 'N2', c, n2 - n2a);
+          pushSeg(segs, 'REM', c, remP);
+        } else {
+          const n1P = Math.min(n1, remain);
+          c = pushSeg(segs, 'N1', c, n1P);
+          pushSeg(segs, 'N2', c, remain - n1P);
+        }
+        t = wake;
+      }
+    }
+    const tot = { W: 0, REM: 0, N1: 0, N2: 0, N3: 0 };
+    for (const s of segs) tot[s.stage] += s.end - s.start;
+    tot.TST = tot.REM + tot.N1 + tot.N2 + tot.N3;
+    return { segs, tot, bed, wake, onset: bed + sol };
+  }
+  function stageAt(night, t) {
+    for (const s of night.segs) if (t >= s.start && t < s.end) return s;
+    return null;
+  }
+
+  const STAGE = {
+    W: { name: 'Wach', axis: 'Wach', short: 'W', lane: 0, color: 'var(--stage-w)' },
+    REM: { name: 'REM-Schlaf', axis: 'REM', short: 'REM', lane: 1, color: 'var(--cyan-mark)' },
+    N1: { name: 'N1 · Einschlafen', axis: 'N1', short: 'N1', lane: 2, color: 'var(--stage-n1)' },
+    N2: { name: 'N2 · Leichtschlaf', axis: 'N2', short: 'N2', lane: 3, color: 'var(--stage-n2)' },
+    N3: { name: 'N3 · Tiefschlaf', axis: 'N3 · Tief', short: 'N3', lane: 4, color: 'var(--orange-mark)' }
+  };
+
+  /* ---------- Grafik 1: Hypnogramm ---------- */
+  const HYP = {
+    normal: { bed: 1380, wake: 1860, label: 'Normal, 23:00–07:00' },
+    late: { bed: 1500, wake: 1860, label: 'Später ins Bett, 01:00–07:00' },
+    early: { bed: 1380, wake: 1740, label: 'Früher Wecker, 23:00–05:00' }
+  };
+  const HYP_NOTE = {
+    normal: 'Referenz: Tiefschlaf ballt sich in den ersten beiden Zyklen. Die REM-Phasen werden zum Morgen hin länger, die letzte ist die längste.',
+    late: 'Der Tiefschlaf bleibt erhalten, weil er dem Schlafdruck folgt und zuerst kommt, egal wann du einschläfst. Verloren gehen vor allem Leichtschlaf (N2) und ein Teil des REM-Schlafs.',
+    early: 'Der Wecker schneidet die REM-reichsten Stunden ab. REM ist an die innere Uhr gekoppelt und hat sein Maximum in den frühen Morgenstunden. Tiefschlaf bleibt fast unberührt.'
+  };
+  const hypNights = {};
+  for (const k in HYP) hypNights[k] = buildNight(HYP[k].bed, 15, HYP[k].wake);
+  let hypKey = 'normal';
+
+  function renderHypno() {
+    const wrap = $('#hypno-chart');
+    if (!wrap) return;
+    const W = Math.max(240, wrap.clientWidth), narrow = W < 560;
+    const H = narrow ? 262 : 300;
+    const m = { l: narrow ? 36 : 80, r: 10, t: 50, b: 30 };
+    const x0 = 1320, x1 = 1920, pw = W - m.l - m.r, ph = H - m.t - m.b;
+    const sx = (t) => m.l + ((t - x0) / (x1 - x0)) * pw;
+    const toT = (px) => x0 + ((px - m.l) / pw) * (x1 - x0);
+    const laneY = (lane) => m.t + lane * (ph / 4);
+    const sc = HYP[hypKey], night = hypNights[hypKey];
+    const svg = svgEl('svg', {
+      width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', tabindex: 0,
+      'aria-label': `Hypnogramm, Szenario ${sc.label}: Tiefschlaf ${Math.round(night.tot.N3)} Minuten, REM ${Math.round(night.tot.REM)} Minuten, Schlaf gesamt ${fmtDur(night.tot.TST)} Stunden.`
+    });
+
+    // cut region vs. normal
+    const cut = hypKey === 'late' ? [1380, 1500] : hypKey === 'early' ? [1740, 1860] : null;
+    if (cut) {
+      svgEl('rect', { class: 'cut', x: sx(cut[0]), y: m.t - 8, width: sx(cut[1]) - sx(cut[0]), height: ph + 16, rx: 6 }, svg);
+      const cx = (sx(cut[0]) + sx(cut[1])) / 2;
+      svgText(svg, cx, laneY(1.5) - 2, 'fehlt', { class: 'anno-strong', 'text-anchor': 'middle' });
+      svgText(svg, cx, laneY(1.5) + 14, '2 Std.', { class: 'anno-muted', 'text-anchor': 'middle' });
+    }
+
+    // lanes
+    for (const k of ['W', 'REM', 'N1', 'N2', 'N3']) {
+      const y = laneY(STAGE[k].lane);
+      svgEl('line', { class: 'grid', x1: m.l, x2: W - m.r, y1: y, y2: y }, svg);
+      svgText(svg, m.l - 8, y + 4, narrow ? STAGE[k].short : STAGE[k].axis, { class: k === 'N3' || k === 'REM' ? 'axis-strong' : 'axis-label', 'text-anchor': 'end' });
+    }
+    // time axis
+    svgEl('line', { class: 'baseline', x1: m.l, x2: W - m.r, y1: H - m.b + 6, y2: H - m.b + 6 }, svg);
+    for (let t = x0; t <= x1; t += 60) {
+      const x = sx(t);
+      svgEl('line', { class: 'tick', x1: x, x2: x, y1: H - m.b + 6, y2: H - m.b + 11 }, svg);
+      if (!narrow || (t - x0) % 120 === 0) svgText(svg, x, H - 4, fmtClock(t), { class: 'axis-label', 'text-anchor': t === x1 ? 'end' : 'middle' });
+    }
+
+    // halves bracket
+    const mid = (sc.bed + sc.wake) / 2, by = m.t - 22;
+    const halves = [[sc.bed, mid, narrow ? '1. Hälfte' : '1. Hälfte · Tiefschlaf-lastig'], [mid, sc.wake, narrow ? '2. Hälfte' : '2. Hälfte · REM-lastig']];
+    for (const [a, b, label] of halves) {
+      const xa = sx(a) + 2, xb = sx(b) - 2;
+      svgEl('path', { class: 'bracket', d: `M${xa},${by + 6}V${by}H${xb}V${by + 6}` }, svg);
+      svgText(svg, (xa + xb) / 2, by - 7, label, { class: 'anno', 'text-anchor': 'middle' });
+    }
+
+    // segments
+    let prevLane = null;
+    for (const s of night.segs) {
+      const lane = STAGE[s.stage].lane, y = laneY(lane), xa = sx(s.start), xb = sx(s.end);
+      if (prevLane !== null && prevLane !== lane) svgEl('line', { class: 'hyp-link', x1: xa, x2: xa, y1: laneY(prevLane), y2: y }, svg);
+      prevLane = lane;
+    }
+    for (const s of night.segs) {
+      const lane = STAGE[s.stage].lane, y = laneY(lane), xa = sx(s.start), xb = sx(s.end);
+      const big = s.stage === 'N3' || s.stage === 'REM', h = big ? 12 : 4;
+      svgEl('rect', { class: 'seg-' + s.stage, x: xa, y: y - h / 2, width: Math.max(1.5, xb - xa), height: h, rx: big ? 3 : 2 }, svg);
+    }
+
+    mountSvg(wrap, svg);
+    crosshair(svg, wrap, {
+      x0, x1, sx, toT, snap: 1, top: m.t - 10, bottom: H - m.b + 6, focusT: sc.bed + 60, keyStep: 10,
+      rows: (t) => {
+        const s = stageAt(night, t);
+        const head = { head: true, value: fmtClock(t) + ' Uhr' };
+        if (cut && t >= cut[0] && t < cut[1]) return [head, { value: 'fehlt', label: 'im Vergleich zu Normal' }];
+        if (!s) return [head, { value: t < sc.bed ? 'noch wach' : 'aufgestanden', label: 'außerhalb der Bettzeit' }];
+        return [head, { key: STAGE[s.stage].color, value: STAGE[s.stage].name, label: `${fmtClock(s.start)}–${fmtClock(s.end)} · ${Math.round(s.end - s.start)} Min.` }];
+      }
+    });
+  }
+
+  function chip(parent, opts) {
+    const c = document.createElement('span');
+    c.className = 'chip';
+    if (opts.key) {
+      const k = document.createElement('i');
+      k.className = 'key ' + opts.key;
+      c.appendChild(k);
+    }
+    const l = document.createElement('span');
+    l.textContent = opts.label;
+    c.appendChild(l);
+    const v = document.createElement('strong');
+    v.textContent = opts.value;
+    c.appendChild(v);
+    if (opts.delta != null) {
+      const d = document.createElement('span');
+      d.className = 'delta ' + opts.deltaClass;
+      d.textContent = opts.delta;
+      c.appendChild(d);
+    }
+    parent.appendChild(c);
+  }
+  function deltaClass(v, higherIsBetter = true, tol = 0.5) {
+    if (Math.abs(v) < tol) return 'flat';
+    return (v > 0) === higherIsBetter ? 'good' : 'bad';
+  }
+
+  function renderHypnoMeta() {
+    const n = hypNights[hypKey].tot, r = hypNights.normal.tot, isRef = hypKey === 'normal';
+    const box = $('#hypno-kpis');
+    box.replaceChildren();
+    const items = [
+      { label: 'Tiefschlaf', key: 'k-n3', v: n.N3, rv: r.N3, unit: 'Min.' },
+      { label: 'REM', key: 'k-rem', v: n.REM, rv: r.REM, unit: 'Min.' },
+      { label: 'Leichtschlaf', key: 'k-light', v: n.N1 + n.N2, rv: r.N1 + r.N2, unit: 'Min.' },
+      { label: 'Schlaf gesamt', v: n.TST, rv: r.TST, dur: true }
+    ];
+    for (const it of items) {
+      const d = it.v - it.rv;
+      chip(box, {
+        key: it.key, label: it.label,
+        value: it.dur ? fmtDur(it.v) + NBSP + 'Std.' : Math.round(it.v) + NBSP + it.unit,
+        delta: isRef ? null : signed(d, 'Min.'), deltaClass: deltaClass(d, true, 1.5)
+      });
+    }
+    $('#hypno-note').textContent = HYP_NOTE[hypKey];
+  }
+
+  function renderHypnoTable() {
+    const rows = Object.keys(HYP).map(k => {
+      const t = hypNights[k].tot;
+      return [HYP[k].label, Math.round(t.N3), Math.round(t.REM), Math.round(t.N1 + t.N2), fmtDur(t.TST)];
+    });
+    buildTable($('#hypno-table'), ['Szenario', 'Tiefschlaf (Min.)', 'REM (Min.)', 'N1+N2 (Min.)', 'Schlaf (Std.)'], rows, [false, true, true, true, true]);
+  }
+  function buildTable(host, head, rows, numeric) {
+    const table = document.createElement('table');
+    const thead = document.createElement('thead');
+    const tr = document.createElement('tr');
+    head.forEach((h, i) => { const th = document.createElement('th'); th.textContent = h; if (numeric[i]) th.className = 'n'; tr.appendChild(th); });
+    thead.appendChild(tr);
+    const tbody = document.createElement('tbody');
+    for (const r of rows) {
+      const row = document.createElement('tr');
+      r.forEach((cell, i) => { const td = document.createElement('td'); td.textContent = String(cell); if (numeric[i]) td.className = 'n'; row.appendChild(td); });
+      tbody.appendChild(row);
+    }
+    table.append(thead, tbody);
+    host.replaceChildren(table);
+  }
+
+  $$('input[name="hyp"]').forEach(inp => inp.addEventListener('change', () => {
+    hypKey = inp.value;
+    renderHypno();
+    renderHypnoMeta();
+  }));
+
+  /* ---------- Grafik 2: Cortisol vs. Melatonin ---------- */
+  const CORT_PTS = [[720, 42], [840, 33], [960, 26], [1080, 19], [1200, 13], [1320, 8], [1440, 5], [1560, 8], [1650, 18], [1740, 38], [1830, 62], [1860, 70], [1900, 100], [1950, 82], [2040, 60], [2160, 42]];
+  const MEL_PTS = [[720, 2], [1080, 2], [1230, 3], [1260, 8], [1320, 35], [1380, 65], [1440, 85], [1530, 97], [1620, 100], [1710, 92], [1770, 72], [1830, 40], [1890, 15], [1950, 5], [2040, 2], [2160, 2]];
+  const cortF = monotone(CORT_PTS), melF = monotone(MEL_PTS);
+
+  function renderHormones() {
+    const wrap = $('#hormone-chart');
+    if (!wrap) return;
+    const W = Math.max(240, wrap.clientWidth), narrow = W < 560;
+    const H = narrow ? 270 : 320;
+    const m = { l: narrow ? 34 : 44, r: 12, t: 62, b: 30 };
+    const x0 = 720, x1 = 2160, pw = W - m.l - m.r, ph = H - m.t - m.b;
+    const sx = (t) => m.l + ((t - x0) / (x1 - x0)) * pw;
+    const sy = (v) => m.t + ph - (v / 100) * ph;
+    const toT = (px) => x0 + ((px - m.l) / pw) * (x1 - x0);
+    const svg = svgEl('svg', {
+      width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', tabindex: 0,
+      'aria-label': 'Schematischer Tagesverlauf: Cortisol erreicht seinen Gipfel 30 bis 45 Minuten nach dem Aufwachen um 07:00 und sinkt bis Mitternacht auf ein Minimum. Melatonin steigt ab etwa 21:00, erreicht gegen 03:00 seinen Gipfel und fällt nach dem Aufwachen ab.'
+    });
+    // bands
+    const bands = [
+      { a: 1200, b: 1380, cls: 'band-dim', label: narrow ? 'dimmen' : 'Licht dimmen' },
+      { a: 1380, b: 1860, cls: 'band-sleep', label: narrow ? 'Schlaf' : 'Schlaf 23–07' },
+      { a: 1860, b: 1980, cls: 'band-morning', label: narrow ? 'Licht' : 'Morgenlicht' }
+    ];
+    for (const bd of bands) {
+      svgEl('rect', { class: bd.cls, x: sx(bd.a), y: m.t - 4, width: sx(bd.b) - sx(bd.a), height: ph + 4 }, svg);
+      svgText(svg, (sx(bd.a) + sx(bd.b)) / 2, 18, bd.label, { class: 'anno-muted', 'text-anchor': 'middle' });
+    }
+    // grid + y axis
+    for (const v of [0, 50, 100]) {
+      svgEl('line', { class: 'grid', x1: m.l, x2: W - m.r, y1: sy(v), y2: sy(v) }, svg);
+      svgText(svg, m.l - 6, sy(v) + 4, v + ' %', { class: 'axis-label', 'text-anchor': 'end' });
+    }
+    svgEl('line', { class: 'baseline', x1: m.l, x2: W - m.r, y1: sy(0), y2: sy(0) }, svg);
+    for (let t = x0; t <= x1; t += 180) {
+      const x = sx(t);
+      svgEl('line', { class: 'tick', x1: x, x2: x, y1: sy(0), y2: sy(0) + 5 }, svg);
+      if (!narrow || (t - x0) % 360 === 0) svgText(svg, x, H - 6, fmtClock(t), { class: 'axis-label', 'text-anchor': t === x1 ? 'end' : 'middle' });
+    }
+    // curves
+    const cPts = [], mPts = [];
+    for (let t = x0; t <= x1; t += 5) { cPts.push([sx(t), sy(cortF(t))]); mPts.push([sx(t), sy(melF(t))]); }
+    svgEl('path', { class: 'area-mel', d: pathFrom(mPts) + `L${sx(x1)},${sy(0)}L${sx(x0)},${sy(0)}Z` }, svg);
+    svgEl('path', { class: 'line-mel', d: pathFrom(mPts) }, svg);
+    svgEl('path', { class: 'line-cort', d: pathFrom(cPts) }, svg);
+    // series labels: placed in the empty band above the plot, clear of both curves
+    if (narrow) {
+      svgText(svg, sx(1440), sy(100) - 10, 'Melatonin', { class: 'anno-strong', 'text-anchor': 'middle' });
+      svgText(svg, sx(2010), sy(100) - 10, 'Cortisol', { class: 'anno-strong', 'text-anchor': 'middle' });
+    } else {
+      svgText(svg, sx(1620), sy(100) - 10, 'Melatonin', { class: 'anno-strong', 'text-anchor': 'middle' });
+      svgText(svg, sx(1900) + 10, sy(100) - 10, 'Cortisol', { class: 'anno-strong', 'text-anchor': 'start' });
+      svgText(svg, W - m.r, sy(100) + 12, 'Gipfel 30–45 Min.', { class: 'anno-muted', 'text-anchor': 'end' });
+      svgText(svg, W - m.r, sy(100) + 26, 'nach dem Aufwachen', { class: 'anno-muted', 'text-anchor': 'end' });
+      svgText(svg, sx(1440), sy(5) - 10, 'Cortisol-Tief', { class: 'anno-muted', 'text-anchor': 'middle' });
+    }
+    // DLMO marker with a leader line up into free space left of the curves
+    const dx = sx(1260), dy = sy(melF(1260));
+    svgEl('circle', { class: 'dot-mel', cx: dx, cy: dy, r: 4.5 }, svg);
+    const ly = sy(narrow ? 62 : 70);
+    svgEl('path', { class: 'anno-line', d: `M${dx},${dy - 6}V${ly + 6}` }, svg);
+    const dl = narrow ? ['Melatonin-', 'Anstieg ~21:00'] : ['Melatonin-Anstieg ~21:00', '≈ 2 Std. vor dem Einschlafen'];
+    svgText(svg, dx - 6, ly - 8, dl[0], { class: 'anno', 'text-anchor': 'end' });
+    svgText(svg, dx - 6, ly + 7, dl[1], { class: narrow ? 'anno' : 'anno-muted', 'text-anchor': 'end' });
+    svgEl('circle', { class: 'dot-cort', cx: sx(1900), cy: sy(100), r: 4.5 }, svg);
+    mountSvg(wrap, svg);
+    crosshair(svg, wrap, {
+      x0, x1, sx, toT, snap: 5, top: m.t - 4, bottom: sy(0), focusT: 1260, keyStep: 30,
+      rows: (t) => [
+        { head: true, value: fmtClock(t) + ' Uhr' },
+        { key: 'var(--cyan-mark)', value: Math.round(melF(t)) + ' %', label: 'Melatonin' },
+        { key: 'var(--orange-mark)', value: Math.round(cortF(t)) + ' %', label: 'Cortisol' }
+      ]
+    });
+  }
+  function renderHormoneTable() {
+    const rows = [];
+    for (let t = 720; t <= 2160; t += 120) rows.push([fmtClock(t), Math.round(cortF(t)), Math.round(melF(t))]);
+    buildTable($('#hormone-table'), ['Uhrzeit', 'Cortisol (% Max.)', 'Melatonin (% Max.)'], rows, [false, true, true]);
+  }
+
+  /* ---------- Grafik 3: Lux ---------- */
+  const LUX_ROWS = [
+    { group: 'Drinnen & Bildschirm' },
+    { label: 'Abend-Zielwert (Konsens)', target: 10, val: '≤ 10 lx mel.', note: 'Höchstwert am Auge ab 3 Std. vor dem Schlafen, melanopisch gemessen', src: 'Brown et al. 2022' },
+    { label: 'Smartphone-Display am Auge', min: 1, max: 80, val: '~1–80 lx', note: 'von gedimmt bis maximal hell', src: 'Heath et al. 2014; Bauducco et al. 2024' },
+    { label: 'Wohnraum abends', min: 50, max: 200, val: '~50–200 lx', note: 'übliche Raumbeleuchtung', src: 'Lux-Tabelle; Gooley et al. 2011' },
+    { label: 'Büro-Arbeitsplatz', min: 300, max: 500, val: '~300–500 lx', note: 'Richtwert für die Arbeitsfläche', src: 'Lux-Tabelle' },
+    { group: 'Draußen' },
+    { label: 'Bewölkter Tag', min: 1000, max: 10000, val: '~1.000–10.000 lx', note: 'je nach Wolkendicke und Tageszeit', src: 'Lux-Tabelle' },
+    { label: 'Heller Tag, im Schatten', min: 10000, max: 25000, val: '~10.000–25.000 lx', note: 'Tageslicht ohne direkte Sonne', src: 'Lux-Tabelle' },
+    { label: 'Direkte Sonne', min: 32000, max: 100000, val: '~32.000–100.000 lx', note: 'nie direkt hineinschauen', src: 'Lux-Tabelle' }
+  ];
+  function renderLux() {
+    const wrap = $('#lux-chart');
+    if (!wrap) return;
+    const W = Math.max(240, wrap.clientWidth), narrow = W < 620;
+    const labelW = narrow ? 0 : 210;
+    const rowH = narrow ? 46 : 34, groupH = 26;
+    const m = { l: labelW + 8, r: 14, t: 30, b: 30 };
+    let h = m.t;
+    const layout = LUX_ROWS.map(r => { const y = h; h += r.group ? groupH : rowH; return Object.assign({ y }, r); });
+    const H = h + m.b;
+    const lmin = 0, lmax = Math.log10(150000), pw = W - m.l - m.r;
+    const sx = (v) => m.l + ((Math.log10(v) - lmin) / (lmax - lmin)) * pw;
+    const svg = svgEl('svg', {
+      width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', tabindex: 0,
+      'aria-label': 'Logarithmischer Vergleich: Abend-Zielwert höchstens 10 Lux melanopisch, Smartphone 1 bis 80 Lux, Wohnraum 50 bis 200 Lux, Büro 300 bis 500 Lux, bewölkter Tag 1.000 bis 10.000 Lux, heller Tag im Schatten 10.000 bis 25.000 Lux, direkte Sonne 32.000 bis 100.000 Lux.'
+    });
+    // ticks
+    const ticks = [1, 10, 100, 1000, 10000, 100000];
+    for (const v of ticks) {
+      const x = sx(v);
+      svgEl('line', { class: 'grid', x1: x, x2: x, y1: m.t - 6, y2: H - m.b }, svg);
+      svgText(svg, x, H - 8, v >= 1000 ? nf0.format(v) : String(v), { class: 'axis-label', 'text-anchor': 'middle' });
+    }
+    svgText(svg, W - m.r, H - 8 - 14, 'lx', { class: 'axis-label', 'text-anchor': 'end' });
+    const font = '600 12.5px Barlow, system-ui, sans-serif';
+    const hitRects = [];
+    layout.forEach((r, idx) => {
+      if (r.group) {
+        svgText(svg, narrow ? m.l : 0, r.y + 16, r.group, { class: 'group-label', 'text-anchor': 'start' });
+        return;
+      }
+      const barY = narrow ? r.y + 24 : r.y + rowH / 2;
+      if (narrow) svgText(svg, m.l, r.y + 14, r.label, { class: 'row-label' });
+      else svgText(svg, 0, barY + 4.5, r.label, { class: 'row-label' });
+      if (r.target) {
+        svgEl('circle', { class: 'lux-target-dot', cx: sx(r.target), cy: barY, r: 5 }, svg);
+        svgText(svg, sx(r.target) + 10, barY + 4.5, r.val, { class: 'row-value' });
+      } else {
+        const xa = sx(r.min), xb = sx(r.max);
+        svgEl('rect', { class: 'lux-bar', x: xa, y: barY - 6, width: Math.max(4, xb - xa), height: 12, rx: 3 }, svg);
+        const tw = textWidth(r.val, font);
+        if (xb + 8 + tw <= W - m.r) svgText(svg, xb + 8, barY + 4.5, r.val, { class: 'row-value' });
+        else svgText(svg, xa - 8, barY + 4.5, r.val, { class: 'row-value', 'text-anchor': 'end' });
+      }
+      const hit = svgEl('rect', { class: 'lux-hit', x: 0, y: r.y, width: W, height: rowH, 'data-i': idx }, svg);
+      hitRects.push({ el: hit, r, barY });
+    });
+    // target line across the rows (segment-wise on narrow screens, where labels sit above the bars)
+    const tx = sx(10), firstRow = layout.find(r => !r.group);
+    if (narrow) {
+      for (const h of hitRects) svgEl('line', { class: 'lux-target', x1: tx, x2: tx, y1: h.barY - 9, y2: h.barY + 9 }, svg);
+    } else {
+      svgEl('line', { class: 'lux-target', x1: tx, x2: tx, y1: firstRow.y + 6, y2: H - m.b }, svg);
+    }
+    svgText(svg, tx, m.t - 12, 'Abend-Ziel', { class: 'anno', 'text-anchor': 'middle' });
+
+    mountSvg(wrap, svg);
+    const tip = makeTip(wrap);
+    let active = -1;
+    function show(i, py) {
+      hitRects.forEach((h, j) => h.el.classList.toggle('is-active', j === i));
+      active = i;
+      const { r, barY } = hitRects[i];
+      const x = r.target ? sx(r.target) : sx(r.max);
+      tip.show(Math.min(x, W - 40), py != null ? py : barY, [
+        { head: true, value: r.label },
+        { key: r.target ? 'var(--cyan-mark)' : 'var(--orange-mark)', value: r.val, label: r.note },
+        { value: '', label: 'Quelle: ' + r.src }
+      ]);
+    }
+    function hide() { hitRects.forEach(h => h.el.classList.remove('is-active')); tip.hide(); }
+    svg.addEventListener('pointermove', (e) => {
+      const rect = svg.getBoundingClientRect(), py = e.clientY - rect.top;
+      const i = hitRects.findIndex(h => py >= h.r.y && py < h.r.y + rowH);
+      if (i < 0) { hide(); active = -1; return; }
+      show(i, py);
+    });
+    svg.addEventListener('pointerleave', hide);
+    svg.addEventListener('blur', hide);
+    svg.addEventListener('focus', () => show(active >= 0 ? active : 0));
+    svg.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+      e.preventDefault();
+      const n = hitRects.length;
+      show(((active < 0 ? 0 : active) + (e.key === 'ArrowDown' ? 1 : n - 1)) % n);
+    });
+  }
+
+  /* ---------- Simulator model ---------- */
+  const S_RISE = 0.8;
+  const bump = (tH) => 0.92 + 0.08 * Math.exp(-Math.pow((tH - 6) / 2.5, 2));
+  const riseRaw = (tH, c) => 1 / (1 + Math.exp(-(tH - c) / S_RISE));
+  const fallRaw = (tH) => 1 / (1 + Math.exp((tH - 9.0) / 0.6));
+  // Choose the rise centre so that the curve crosses 20 % of its peak exactly at the DLMO anchor.
+  let C_RISE = S_RISE * Math.log(4), MEL_PEAK = 1;
+  for (let k = 0; k < 6; k++) {
+    let peak = 0;
+    for (let t = -2; t < 14; t += 0.02) peak = Math.max(peak, riseRaw(t, C_RISE) * fallRaw(t) * bump(t));
+    MEL_PEAK = peak;
+    const r0 = (0.2 * peak) / (fallRaw(0) * bump(0));
+    C_RISE = S_RISE * Math.log(1 / r0 - 1);
+  }
+  const melShape = (tH) => (riseRaw(tH, C_RISE) * fallRaw(tH) * bump(tH)) / MEL_PEAK;
+
+  const WAKE = 1860, LIGHT_ON = 1230, X0 = 1080, X1 = 2040, STEP = 5;
+  const SUPP = { bright: 0.68, phone: 0.30, dim: 0.10 };
+  const SOL_LIGHT = { bright: 10, phone: 10, dim: 0 };
+  const LIGHT_LABEL = { bright: 'Deckenlicht ~200 lx', phone: 'Handy · Night Shift', dim: 'gedimmt < 15 lx' };
+  const LIGHT_OPACITY = { bright: 0.62, phone: 0.26, dim: 0.12 };
+  const REF = { morning: true, evening: 'dim', tib: 8, meal: 'early' };
+  const PRESETS = {
+    workday: { morning: false, evening: 'bright', tib: 6.5, meal: 'late' },
+    protocol: { morning: true, evening: 'dim', tib: 8, meal: 'early' },
+    short: { morning: false, evening: 'phone', tib: 5, meal: 'late' }
+  };
+
+  function melValue(t, c) {
+    let v = melShape((t - c.dlmo) / 60);
+    if (t >= LIGHT_ON && t < c.bed) v *= 1 - c.supp * (1 - Math.exp(-(t - LIGHT_ON) / 25));
+    else if (t >= c.bed) v *= 1 - c.supp * (1 - Math.exp(-(c.bed - LIGHT_ON) / 25)) * Math.exp(-(t - c.bed) / 20);
+    if (t > WAKE) v *= Math.exp(-(t - WAKE) / 15);
+    return v;
+  }
+  function compute(s) {
+    const bed = WAKE - s.tib * 60;
+    const sol = 15 + SOL_LIGHT[s.evening] + (s.meal === 'late' ? 5 : 0) + (s.morning ? 0 : 5);
+    const night = buildNight(bed, sol, WAKE);
+    const c = { s, bed, sol, night, dlmo: 1260 + (s.morning ? 0 : 20), supp: SUPP[s.evening] };
+    c.curve = [];
+    for (let t = X0; t <= X1; t += STEP) c.curve.push(melValue(t, c));
+    c.onset = null;
+    for (let t = X0; t <= X1; t += 1) { if (melValue(t, c) >= 0.2) { c.onset = t; break; } }
+    const tstH = night.tot.TST / 60;
+    c.tstH = tstH;
+    c.gh = Math.min(1, night.tot.N3 / N3_REF);
+    c.testo = 1 - 0.125 * clamp((8 - tstH) / (8 - 4.8), 0, 1);
+    c.mps = 1 - 0.19 * clamp((7.4 - tstH) / (7.4 - 3.8), 0, 1);
+    c.ana = (c.gh + c.testo + c.mps) / 3;
+    c.fat = 20 + 28 * clamp((s.tib - 5.5) / 3, 0, 1);
+    return c;
+  }
+  const refC = compute(REF);
+
+  /* ---------- Simulator UI ---------- */
+  const form = $('#sim-form');
+  const state = Object.assign({}, PRESETS.workday);
+  let shownCurve = null, anim = null, simEls = null;
+
+  function readForm() {
+    state.morning = $('#sim-morning-yes').checked;
+    state.evening = form.querySelector('input[name="evening"]:checked').value;
+    state.tib = parseFloat($('#sim-tib').value);
+    state.meal = form.querySelector('input[name="meal"]:checked').value;
+  }
+  function writeForm(s) {
+    $('#sim-morning-yes').checked = s.morning;
+    $('#sim-morning-no').checked = !s.morning;
+    $('#sim-ev-' + s.evening).checked = true;
+    $('#sim-tib').value = String(s.tib);
+    $('#sim-meal-' + s.meal).checked = true;
+  }
+  function syncRange() {
+    const r = $('#sim-tib');
+    const pct = ((parseFloat(r.value) - 5) / 4) * 100;
+    r.style.setProperty('--fill', pct + '%');
+    const out = $('#sim-tib-out');
+    out.replaceChildren(document.createTextNode(fmtH(state.tib)));
+    const sm = document.createElement('small');
+    sm.textContent = 'Std.';
+    out.appendChild(sm);
+    $('#sim-tib-sub').textContent = 'Bett ' + fmtClock(WAKE - state.tib * 60) + ' → 07:00';
+  }
+  function markPreset() {
+    $$('[data-preset]').forEach(b => {
+      const p = PRESETS[b.dataset.preset];
+      const same = p.morning === state.morning && p.evening === state.evening && p.tib === state.tib && p.meal === state.meal;
+      b.setAttribute('aria-pressed', same ? 'true' : 'false');
+    });
+  }
+
+  function renderSimChart(c) {
+    const wrap = $('#sim-chart');
+    if (!wrap) return;
+    const W = Math.max(240, wrap.clientWidth), narrow = W < 560;
+    const curveH = narrow ? 150 : 180;
+    const m = { l: narrow ? 34 : 42, r: 10, t: 40 };
+    const stripTop = m.t + curveH + 26, laneGap = 14;
+    const lanes = { REM: stripTop, L: stripTop + laneGap, N3: stripTop + laneGap * 2 };
+    const axisY = stripTop + laneGap * 2 + 14;
+    const H = axisY + 24;
+    const pw = W - m.l - m.r;
+    const sx = (t) => m.l + ((t - X0) / (X1 - X0)) * pw;
+    const sy = (v) => m.t + curveH - v * curveH;
+    const toT = (px) => X0 + ((px - m.l) / pw) * (X1 - X0);
+    const svg = svgEl('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', tabindex: 0 });
+    const desc = svgEl('title', null, svg);
+
+    // sleep window
+    svgEl('rect', { class: 'band-sleep', x: sx(c.bed), y: m.t - 6, width: sx(WAKE) - sx(c.bed), height: axisY - m.t + 6 }, svg);
+    // light row
+    const lb = svgEl('rect', { class: 'light-band', x: sx(LIGHT_ON), y: 8, width: Math.max(2, sx(c.bed) - sx(LIGHT_ON)), height: 14, rx: 3 }, svg);
+    lb.style.opacity = LIGHT_OPACITY[c.s.evening];
+    svgText(svg, sx(LIGHT_ON) + 6, 19, LIGHT_LABEL[c.s.evening], { class: 'light-label' });
+    if (c.s.morning) {
+      svgEl('rect', { class: 'light-band', x: sx(WAKE), y: 8, width: Math.max(4, sx(WAKE + 15) - sx(WAKE)), height: 14, rx: 3 }, svg);
+      if (narrow) svgText(svg, sx(WAKE) - 6, 19, 'Morgenlicht', { class: 'light-label', 'text-anchor': 'end' });
+      else svgText(svg, sx(WAKE + 15) + 6, 19, 'Morgenlicht', { class: 'light-label' });
+    } else {
+      svgText(svg, W - m.r, 19, 'kein Morgenlicht', { class: 'anno-muted', 'text-anchor': 'end' });
+    }
+    // grid
+    for (const v of [0, 0.5, 1]) {
+      svgEl('line', { class: 'grid', x1: m.l, x2: W - m.r, y1: sy(v), y2: sy(v) }, svg);
+      svgText(svg, m.l - 6, sy(v) + 4, Math.round(v * 100) + ' %', { class: 'axis-label', 'text-anchor': 'end' });
+    }
+    svgEl('line', { class: 'thresh', x1: m.l, x2: W - m.r, y1: sy(0.2), y2: sy(0.2) }, svg);
+    svgText(svg, m.l + 4, sy(0.2) + 14, narrow ? '20 %-Schwelle' : 'Start-Schwelle 20 %', { class: 'anno-muted', 'text-anchor': 'start' });
+    // reference curve
+    const refPts = refC.curve.map((v, i) => [sx(X0 + i * STEP), sy(v)]);
+    svgEl('path', { class: 'line-ref', d: pathFrom(refPts) }, svg);
+    // scenario curve (animated)
+    const area = svgEl('path', { class: 'area-mel' }, svg);
+    const line = svgEl('path', { class: 'line-mel' }, svg);
+    // onset markers
+    const refDot = svgEl('circle', { class: 'dot-ref', r: 4.5, cx: sx(refC.onset), cy: sy(0.2) }, svg);
+    const dot = svgEl('circle', { class: 'dot-mel', r: 5, cy: sy(0.2) }, svg);
+    const lblRef = svgText(svg, 0, 0, '', { class: 'anno-muted' });
+    const lblMe = svgText(svg, 0, 0, '', { class: 'anno-strong' });
+    // bed / wake labels
+    const bedLbl = 'Bett ' + fmtClock(c.bed);
+    svgText(svg, sx(c.bed) + 4, m.t + curveH + 16, bedLbl, { class: 'anno' });
+    if (sx(WAKE) - sx(c.bed) > (narrow ? 150 : 190)) svgText(svg, sx(WAKE) - 4, m.t + curveH + 16, 'Aufstehen 07:00', { class: 'anno', 'text-anchor': 'end' });
+    // hypnogram strip
+    svgText(svg, m.l - 6, lanes.REM + 4, 'REM', { class: 'axis-label', 'text-anchor': 'end' });
+    svgText(svg, m.l - 6, lanes.L + 4, narrow ? 'N2' : 'Leicht', { class: 'axis-label', 'text-anchor': 'end' });
+    svgText(svg, m.l - 6, lanes.N3 + 4, 'Tief', { class: 'axis-label', 'text-anchor': 'end' });
+    svgEl('line', { class: 'grid', x1: sx(c.night.onset), x2: sx(WAKE), y1: lanes.L, y2: lanes.L }, svg);
+    for (const sg of c.night.segs) {
+      const xa = sx(sg.start), w = Math.max(1.5, sx(sg.end) - xa);
+      if (sg.stage === 'REM') svgEl('rect', { class: 'seg-REM', x: xa, y: lanes.REM - 5, width: w, height: 10, rx: 2.5 }, svg);
+      else if (sg.stage === 'N3') svgEl('rect', { class: 'seg-N3', x: xa, y: lanes.N3 - 5, width: w, height: 10, rx: 2.5 }, svg);
+      else if (sg.stage === 'N2' || sg.stage === 'N1') svgEl('rect', { class: 'seg-N2', x: xa, y: lanes.L - 2, width: w, height: 4, rx: 1.5 }, svg);
+    }
+    // time axis
+    svgEl('line', { class: 'baseline', x1: m.l, x2: W - m.r, y1: axisY, y2: axisY }, svg);
+    for (let t = X0; t <= X1; t += 120) {
+      const x = sx(t);
+      svgEl('line', { class: 'tick', x1: x, x2: x, y1: axisY, y2: axisY + 5 }, svg);
+      if (!narrow || (t - X0) % 240 === 0) svgText(svg, x, axisY + 18, fmtClock(t), { class: 'axis-label', 'text-anchor': t === X1 ? 'end' : 'middle' });
+    }
+
+    mountSvg(wrap, svg);
+    simEls = { area, line, dot, lblRef, lblMe, refDot, sx, sy, W, m, narrow, desc };
+    crosshair(svg, wrap, {
+      x0: X0, x1: X1, sx, toT, snap: 5, top: m.t - 6, bottom: axisY, focusT: c.onset || 1260, keyStep: 15,
+      rows: (t) => {
+        const i = clamp(Math.round((t - X0) / STEP), 0, c.curve.length - 1);
+        const st = stageAt(c.night, t);
+        const rows = [
+          { head: true, value: fmtClock(t) + ' Uhr' },
+          { key: 'var(--cyan-mark)', value: Math.round(c.curve[i] * 100) + ' %', label: 'Melatonin, dein Szenario' },
+          { key: 'var(--muted)', value: Math.round(refC.curve[i] * 100) + ' %', label: 'Referenz' }
+        ];
+        if (st) rows.push({ key: STAGE[st.stage].color, value: STAGE[st.stage].name, label: '' });
+        else rows.push({ value: t < c.bed ? 'Wach' : 'Aufgestanden', label: '' });
+        return rows;
+      }
+    });
+  }
+
+  function drawCurve(curve, c) {
+    if (!simEls) return;
+    const { area, line, dot, lblRef, lblMe, refDot, sx, sy, W, m, narrow, desc } = simEls;
+    const pts = curve.map((v, i) => [sx(X0 + i * STEP), sy(v)]);
+    const d = pathFrom(pts);
+    line.setAttribute('d', d);
+    area.setAttribute('d', d + `L${sx(X1)},${sy(0)}L${sx(X0)},${sy(0)}Z`);
+    // onset of the displayed curve
+    let on = null;
+    for (let i = 0; i < curve.length; i++) if (curve[i] >= 0.2) { const prev = i ? curve[i - 1] : 0; on = X0 + (i - 1 + (0.2 - prev) / Math.max(1e-6, curve[i] - prev)) * STEP; break; }
+    if (on == null) on = c.onset;
+    dot.setAttribute('cx', sx(on));
+    const same = Math.abs(c.onset - refC.onset) < 8;
+    refDot.style.opacity = same ? 0 : 1;
+    const y = sy(0.2);
+    if (same) {
+      lblRef.textContent = '';
+      lblMe.textContent = 'Start ' + fmtClock(c.onset) + ' = Referenz';
+      const fitsLeft = sx(on) - 8 - textWidth(lblMe.textContent, '600 12.5px Barlow, system-ui, sans-serif') > 2;
+      lblMe.setAttribute('x', fitsLeft ? sx(on) - 8 : sx(on) + 9);
+      lblMe.setAttribute('y', fitsLeft ? y - 12 : y + 18);
+      lblMe.setAttribute('text-anchor', fitsLeft ? 'end' : 'start');
+    } else {
+      lblRef.textContent = (narrow ? 'Ref. ' : 'Referenz ') + fmtClock(refC.onset);
+      lblRef.setAttribute('x', sx(refC.onset) - 8); lblRef.setAttribute('y', y - 12); lblRef.setAttribute('text-anchor', 'end');
+      lblMe.textContent = 'Du ' + fmtClock(c.onset);
+      const right = sx(on) + 9 + textWidth(lblMe.textContent, '600 12.5px Barlow, system-ui, sans-serif') < W - m.r;
+      lblMe.setAttribute('x', right ? sx(on) + 9 : sx(on) - 9); lblMe.setAttribute('y', y + 18); lblMe.setAttribute('text-anchor', right ? 'start' : 'end');
+    }
+    desc.textContent = `Melatonin-Verlauf von 18 bis 10 Uhr. Start in deinem Szenario ${fmtClock(c.onset)}, Referenz ${fmtClock(refC.onset)}. Bettzeit ${fmtClock(c.bed)} bis 07:00, Tiefschlaf ${Math.round(c.night.tot.N3)} Minuten, REM ${Math.round(c.night.tot.REM)} Minuten.`;
+  }
+
+  function animateCurve(target, c) {
+    if (anim) cancelAnimationFrame(anim);
+    const from = shownCurve && shownCurve.length === target.length ? shownCurve.slice() : target.slice();
+    if (reduceMotion || from === target) { shownCurve = target.slice(); drawCurve(shownCurve, c); return; }
+    const t0 = performance.now(), dur = 460;
+    const ease = (x) => 1 - Math.pow(1 - x, 3);
+    const tick = (now) => {
+      const k = ease(Math.min(1, (now - t0) / dur));
+      shownCurve = target.map((v, i) => from[i] + (v - from[i]) * k);
+      drawCurve(shownCurve, c);
+      if (k < 1) anim = requestAnimationFrame(tick); else anim = null;
+    };
+    anim = requestAnimationFrame(tick);
+  }
+
+  function setKpi(id, value, delta, cls) {
+    const box = $('#' + id);
+    const v = box.querySelector('[data-value]');
+    const unit = v.querySelector('small');
+    v.replaceChildren(document.createTextNode(value));
+    if (unit) v.appendChild(unit);
+    const d = box.querySelector('[data-delta]');
+    d.textContent = delta;
+    d.className = 'delta ' + cls;
+  }
+
+  function renderKpis(c) {
+    const r = refC;
+    // Melatonin
+    const dOn = c.onset - r.onset;
+    setKpi('kpi-mel', fmtClock(c.onset), Math.abs(dOn) < 3 ? '= Referenz' : signed(dOn, 'Min.'), deltaClass(-dOn, true, 3));
+    // Anabolic
+    const ana = Math.round(c.ana * 100), anaR = Math.round(r.ana * 100);
+    setKpi('kpi-ana', String(ana), ana === anaR ? '= Referenz' : signed(ana - anaR, 'Pkt.'), deltaClass(ana - anaR, true, 0.5));
+    const meter = $('#kpi-ana [data-meter]');
+    meter.firstElementChild.style.width = ana + '%';
+    meter.style.setProperty('--ref', anaR + '%');
+    const comp = $('#kpi-ana [data-comp]');
+    comp.replaceChildren();
+    const rows = [
+      ['GH-Puls (Tiefschlaf)', Math.round(c.gh * 100) + ' %'],
+      ['Testosteron', signed((c.testo - 1) * 100, '%')],
+      ['Muskelproteinsynthese', signed((c.mps - 1) * 100, '%')]
+    ];
+    for (const [k, val] of rows) {
+      const dv = document.createElement('div');
+      const dt = document.createElement('dt'); dt.textContent = k;
+      const dd = document.createElement('dd'); dd.textContent = val;
+      dv.append(dt, dd);
+      comp.appendChild(dv);
+    }
+    // Partitioning
+    const fat = Math.round(c.fat), fatR = Math.round(r.fat);
+    setKpi('kpi-part', String(fat), fat === fatR ? '= Referenz' : signed(fat - fatR, 'Pkt.'), deltaClass(fat - fatR, true, 0.5));
+    const split = $('#kpi-part [data-split]');
+    split.children[0].style.flexBasis = fat + '%';
+    split.children[0].textContent = fat + ' %';
+    split.children[1].style.flexBasis = (100 - fat) + '%';
+    split.children[1].textContent = (100 - fat) + ' %';
+    let verdict;
+    if (c.s.tib < 5.5) verdict = 'Unterhalb des Studienbereichs (5,5 Std.): Wert = Randwert. ';
+    else if (c.s.tib > 8.5) verdict = 'Oberhalb des Studienbereichs (8,5 Std.): Wert = Randwert. ';
+    else verdict = '';
+    verdict += fat < 35 ? `Mehr als die Hälfte des Diät-Gewichtsverlusts käme aus fettfreier Masse.` : `Ein großer Teil des Gewichtsverlusts käme aus Fett.`;
+    verdict += ' Nedeltcheva 2010, n = 10.';
+    $('#kpi-part [data-verdict]').textContent = verdict;
+    // Sleep
+    const n3 = Math.round(c.night.tot.N3), n3R = Math.round(r.night.tot.N3);
+    const rem = Math.round(c.night.tot.REM), remR = Math.round(r.night.tot.REM);
+    setKpi('kpi-sws', String(n3), n3 === n3R ? '= Referenz' : signed(n3 - n3R, 'Min.'), deltaClass(n3 - n3R, true, 0.5));
+    const lines = $('#kpi-sws [data-lines]');
+    lines.replaceChildren();
+    const mk = (keyCls, label, val, dlt) => {
+      const row = document.createElement('div');
+      const k = document.createElement('i'); k.className = 'key ' + keyCls;
+      const l = document.createElement('span'); l.textContent = label;
+      const s = document.createElement('strong'); s.textContent = val;
+      row.append(k, l, s);
+      if (dlt) { const d = document.createElement('span'); d.className = 'delta ' + dlt[1]; d.textContent = dlt[0]; row.appendChild(d); }
+      lines.appendChild(row);
+    };
+    mk('k-rem', 'REM', rem + NBSP + 'Min.', rem === remR ? null : [signed(rem - remR, 'Min.'), deltaClass(rem - remR)]);
+    mk('k-light', 'Schlaf netto', fmtDur(c.night.tot.TST) + NBSP + 'Std.', null);
+    const live = (k, v) => { const el = document.querySelector('[data-live="' + k + '"]'); if (el) el.textContent = v; };
+    live('mel', fmtClock(c.onset));
+    live('ana', ana + ' %');
+    live('fat', fat + ' %');
+    live('sleep', n3 + ' / ' + rem);
+  }
+
+  function renderChips(c) {
+    const box = $('#sim-chips');
+    box.replaceChildren();
+    chip(box, { label: 'Bett', value: fmtClock(c.bed) });
+    chip(box, { label: 'Einschlafen nach', value: Math.round(c.sol) + NBSP + 'Min.', delta: c.sol === refC.sol ? null : signed(c.sol - refC.sol, 'Min.'), deltaClass: deltaClass(refC.sol - c.sol) });
+    chip(box, { label: 'Schlaf netto', value: fmtDur(c.night.tot.TST) + NBSP + 'Std.' });
+    if (c.s.meal === 'late') chip(box, { label: 'Reflux-Risiko', value: 'erhöht', delta: 'Fall-Kontroll-Daten', deltaClass: 'bad' });
+  }
+
+  function renderInsight(c) {
+    const r = refC, s = c.s, parts = [];
+    const delay = Math.round(c.onset - r.onset);
+    if (s.tib < 7) parts.push(`Größter Hebel ist die Schlafdauer. Bei ${fmtH(s.tib)} Std. im Bett stammen im Modell nur ${Math.round(c.fat)} % des Diät-Gewichtsverlusts aus Fett (Referenz ${Math.round(r.fat)} %), REM schrumpft um ${Math.round(r.night.tot.REM - c.night.tot.REM)} Min., ${Math.round(r.night.tot.N3 - c.night.tot.N3) >= 1 ? 'Tiefschlaf nur um ' + Math.round(r.night.tot.N3 - c.night.tot.N3) + ' Min.' : 'der Tiefschlaf bleibt praktisch gleich.'}`);
+    const lightDelay = Math.round(c.onset - compute(Object.assign({}, s, { evening: 'dim' })).onset);
+    if (s.evening === 'bright') parts.push(delay - lightDelay < 3 ? `Das helle Deckenlicht schiebt deinen Melatonin-Start um ${lightDelay} Min. nach hinten. Dimmen ist hier der schnellste Gewinn.` : `Melatonin startet ${delay} Min. später als in der Referenz, ${lightDelay} Min. davon gehen auf das helle Deckenlicht. Dimmen ist hier der schnellste Gewinn.`);
+    else if (s.evening === 'phone') parts.push(`Handy im Dunkeln wirkt über Licht nur schwach (+${lightDelay} Min.). Der größere Faktor ist meist, dass Inhalte wach halten und Schlafzeit verdrängen.`);
+    if (!s.morning && s.evening !== 'bright') parts.push('Ohne Morgenlicht beginnt Melatonin im Modell 20 Min. später (Annahme).');
+    if (s.meal === 'late') parts.push('Spätes Essen kostet im Modell nur 5 Min. Einschlafzeit; belegt ist vor allem das höhere Reflux-Risiko.');
+    if (s.tib >= 8 && s.evening === 'dim' && s.morning) parts.unshift('Du bist am Protokoll: Melatonin startet früh, Tiefschlaf und REM sind voll da.');
+    if (!parts.length) parts.push('Kleine Abweichungen vom Protokoll. Die Schlafdauer bleibt der größte Hebel.');
+    const box = $('#sim-insight');
+    box.replaceChildren();
+    const b = document.createElement('b');
+    b.textContent = 'Was gerade am meisten zählt';
+    box.appendChild(b);
+    box.appendChild(document.createTextNode(parts.slice(0, 2).join(' ')));
+  }
+
+  let lastC = null;
+  function updateSim(animate = true) {
+    syncRange();
+    markPreset();
+    const c = compute(state);
+    lastC = c;
+    renderSimChart(c);
+    if (animate) animateCurve(c.curve, c);
+    else { shownCurve = c.curve.slice(); drawCurve(shownCurve, c); }
+    renderKpis(c);
+    renderChips(c);
+    renderInsight(c);
+  }
+
+  form.addEventListener('submit', (e) => e.preventDefault());
+  form.addEventListener('input', () => { readForm(); updateSim(true); });
+  form.addEventListener('change', () => { readForm(); updateSim(true); });
+  $$('[data-preset]').forEach(b => b.addEventListener('click', () => {
+    Object.assign(state, PRESETS[b.dataset.preset]);
+    writeForm(state);
+    updateSim(true);
+  }));
+
+  /* ---------- mobile live readout ---------- */
+  (function liveReadout() {
+    const bar = $('#sim-live'), formEl = $('#sim-form'), chartBox = $('.sim-chart-box');
+    if (!bar || !('IntersectionObserver' in window)) return;
+    let formIn = false, chartIn = false;
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.target === formEl) formIn = e.isIntersecting;
+        if (e.target === chartBox) chartIn = e.intersectionRatio > 0.35;
+      }
+      bar.hidden = !(formIn && !chartIn);
+    }, { threshold: [0, 0.35, 1] });
+    io.observe(formEl);
+    io.observe(chartBox);
+  })();
+
+  /* ---------- boot ---------- */
+  writeForm(state);
+  renderHypno();
+  renderHypnoMeta();
+  renderHypnoTable();
+  renderHormones();
+  renderHormoneTable();
+  renderLux();
+  updateSim(false);
+
+  let rafId = 0, lastW = {};
+  const ro = new ResizeObserver((entries) => {
+    let changed = false;
+    for (const e of entries) {
+      const w = Math.round(e.contentRect.width);
+      if (lastW[e.target.id] !== w) { lastW[e.target.id] = w; changed = true; }
+    }
+    if (!changed) return;
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => {
+      renderHypno();
+      renderHormones();
+      renderLux();
+      if (lastC) { renderSimChart(lastC); drawCurve(shownCurve || lastC.curve, lastC); }
+    });
+  });
+  ['#hypno-chart', '#hormone-chart', '#lux-chart', '#sim-chart'].forEach(sel => { const el = $(sel); if (el) { lastW[el.id] = Math.round(el.clientWidth); ro.observe(el); } });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { renderLux(); if (lastC) { renderSimChart(lastC); drawCurve(shownCurve || lastC.curve, lastC); } });
+})();
+</script>
+</body>
+</html>
